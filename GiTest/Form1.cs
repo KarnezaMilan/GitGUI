@@ -53,7 +53,6 @@ namespace GiTest
 
             dialog.ShowDialog();
 
-            // Open the selected repository, if possible.
             if (!String.IsNullOrEmpty(dialog.SelectedPath))
             {
                 //if (OpenNewRepository(dialog.SelectedPath) == false)
