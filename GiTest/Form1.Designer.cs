@@ -33,6 +33,7 @@
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openReposotoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.branchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,7 +52,6 @@
             this.BranchLAB = new System.Windows.Forms.Label();
             this.FIleLAB = new System.Windows.Forms.Label();
             this.ConnectBTN = new System.Windows.Forms.Button();
-            this.closeToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,6 +96,14 @@
             this.closeToolStripMenuItem1.Name = "closeToolStripMenuItem1";
             this.closeToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.closeToolStripMenuItem1.Text = "Clone";
+            this.closeToolStripMenuItem1.Click += new System.EventHandler(this.closeToolStripMenuItem1_Click);
+            // 
+            // closeToolStripMenuItem2
+            // 
+            this.closeToolStripMenuItem2.Name = "closeToolStripMenuItem2";
+            this.closeToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.closeToolStripMenuItem2.Text = "Close";
+            this.closeToolStripMenuItem2.Click += new System.EventHandler(this.closeToolStripMenuItem2_Click);
             // 
             // branchToolStripMenuItem
             // 
@@ -248,13 +256,7 @@
             this.ConnectBTN.TabIndex = 24;
             this.ConnectBTN.Text = "Connect";
             this.ConnectBTN.UseVisualStyleBackColor = true;
-            // 
-            // closeToolStripMenuItem2
-            // 
-            this.closeToolStripMenuItem2.Name = "closeToolStripMenuItem2";
-            this.closeToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
-            this.closeToolStripMenuItem2.Text = "Close";
-            this.closeToolStripMenuItem2.Click += new System.EventHandler(this.closeToolStripMenuItem2_Click);
+            this.ConnectBTN.Click += new System.EventHandler(this.ConnectBTN_Click);
             // 
             // Form1
             // 

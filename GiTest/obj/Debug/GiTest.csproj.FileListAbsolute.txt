@@ -19,3 +19,4 @@ c:\users\mili\documents\visual studio 2013\Projects\GiTest\GiTest\bin\Debug\LibG
 c:\users\mili\documents\visual studio 2013\Projects\GiTest\GiTest\bin\Debug\LibGit2Sharp.xml
 C:\Users\Mili\Documents\Visual Studio 2013\Projects\GiTest\GiTest\bin\Debug\Octokit.dll
 C:\Users\Mili\Documents\Visual Studio 2013\Projects\GiTest\GiTest\bin\Debug\Octokit.xml
+C:\Users\Mili\documents\visual studio 2013\Projects\GiTest\GiTest\obj\Debug\GiTest.CloneReposotoryForm.resources
