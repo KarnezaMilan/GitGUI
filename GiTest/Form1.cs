@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Octokit;
 //using System.Security.Permissions.FileIOPermission;
 using WinForms = System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
+using LibGit2Sharp;
 
 namespace GiTest
 {
@@ -79,6 +79,53 @@ namespace GiTest
         {
             CloneReposotoryForm f = new CloneReposotoryForm();
             f.Show();
+
+
+        }
+
+        private void RescanBTN_Click(object sender, EventArgs e)
+        {
+      
+            string[] file = new string[2];
+            string bb = null;
+
+            ListViewItem itm;
+
+            using (var repo = new Repository(FIleLAB.Text))
+            {
+                foreach (var item in repo.RetrieveStatus(new LibGit2Sharp.StatusOptions()))
+                {
+                    file[0] = item.FilePath;
+                    bb = Convert.ToString(item.State);
+                    if (bb == "DeletedFromWorkdir")
+                    {
+                        file[1] = "Deleted";
+                        itm = new ListViewItem(file);
+                        listViewStatus.Items.Add(itm);
+
+                    }else if (bb == "ModifiedInWorkdir")
+                    {
+                        file[1] = "Modified";
+                        itm = new ListViewItem(file);
+                        listViewStatus.Items.Add(itm);
+                    }
+                    else if (bb == "NewInWorkdir")
+                    {
+                        file[1] = "New";
+                        itm = new ListViewItem(file);
+                        listViewStatus.Items.Add(itm);
+                    }
+                    else
+                    {
+                        file[1] = bb;
+                        itm = new ListViewItem(file);
+                        listViewStatus.Items.Add(itm);
+                    }
+                    
+                 
+
+                }
+            }
 
 
         }

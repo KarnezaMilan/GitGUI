@@ -42,7 +42,8 @@
             this.AddBTN = new System.Windows.Forms.Button();
             this.PullBNT = new System.Windows.Forms.Button();
             this.PushBTN = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.listViewStatus = new System.Windows.Forms.ListView();
+            this.columnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listView2 = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -52,6 +53,7 @@
             this.BranchLAB = new System.Windows.Forms.Label();
             this.FIleLAB = new System.Windows.Forms.Label();
             this.ConnectBTN = new System.Windows.Forms.Button();
+            this.columnStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,28 +82,28 @@
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
             this.closeToolStripMenuItem.Text = "Create";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
             // openReposotoryToolStripMenuItem
             // 
             this.openReposotoryToolStripMenuItem.Name = "openReposotoryToolStripMenuItem";
-            this.openReposotoryToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openReposotoryToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
             this.openReposotoryToolStripMenuItem.Text = "Open";
             this.openReposotoryToolStripMenuItem.Click += new System.EventHandler(this.openReposotoryToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem1
             // 
             this.closeToolStripMenuItem1.Name = "closeToolStripMenuItem1";
-            this.closeToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.closeToolStripMenuItem1.Size = new System.Drawing.Size(108, 22);
             this.closeToolStripMenuItem1.Text = "Clone";
             this.closeToolStripMenuItem1.Click += new System.EventHandler(this.closeToolStripMenuItem1_Click);
             // 
             // closeToolStripMenuItem2
             // 
             this.closeToolStripMenuItem2.Name = "closeToolStripMenuItem2";
-            this.closeToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.closeToolStripMenuItem2.Size = new System.Drawing.Size(108, 22);
             this.closeToolStripMenuItem2.Text = "Close";
             this.closeToolStripMenuItem2.Click += new System.EventHandler(this.closeToolStripMenuItem2_Click);
             // 
@@ -134,6 +136,7 @@
             this.RescanBTN.TabIndex = 9;
             this.RescanBTN.Text = "Rescan";
             this.RescanBTN.UseVisualStyleBackColor = true;
+            this.RescanBTN.Click += new System.EventHandler(this.RescanBTN_Click);
             // 
             // CommitBTN
             // 
@@ -171,13 +174,22 @@
             this.PushBTN.Text = "Push";
             this.PushBTN.UseVisualStyleBackColor = true;
             // 
-            // listView1
+            // listViewStatus
             // 
-            this.listView1.Location = new System.Drawing.Point(12, 146);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(287, 164);
-            this.listView1.TabIndex = 15;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listViewStatus.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnName,
+            this.columnStatus});
+            this.listViewStatus.Location = new System.Drawing.Point(12, 146);
+            this.listViewStatus.Name = "listViewStatus";
+            this.listViewStatus.Size = new System.Drawing.Size(287, 175);
+            this.listViewStatus.TabIndex = 15;
+            this.listViewStatus.UseCompatibleStateImageBehavior = false;
+            this.listViewStatus.View = System.Windows.Forms.View.Details;
+            // 
+            // columnName
+            // 
+            this.columnName.Text = "Name";
+            this.columnName.Width = 88;
             // 
             // listView2
             // 
@@ -258,6 +270,11 @@
             this.ConnectBTN.UseVisualStyleBackColor = true;
             this.ConnectBTN.Click += new System.EventHandler(this.ConnectBTN_Click);
             // 
+            // columnStatus
+            // 
+            this.columnStatus.Text = "Status";
+            this.columnStatus.Width = 132;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -272,7 +289,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listView2);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.listViewStatus);
             this.Controls.Add(this.PushBTN);
             this.Controls.Add(this.PullBNT);
             this.Controls.Add(this.AddBTN);
@@ -303,7 +320,7 @@
         private System.Windows.Forms.Button AddBTN;
         private System.Windows.Forms.Button PullBNT;
         private System.Windows.Forms.Button PushBTN;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView listViewStatus;
         private System.Windows.Forms.ListView listView2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -314,6 +331,8 @@
         private System.Windows.Forms.Label FIleLAB;
         private System.Windows.Forms.Button ConnectBTN;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem2;
+        private System.Windows.Forms.ColumnHeader columnName;
+        private System.Windows.Forms.ColumnHeader columnStatus;
 
 
     }
