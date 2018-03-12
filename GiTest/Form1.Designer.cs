@@ -46,6 +46,7 @@
             this.columnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listViewAdded = new System.Windows.Forms.ListView();
+            this.columnAddName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.richTextBoxDIff = new System.Windows.Forms.RichTextBox();
@@ -55,7 +56,6 @@
             this.FIleLAB = new System.Windows.Forms.Label();
             this.ConnectBTN = new System.Windows.Forms.Button();
             this.buttonAddSelected = new System.Windows.Forms.Button();
-            this.columnAddName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,28 +84,28 @@
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
             this.closeToolStripMenuItem.Text = "Create";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
             // openReposotoryToolStripMenuItem
             // 
             this.openReposotoryToolStripMenuItem.Name = "openReposotoryToolStripMenuItem";
-            this.openReposotoryToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openReposotoryToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
             this.openReposotoryToolStripMenuItem.Text = "Open";
             this.openReposotoryToolStripMenuItem.Click += new System.EventHandler(this.openReposotoryToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem1
             // 
             this.closeToolStripMenuItem1.Name = "closeToolStripMenuItem1";
-            this.closeToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.closeToolStripMenuItem1.Size = new System.Drawing.Size(108, 22);
             this.closeToolStripMenuItem1.Text = "Clone";
             this.closeToolStripMenuItem1.Click += new System.EventHandler(this.closeToolStripMenuItem1_Click);
             // 
             // closeToolStripMenuItem2
             // 
             this.closeToolStripMenuItem2.Name = "closeToolStripMenuItem2";
-            this.closeToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.closeToolStripMenuItem2.Size = new System.Drawing.Size(108, 22);
             this.closeToolStripMenuItem2.Text = "Close";
             this.closeToolStripMenuItem2.Click += new System.EventHandler(this.closeToolStripMenuItem2_Click);
             // 
@@ -211,6 +211,11 @@
             this.listViewAdded.UseCompatibleStateImageBehavior = false;
             this.listViewAdded.View = System.Windows.Forms.View.Details;
             // 
+            // columnAddName
+            // 
+            this.columnAddName.Text = "Name";
+            this.columnAddName.Width = 263;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -253,7 +258,7 @@
             this.CommitBTN2.TabIndex = 21;
             this.CommitBTN2.Text = "Commit";
             this.CommitBTN2.UseVisualStyleBackColor = true;
-
+            this.CommitBTN2.Click += new System.EventHandler(this.CommitBTN2_Click);
             // 
             // BranchLAB
             // 
@@ -281,7 +286,6 @@
             this.ConnectBTN.TabIndex = 24;
             this.ConnectBTN.Text = "Connect";
             this.ConnectBTN.UseVisualStyleBackColor = true;
-            this.ConnectBTN.Click += new System.EventHandler(this.ConnectBTN_Click);
             // 
             // buttonAddSelected
             // 
@@ -291,19 +295,13 @@
             this.buttonAddSelected.TabIndex = 25;
             this.buttonAddSelected.Text = "AddSelected";
             this.buttonAddSelected.UseVisualStyleBackColor = true;
-            this.buttonAddSelected.Click += new System.EventHandler(this.buttonAddSelected_Click);
-            // 
-            // columnAddName
-            // 
-            this.columnAddName.Text = "Name";
-            this.columnAddName.Width = 263;
+            this.buttonAddSelected.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(916, 592);
-            this.Controls.Add(this.buttonAddSelected);
             this.Controls.Add(this.ConnectBTN);
             this.Controls.Add(this.FIleLAB);
             this.Controls.Add(this.BranchLAB);
@@ -320,6 +318,7 @@
             this.Controls.Add(this.CommitBTN);
             this.Controls.Add(this.RescanBTN);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.buttonAddSelected);
             this.Name = "Form1";
             this.Text = "Form1";
             this.menuStrip1.ResumeLayout(false);

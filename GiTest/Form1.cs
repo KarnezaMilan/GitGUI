@@ -22,8 +22,8 @@ namespace GiTest
             InitializeComponent();
 
             // just for testing purposes
-            FIleLAB.Text = @"C:\Users\Mili\Desktop\Novamapa";
-
+            string pot = @"C:\Users\Mili\Desktop\Novamapa";
+            FIleLAB.Text = pot;
 
         }
 
@@ -76,9 +76,6 @@ namespace GiTest
             this.Close();
         }
 
-        private void ConnectBTN_Click(object sender, EventArgs e)
-        {
-        }
 
         private void closeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -129,11 +126,22 @@ namespace GiTest
 
         private void AddBTN_Click(object sender, EventArgs e)
         {
+  
+            
+            foreach (ListViewItem item in listViewStatus.Items)
+            {
+            listViewAdded.Items.Add((ListViewItem)item.Clone());
+            }
 
+            listViewStatus.Items.Clear();
+
+           
             using (var repo = new Repository(FIleLAB.Text))
             {
                 Commands.Stage(repo, "*");
             }
+
+
         }
 
         private void listViewStatus_SelectedIndexChanged(object sender, EventArgs e)
@@ -153,6 +161,7 @@ namespace GiTest
               
         }
 
+        /*
         private void buttonAddSelected_Click(object sender, EventArgs e)
         {
             string aa = listViewStatus.SelectedItems[0].Text;
@@ -167,7 +176,41 @@ namespace GiTest
             }
 
 
+        }*/
+
+        private void CommitBTN2_Click(object sender, EventArgs e)
+        {
+            using (var repo = new Repository(FIleLAB.Text))
+            {
+                // Write content to file system
+                if (richTextBoxCommitText.Text == "")
+                {
+                    MessageBox.Show("Write commit message");
+                }
+                else
+                {
+                    //string fileName = Path.GetFileName(FIleLAB.Text);
+                    //var content = "Commit this!";
+                    //File.WriteAllText(Path.Combine(repo.Info.WorkingDirectory, fileName), content);
+
+                    // Stage the file
+                    //repo.Stage(fileName);
+
+                    // Create the committer's signature and commit
+                    Signature author = new Signature("James", "@jugglingnutcase", DateTime.Now);
+                    Signature committer = author;
+
+                    // Commit to the repository
+                    Commit commit = repo.Commit(richTextBoxCommitText.Text, author, committer);
+
+                    MessageBox.Show("YEY");
+                }
+
+
+            }
         }
+
+
 
         
 
