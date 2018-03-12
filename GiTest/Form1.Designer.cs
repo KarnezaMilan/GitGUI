@@ -45,16 +45,17 @@
             this.listViewStatus = new System.Windows.Forms.ListView();
             this.columnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.listView2 = new System.Windows.Forms.ListView();
+            this.listViewAdded = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.richTextBoxDIff = new System.Windows.Forms.RichTextBox();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxCommitText = new System.Windows.Forms.RichTextBox();
             this.CommitBTN2 = new System.Windows.Forms.Button();
             this.BranchLAB = new System.Windows.Forms.Label();
             this.FIleLAB = new System.Windows.Forms.Label();
             this.ConnectBTN = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonAddSelected = new System.Windows.Forms.Button();
+            this.columnAddName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -83,28 +84,28 @@
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.closeToolStripMenuItem.Text = "Create";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
             // openReposotoryToolStripMenuItem
             // 
             this.openReposotoryToolStripMenuItem.Name = "openReposotoryToolStripMenuItem";
-            this.openReposotoryToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.openReposotoryToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openReposotoryToolStripMenuItem.Text = "Open";
             this.openReposotoryToolStripMenuItem.Click += new System.EventHandler(this.openReposotoryToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem1
             // 
             this.closeToolStripMenuItem1.Name = "closeToolStripMenuItem1";
-            this.closeToolStripMenuItem1.Size = new System.Drawing.Size(108, 22);
+            this.closeToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.closeToolStripMenuItem1.Text = "Clone";
             this.closeToolStripMenuItem1.Click += new System.EventHandler(this.closeToolStripMenuItem1_Click);
             // 
             // closeToolStripMenuItem2
             // 
             this.closeToolStripMenuItem2.Name = "closeToolStripMenuItem2";
-            this.closeToolStripMenuItem2.Size = new System.Drawing.Size(108, 22);
+            this.closeToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.closeToolStripMenuItem2.Text = "Close";
             this.closeToolStripMenuItem2.Click += new System.EventHandler(this.closeToolStripMenuItem2_Click);
             // 
@@ -199,13 +200,16 @@
             this.columnStatus.Text = "Status";
             this.columnStatus.Width = 132;
             // 
-            // listView2
+            // listViewAdded
             // 
-            this.listView2.Location = new System.Drawing.Point(12, 356);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(287, 164);
-            this.listView2.TabIndex = 16;
-            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.listViewAdded.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnAddName});
+            this.listViewAdded.Location = new System.Drawing.Point(12, 356);
+            this.listViewAdded.Name = "listViewAdded";
+            this.listViewAdded.Size = new System.Drawing.Size(287, 164);
+            this.listViewAdded.TabIndex = 16;
+            this.listViewAdded.UseCompatibleStateImageBehavior = false;
+            this.listViewAdded.View = System.Windows.Forms.View.Details;
             // 
             // label1
             // 
@@ -233,13 +237,13 @@
             this.richTextBoxDIff.TabIndex = 19;
             this.richTextBoxDIff.Text = "";
             // 
-            // richTextBox2
+            // richTextBoxCommitText
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(316, 366);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(588, 120);
-            this.richTextBox2.TabIndex = 20;
-            this.richTextBox2.Text = "";
+            this.richTextBoxCommitText.Location = new System.Drawing.Point(316, 366);
+            this.richTextBoxCommitText.Name = "richTextBoxCommitText";
+            this.richTextBoxCommitText.Size = new System.Drawing.Size(588, 120);
+            this.richTextBoxCommitText.TabIndex = 20;
+            this.richTextBoxCommitText.Text = "";
             // 
             // CommitBTN2
             // 
@@ -249,6 +253,7 @@
             this.CommitBTN2.TabIndex = 21;
             this.CommitBTN2.Text = "Commit";
             this.CommitBTN2.UseVisualStyleBackColor = true;
+
             // 
             // BranchLAB
             // 
@@ -278,30 +283,36 @@
             this.ConnectBTN.UseVisualStyleBackColor = true;
             this.ConnectBTN.Click += new System.EventHandler(this.ConnectBTN_Click);
             // 
-            // button1
+            // buttonAddSelected
             // 
-            this.button1.Location = new System.Drawing.Point(174, 327);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(125, 23);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonAddSelected.Location = new System.Drawing.Point(164, 115);
+            this.buttonAddSelected.Name = "buttonAddSelected";
+            this.buttonAddSelected.Size = new System.Drawing.Size(70, 23);
+            this.buttonAddSelected.TabIndex = 25;
+            this.buttonAddSelected.Text = "AddSelected";
+            this.buttonAddSelected.UseVisualStyleBackColor = true;
+            this.buttonAddSelected.Click += new System.EventHandler(this.buttonAddSelected_Click);
+            // 
+            // columnAddName
+            // 
+            this.columnAddName.Text = "Name";
+            this.columnAddName.Width = 263;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(916, 592);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonAddSelected);
             this.Controls.Add(this.ConnectBTN);
             this.Controls.Add(this.FIleLAB);
             this.Controls.Add(this.BranchLAB);
             this.Controls.Add(this.CommitBTN2);
-            this.Controls.Add(this.richTextBox2);
+            this.Controls.Add(this.richTextBoxCommitText);
             this.Controls.Add(this.richTextBoxDIff);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.listView2);
+            this.Controls.Add(this.listViewAdded);
             this.Controls.Add(this.listViewStatus);
             this.Controls.Add(this.PushBTN);
             this.Controls.Add(this.PullBNT);
@@ -334,11 +345,11 @@
         private System.Windows.Forms.Button PullBNT;
         private System.Windows.Forms.Button PushBTN;
         private System.Windows.Forms.ListView listViewStatus;
-        private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.ListView listViewAdded;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RichTextBox richTextBoxDIff;
-        private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.RichTextBox richTextBoxCommitText;
         private System.Windows.Forms.Button CommitBTN2;
         private System.Windows.Forms.Label BranchLAB;
         private System.Windows.Forms.Label FIleLAB;
@@ -346,7 +357,8 @@
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem2;
         private System.Windows.Forms.ColumnHeader columnName;
         private System.Windows.Forms.ColumnHeader columnStatus;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonAddSelected;
+        private System.Windows.Forms.ColumnHeader columnAddName;
 
 
     }

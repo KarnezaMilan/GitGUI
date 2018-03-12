@@ -20,6 +20,11 @@ namespace GiTest
         public Form1()
         {
             InitializeComponent();
+
+            // just for testing purposes
+            FIleLAB.Text = @"C:\Users\Mili\Desktop\Novamapa";
+
+
         }
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -83,7 +88,8 @@ namespace GiTest
 
         private void RescanBTN_Click(object sender, EventArgs e)
         {
-      
+            listViewStatus.Items.Clear();
+
             string[] file = new string[2];
             string bb = null;
 
@@ -95,52 +101,39 @@ namespace GiTest
                 {
                     file[0] = item.FilePath;
                     bb = Convert.ToString(item.State);
-                    if (bb == "DeletedFromWorkdir")
+
+                    if (bb.Contains("DeletedFromWorkdir")== true)
                     {
                         file[1] = "Deleted";
                         itm = new ListViewItem(file);
                         listViewStatus.Items.Add(itm);
 
-                    }else if (bb == "ModifiedInWorkdir")
+                    }else if (bb.Contains("ModifiedInWorkdir") == true)
                     {
                         file[1] = "Modified";
                         itm = new ListViewItem(file);
                         listViewStatus.Items.Add(itm);
                     }
-                    else if (bb == "NewInWorkdir")
+                    else if (bb.Contains("NewInWorkdir") == true)
                     {
-                        file[1] = "New";
+                        file[1] = "New Added";
                         itm = new ListViewItem(file);
                         listViewStatus.Items.Add(itm);
                     }
-                    else
-                    {
-                        file[1] = bb;
-                        itm = new ListViewItem(file);
-                        listViewStatus.Items.Add(itm);
-                    }
+           
                 }
             }
-
+            
 
         }
 
         private void AddBTN_Click(object sender, EventArgs e)
         {
 
-
-
-/*
-            using (var repo = new Repository("path/to/your/repo"))
+            using (var repo = new Repository(FIleLAB.Text))
             {
-                // Stage the file
-                repo.Index.Add("file/with/changes.txt");
+                Commands.Stage(repo, "*");
             }
-            */
-
-
-
-
         }
 
         private void listViewStatus_SelectedIndexChanged(object sender, EventArgs e)
@@ -160,9 +153,23 @@ namespace GiTest
               
         }
 
+        private void buttonAddSelected_Click(object sender, EventArgs e)
+        {
+            string aa = listViewStatus.SelectedItems[0].Text;
+            listViewAdded.Items.Add(aa);
+            listViewStatus.SelectedItems[0].Remove();
 
-       
+         
 
+            using(var repo = new Repository(FIleLAB.Text))
+            {
+                Commands.Stage(repo, aa);
+            }
+
+
+        }
+
+        
 
     }
 }
