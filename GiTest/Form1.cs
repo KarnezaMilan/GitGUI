@@ -79,8 +79,6 @@ namespace GiTest
         {
             CloneReposotoryForm f = new CloneReposotoryForm();
             f.Show();
-
-
         }
 
         private void RescanBTN_Click(object sender, EventArgs e)
@@ -121,14 +119,48 @@ namespace GiTest
                         itm = new ListViewItem(file);
                         listViewStatus.Items.Add(itm);
                     }
-                    
-                 
-
                 }
             }
 
 
         }
+
+        private void AddBTN_Click(object sender, EventArgs e)
+        {
+
+
+
+/*
+            using (var repo = new Repository("path/to/your/repo"))
+            {
+                // Stage the file
+                repo.Index.Add("file/with/changes.txt");
+            }
+            */
+
+
+
+
+        }
+
+        private void listViewStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Select item from ListView 
+            if(this.listViewStatus.SelectedItems.Count == 0)
+            {
+                return;
+            }
+            string namn = this.listViewStatus.SelectedItems[0].Text;
+
+            var repo = new Repository(FIleLAB.Text);
+            var patch = repo.Diff.Compare<Patch>(new List<string>() { namn });
+
+            richTextBoxDIff.Text = patch;
+            
+              
+        }
+
+
        
 
 

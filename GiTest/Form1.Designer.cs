@@ -44,16 +44,17 @@
             this.PushBTN = new System.Windows.Forms.Button();
             this.listViewStatus = new System.Windows.Forms.ListView();
             this.columnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listView2 = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxDIff = new System.Windows.Forms.RichTextBox();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.CommitBTN2 = new System.Windows.Forms.Button();
             this.BranchLAB = new System.Windows.Forms.Label();
             this.FIleLAB = new System.Windows.Forms.Label();
             this.ConnectBTN = new System.Windows.Forms.Button();
-            this.columnStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -155,6 +156,7 @@
             this.AddBTN.TabIndex = 11;
             this.AddBTN.Text = "Add";
             this.AddBTN.UseVisualStyleBackColor = true;
+            this.AddBTN.Click += new System.EventHandler(this.AddBTN_Click);
             // 
             // PullBNT
             // 
@@ -185,11 +187,17 @@
             this.listViewStatus.TabIndex = 15;
             this.listViewStatus.UseCompatibleStateImageBehavior = false;
             this.listViewStatus.View = System.Windows.Forms.View.Details;
+            this.listViewStatus.SelectedIndexChanged += new System.EventHandler(this.listViewStatus_SelectedIndexChanged);
             // 
             // columnName
             // 
             this.columnName.Text = "Name";
             this.columnName.Width = 88;
+            // 
+            // columnStatus
+            // 
+            this.columnStatus.Text = "Status";
+            this.columnStatus.Width = 132;
             // 
             // listView2
             // 
@@ -217,13 +225,13 @@
             this.label2.TabIndex = 18;
             this.label2.Text = "label2";
             // 
-            // richTextBox1
+            // richTextBoxDIff
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(316, 146);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(588, 213);
-            this.richTextBox1.TabIndex = 19;
-            this.richTextBox1.Text = "";
+            this.richTextBoxDIff.Location = new System.Drawing.Point(316, 146);
+            this.richTextBoxDIff.Name = "richTextBoxDIff";
+            this.richTextBoxDIff.Size = new System.Drawing.Size(588, 213);
+            this.richTextBoxDIff.TabIndex = 19;
+            this.richTextBoxDIff.Text = "";
             // 
             // richTextBox2
             // 
@@ -270,22 +278,27 @@
             this.ConnectBTN.UseVisualStyleBackColor = true;
             this.ConnectBTN.Click += new System.EventHandler(this.ConnectBTN_Click);
             // 
-            // columnStatus
+            // button1
             // 
-            this.columnStatus.Text = "Status";
-            this.columnStatus.Width = 132;
+            this.button1.Location = new System.Drawing.Point(174, 327);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(125, 23);
+            this.button1.TabIndex = 25;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(916, 592);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.ConnectBTN);
             this.Controls.Add(this.FIleLAB);
             this.Controls.Add(this.BranchLAB);
             this.Controls.Add(this.CommitBTN2);
             this.Controls.Add(this.richTextBox2);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.richTextBoxDIff);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listView2);
@@ -324,7 +337,7 @@
         private System.Windows.Forms.ListView listView2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox richTextBoxDIff;
         private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.Button CommitBTN2;
         private System.Windows.Forms.Label BranchLAB;
@@ -333,6 +346,7 @@
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem2;
         private System.Windows.Forms.ColumnHeader columnName;
         private System.Windows.Forms.ColumnHeader columnStatus;
+        private System.Windows.Forms.Button button1;
 
 
     }
