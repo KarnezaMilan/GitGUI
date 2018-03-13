@@ -191,23 +191,41 @@ namespace GiTest
                 {
                     //string fileName = Path.GetFileName(FIleLAB.Text);
                     //var content = "Commit this!";
-                    //File.WriteAllText(Path.Combine(repo.Info.WorkingDirectory, fileName), content);
-
+                    //File.WriteAllText(Path.Combine(repo.Info.WorkingDirectory, "fileToCommit.txt"), content);
+                    
                     // Stage the file
-                    //repo.Stage(fileName);
+                    //repo.Stage("fileToCommit.txt");
+                    //LibGit2Sharp.Commands.Stage(repo, "fileToCommit.txt");
+
+                    //repo.Stage("*");
+
+                    LibGit2Sharp.Commands.Stage(repo, "*");
+
 
                     // Create the committer's signature and commit
-                    Signature author = new Signature("James", "@jugglingnutcase", DateTime.Now);
+
+                    UserConnectForm form = new UserConnectForm();
+                    form.ShowDialog();
+
+                    Signature author = new Signature(form.ReturnName(), form.ReturnEmail(), DateTime.Now);
                     Signature committer = author;
 
                     // Commit to the repository
                     Commit commit = repo.Commit(richTextBoxCommitText.Text, author, committer);
+
+
 
                     MessageBox.Show("YEY");
                 }
 
 
             }
+        }
+
+        private void connectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+
         }
 
 

@@ -37,6 +37,7 @@
             this.branchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RescanBTN = new System.Windows.Forms.Button();
             this.CommitBTN = new System.Windows.Forms.Button();
             this.AddBTN = new System.Windows.Forms.Button();
@@ -54,7 +55,6 @@
             this.CommitBTN2 = new System.Windows.Forms.Button();
             this.BranchLAB = new System.Windows.Forms.Label();
             this.FIleLAB = new System.Windows.Forms.Label();
-            this.ConnectBTN = new System.Windows.Forms.Button();
             this.buttonAddSelected = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -63,7 +63,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.datotekaToolStripMenuItem,
-            this.branchToolStripMenuItem});
+            this.branchToolStripMenuItem,
+            this.connectToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(916, 24);
@@ -121,14 +122,21 @@
             // createToolStripMenuItem
             // 
             this.createToolStripMenuItem.Name = "createToolStripMenuItem";
-            this.createToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.createToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.createToolStripMenuItem.Text = "Create ...";
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.editToolStripMenuItem.Text = "Edit ...";
+            // 
+            // connectToolStripMenuItem
+            // 
+            this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
+            this.connectToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
+            this.connectToolStripMenuItem.Text = "Connect";
+            this.connectToolStripMenuItem.Click += new System.EventHandler(this.connectToolStripMenuItem_Click);
             // 
             // RescanBTN
             // 
@@ -278,15 +286,6 @@
             this.FIleLAB.TabIndex = 23;
             this.FIleLAB.Text = "label4";
             // 
-            // ConnectBTN
-            // 
-            this.ConnectBTN.Location = new System.Drawing.Point(829, 39);
-            this.ConnectBTN.Name = "ConnectBTN";
-            this.ConnectBTN.Size = new System.Drawing.Size(75, 23);
-            this.ConnectBTN.TabIndex = 24;
-            this.ConnectBTN.Text = "Connect";
-            this.ConnectBTN.UseVisualStyleBackColor = true;
-            // 
             // buttonAddSelected
             // 
             this.buttonAddSelected.Location = new System.Drawing.Point(164, 115);
@@ -302,7 +301,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(916, 592);
-            this.Controls.Add(this.ConnectBTN);
             this.Controls.Add(this.FIleLAB);
             this.Controls.Add(this.BranchLAB);
             this.Controls.Add(this.CommitBTN2);
@@ -352,12 +350,12 @@
         private System.Windows.Forms.Button CommitBTN2;
         private System.Windows.Forms.Label BranchLAB;
         private System.Windows.Forms.Label FIleLAB;
-        private System.Windows.Forms.Button ConnectBTN;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem2;
         private System.Windows.Forms.ColumnHeader columnName;
         private System.Windows.Forms.ColumnHeader columnStatus;
         private System.Windows.Forms.Button buttonAddSelected;
         private System.Windows.Forms.ColumnHeader columnAddName;
+        private System.Windows.Forms.ToolStripMenuItem connectToolStripMenuItem;
 
 
     }

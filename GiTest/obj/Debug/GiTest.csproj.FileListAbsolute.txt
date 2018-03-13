@@ -42,3 +42,4 @@ C:\Users\Mili\Documents\Visual Studio 2013\Projects\GitGUI\GiTest\obj\Debug\GiTe
 C:\Users\Mili\Documents\Visual Studio 2013\Projects\GitGUI\GiTest\obj\Debug\GiTest.Form1.resources
 C:\Users\Mili\Documents\Visual Studio 2013\Projects\GitGUI\GiTest\obj\Debug\GiTest.Properties.Resources.resources
 C:\Users\Mili\Documents\Visual Studio 2013\Projects\GitGUI\GiTest\obj\Debug\GiTest.csproj.GenerateResource.Cache
+C:\Users\Mili\Documents\Visual Studio 2013\Projects\GitGUI\GiTest\obj\Debug\GiTest.UserConnectForm.resources
