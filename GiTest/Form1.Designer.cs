@@ -36,7 +36,6 @@
             this.closeToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.branchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RescanBTN = new System.Windows.Forms.Button();
             this.CommitBTN = new System.Windows.Forms.Button();
@@ -53,7 +52,6 @@
             this.richTextBoxDIff = new System.Windows.Forms.RichTextBox();
             this.richTextBoxCommitText = new System.Windows.Forms.RichTextBox();
             this.CommitBTN2 = new System.Windows.Forms.Button();
-            this.BranchLAB = new System.Windows.Forms.Label();
             this.FIleLAB = new System.Windows.Forms.Label();
             this.buttonAddSelected = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
@@ -113,8 +111,7 @@
             // branchToolStripMenuItem
             // 
             this.branchToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.createToolStripMenuItem,
-            this.editToolStripMenuItem});
+            this.createToolStripMenuItem});
             this.branchToolStripMenuItem.Name = "branchToolStripMenuItem";
             this.branchToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.branchToolStripMenuItem.Text = "Branch";
@@ -124,12 +121,6 @@
             this.createToolStripMenuItem.Name = "createToolStripMenuItem";
             this.createToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.createToolStripMenuItem.Text = "Create ...";
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.editToolStripMenuItem.Text = "Edit ...";
             // 
             // connectToolStripMenuItem
             // 
@@ -184,6 +175,7 @@
             this.PushBTN.TabIndex = 13;
             this.PushBTN.Text = "Push";
             this.PushBTN.UseVisualStyleBackColor = true;
+            this.PushBTN.Click += new System.EventHandler(this.PushBTN_Click);
             // 
             // listViewStatus
             // 
@@ -268,19 +260,10 @@
             this.CommitBTN2.UseVisualStyleBackColor = true;
             this.CommitBTN2.Click += new System.EventHandler(this.CommitBTN2_Click);
             // 
-            // BranchLAB
-            // 
-            this.BranchLAB.AutoSize = true;
-            this.BranchLAB.Location = new System.Drawing.Point(316, 127);
-            this.BranchLAB.Name = "BranchLAB";
-            this.BranchLAB.Size = new System.Drawing.Size(157, 13);
-            this.BranchLAB.TabIndex = 22;
-            this.BranchLAB.Text = "//////////////////////////////";
-            // 
             // FIleLAB
             // 
             this.FIleLAB.AutoSize = true;
-            this.FIleLAB.Location = new System.Drawing.Point(639, 126);
+            this.FIleLAB.Location = new System.Drawing.Point(313, 130);
             this.FIleLAB.Name = "FIleLAB";
             this.FIleLAB.Size = new System.Drawing.Size(35, 13);
             this.FIleLAB.TabIndex = 23;
@@ -302,7 +285,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(916, 592);
             this.Controls.Add(this.FIleLAB);
-            this.Controls.Add(this.BranchLAB);
             this.Controls.Add(this.CommitBTN2);
             this.Controls.Add(this.richTextBoxCommitText);
             this.Controls.Add(this.richTextBoxDIff);
@@ -335,7 +317,6 @@
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem branchToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.Button RescanBTN;
         private System.Windows.Forms.Button CommitBTN;
         private System.Windows.Forms.Button AddBTN;
@@ -348,7 +329,6 @@
         private System.Windows.Forms.RichTextBox richTextBoxDIff;
         private System.Windows.Forms.RichTextBox richTextBoxCommitText;
         private System.Windows.Forms.Button CommitBTN2;
-        private System.Windows.Forms.Label BranchLAB;
         private System.Windows.Forms.Label FIleLAB;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem2;
         private System.Windows.Forms.ColumnHeader columnName;

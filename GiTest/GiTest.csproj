@@ -72,6 +72,12 @@
     <Compile Include="UserConnectForm.Designer.cs">
       <DependentUpon>UserConnectForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserPushForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserPushForm.Designer.cs">
+      <DependentUpon>UserPushForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="CloneReposotoryForm.resx">
       <DependentUpon>CloneReposotoryForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -89,6 +95,9 @@
     </Compile>
     <EmbeddedResource Include="UserConnectForm.resx">
       <DependentUpon>UserConnectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserPushForm.resx">
+      <DependentUpon>UserPushForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

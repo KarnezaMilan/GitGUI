@@ -12,6 +12,7 @@ using WinForms = System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
 using LibGit2Sharp;
+using LibGit2Sharp.Handlers;
 
 namespace GiTest
 {
@@ -22,8 +23,8 @@ namespace GiTest
             InitializeComponent();
 
             // just for testing purposes
-            string pot = @"C:\Users\Mili\Desktop\Novamapa";
-            FIleLAB.Text = pot;
+            //string pot = @"C:\Users\Mili\Documents\Visual Studio 2013\Projects\GitPushTest";
+            //FIleLAB.Text = pot;
 
         }
 
@@ -226,6 +227,31 @@ namespace GiTest
         {
             
 
+        }
+
+        private void PushBTN_Click(object sender, EventArgs e)
+        {
+            using (var repo = new Repository(FIleLAB.Text))
+            {
+
+                UserPushForm form = new UserPushForm();
+                form.ShowDialog();
+                string userName = form.returnUserName();
+                string pass = form.returnPassword();
+
+
+                Remote remote = repo.Network.Remotes["origin"];
+                var options = new PushOptions();
+                options.CredentialsProvider = (_url, _user, _cred) =>
+                    new UsernamePasswordCredentials { Username = userName, Password = pass };
+
+
+                var pushRefSpec = @"refs/heads/master";
+                repo.Network.Push(remote, pushRefSpec, options);
+                
+            }
+
+            MessageBox.Show("YEA-PUSH");
         }
 
 
