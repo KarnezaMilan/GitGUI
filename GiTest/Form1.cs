@@ -23,8 +23,8 @@ namespace GiTest
             InitializeComponent();
 
             // just for testing purposes
-            //string pot = @"C:\Users\Mili\Documents\Visual Studio 2013\Projects\GitPushTest";
-            //FIleLAB.Text = pot;
+            string pot = @"C:\Users\Mili\Documents\Visual Studio 2013\Projects\GitPushTest";
+            FIleLAB.Text = pot;
 
         }
 
@@ -252,6 +252,32 @@ namespace GiTest
             }
 
             MessageBox.Show("YEA-PUSH");
+        }
+
+        private void PullBNT_Click(object sender, EventArgs e)
+        {
+            using (var repo = new Repository(FIleLAB.Text))
+            {
+                UserPushForm form = new UserPushForm("pull");
+                form.ShowDialog();
+                string userName = form.returnUserName();
+                string pass = form.returnPassword();
+                string email = form.returnEmail();
+
+                LibGit2Sharp.PullOptions options = new LibGit2Sharp.PullOptions();
+                options.FetchOptions = new FetchOptions();
+                options.FetchOptions.CredentialsProvider = new CredentialsHandler(
+                    (url, usernameFromUrl, types) =>
+                        new UsernamePasswordCredentials()
+                        {
+                            Username = userName,
+                            Password = pass
+                        });
+     
+                LibGit2Sharp.Commands.Pull(repo,new Signature(userName,email, new DateTimeOffset(DateTime.Now)), options);
+
+                MessageBox.Show("YEA");
+            }
         }
 
 

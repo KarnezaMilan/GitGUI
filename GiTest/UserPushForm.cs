@@ -12,13 +12,23 @@ namespace GiTest
 {
     public partial class UserPushForm : Form
     {
+
         public UserPushForm()
+        {
+            InitializeComponent();
+            label3.Hide();
+            textBox3.Hide();
+        }
+
+        public UserPushForm(string show)
         {
             InitializeComponent();
         }
 
+
         private void button1_Click(object sender, EventArgs e)
         {
+            
             if (textBox1.Text != "" && textBox2.Text != "")
             {
                 this.Close();
@@ -27,6 +37,8 @@ namespace GiTest
             {
                 MessageBox.Show("You need to fill the form");
             }
+
+
         }
 
         public string returnUserName ()
@@ -37,6 +49,11 @@ namespace GiTest
         public string returnPassword()
         {
             return textBox2.Text;
+        }
+
+        public string returnEmail()
+        {
+            return textBox3.Text;
         }
 
     }

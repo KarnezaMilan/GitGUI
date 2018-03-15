@@ -166,6 +166,7 @@
             this.PullBNT.TabIndex = 12;
             this.PullBNT.Text = "Pull";
             this.PullBNT.UseVisualStyleBackColor = true;
+            this.PullBNT.Click += new System.EventHandler(this.PullBNT_Click);
             // 
             // PushBTN
             // 
