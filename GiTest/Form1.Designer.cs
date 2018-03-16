@@ -35,7 +35,6 @@
             this.closeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.branchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RescanBTN = new System.Windows.Forms.Button();
             this.CommitBTN = new System.Windows.Forms.Button();
@@ -83,44 +82,37 @@
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.closeToolStripMenuItem.Text = "Create";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
             // openReposotoryToolStripMenuItem
             // 
             this.openReposotoryToolStripMenuItem.Name = "openReposotoryToolStripMenuItem";
-            this.openReposotoryToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.openReposotoryToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openReposotoryToolStripMenuItem.Text = "Open";
             this.openReposotoryToolStripMenuItem.Click += new System.EventHandler(this.openReposotoryToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem1
             // 
             this.closeToolStripMenuItem1.Name = "closeToolStripMenuItem1";
-            this.closeToolStripMenuItem1.Size = new System.Drawing.Size(108, 22);
+            this.closeToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.closeToolStripMenuItem1.Text = "Clone";
             this.closeToolStripMenuItem1.Click += new System.EventHandler(this.closeToolStripMenuItem1_Click);
             // 
             // closeToolStripMenuItem2
             // 
             this.closeToolStripMenuItem2.Name = "closeToolStripMenuItem2";
-            this.closeToolStripMenuItem2.Size = new System.Drawing.Size(108, 22);
+            this.closeToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.closeToolStripMenuItem2.Text = "Close";
             this.closeToolStripMenuItem2.Click += new System.EventHandler(this.closeToolStripMenuItem2_Click);
             // 
             // branchToolStripMenuItem
             // 
-            this.branchToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.createToolStripMenuItem});
             this.branchToolStripMenuItem.Name = "branchToolStripMenuItem";
             this.branchToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.branchToolStripMenuItem.Text = "Branch";
-            // 
-            // createToolStripMenuItem
-            // 
-            this.createToolStripMenuItem.Name = "createToolStripMenuItem";
-            this.createToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.createToolStripMenuItem.Text = "Create ...";
+            this.branchToolStripMenuItem.Click += new System.EventHandler(this.branchToolStripMenuItem_Click);
             // 
             // connectToolStripMenuItem
             // 
@@ -279,6 +271,7 @@
             this.buttonAddSelected.Text = "AddSelected";
             this.buttonAddSelected.UseVisualStyleBackColor = true;
             this.buttonAddSelected.Visible = false;
+            this.buttonAddSelected.Click += new System.EventHandler(this.buttonAddSelected_Click);
             // 
             // Form1
             // 
@@ -301,7 +294,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.buttonAddSelected);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Git Gui Little";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -317,7 +310,6 @@
         private System.Windows.Forms.ToolStripMenuItem openReposotoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem branchToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem createToolStripMenuItem;
         private System.Windows.Forms.Button RescanBTN;
         private System.Windows.Forms.Button CommitBTN;
         private System.Windows.Forms.Button AddBTN;

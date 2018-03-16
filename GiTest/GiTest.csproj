@@ -51,6 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BranchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BranchForm.Designer.cs">
+      <DependentUpon>BranchForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CloneReposotoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +84,9 @@
     <Compile Include="UserPushForm.Designer.cs">
       <DependentUpon>UserPushForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="BranchForm.resx">
+      <DependentUpon>BranchForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CloneReposotoryForm.resx">
       <DependentUpon>CloneReposotoryForm.cs</DependentUpon>
     </EmbeddedResource>

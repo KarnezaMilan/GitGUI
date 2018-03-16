@@ -74,7 +74,7 @@ namespace GiTest
 
         private void closeToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
 
 
@@ -278,6 +278,17 @@ namespace GiTest
 
                 MessageBox.Show("YEA");
             }
+        }
+
+        private void branchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BranchForm form = new BranchForm(FIleLAB.Text);
+            form.Show();
+        }
+
+        private void buttonAddSelected_Click(object sender, EventArgs e)
+        {
+
         }
 
 
