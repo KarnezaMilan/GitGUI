@@ -1,0 +1,17 @@
+c:\users\mili\documents\visual studio 2017\Projects\WpfApp1\WpfApp1\bin\Debug\WpfApp1.exe.config
+c:\users\mili\documents\visual studio 2017\Projects\WpfApp1\WpfApp1\bin\Debug\WpfApp1.exe
+c:\users\mili\documents\visual studio 2017\Projects\WpfApp1\WpfApp1\bin\Debug\WpfApp1.pdb
+c:\users\mili\documents\visual studio 2017\Projects\WpfApp1\WpfApp1\obj\Debug\WpfApp1.csprojResolveAssemblyReference.cache
+c:\users\mili\documents\visual studio 2017\Projects\WpfApp1\WpfApp1\obj\Debug\MainWindow.g.cs
+c:\users\mili\documents\visual studio 2017\Projects\WpfApp1\WpfApp1\obj\Debug\App.g.cs
+c:\users\mili\documents\visual studio 2017\Projects\WpfApp1\WpfApp1\obj\Debug\WpfApp1_MarkupCompile.cache
+c:\users\mili\documents\visual studio 2017\Projects\WpfApp1\WpfApp1\obj\Debug\WpfApp1_MarkupCompile.lref
+c:\users\mili\documents\visual studio 2017\Projects\WpfApp1\WpfApp1\obj\Debug\MainWindow.baml
+c:\users\mili\documents\visual studio 2017\Projects\WpfApp1\WpfApp1\obj\Debug\WpfApp1.g.resources
+c:\users\mili\documents\visual studio 2017\Projects\WpfApp1\WpfApp1\obj\Debug\WpfApp1.Properties.Resources.resources
+c:\users\mili\documents\visual studio 2017\Projects\WpfApp1\WpfApp1\obj\Debug\WpfApp1.csproj.GenerateResource.Cache
+c:\users\mili\documents\visual studio 2017\Projects\WpfApp1\WpfApp1\obj\Debug\WpfApp1.exe
+c:\users\mili\documents\visual studio 2017\Projects\WpfApp1\WpfApp1\obj\Debug\WpfApp1.pdb
+c:\users\mili\documents\visual studio 2017\Projects\WpfApp1\WpfApp1\obj\Debug\UserControls\MainMenu.g.cs
+c:\users\mili\documents\visual studio 2017\Projects\WpfApp1\WpfApp1\obj\Debug\GeneratedInternalTypeHelper.g.cs
+c:\users\mili\documents\visual studio 2017\Projects\WpfApp1\WpfApp1\obj\Debug\UserControls\MainMenu.baml
