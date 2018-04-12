@@ -1,0 +1,106 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="TopToolbarButtonFocusVisualStyle">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Control}">
+                    <Grid Margin="3 2">
+                        <Rectangle Name="r1" StrokeThickness="1" Stroke="Black" StrokeDashArray="2 2"/>
+                        <Border Name="border" Width="{TemplateBinding ActualWidth}" Height="{TemplateBinding ActualHeight}"  CornerRadius="2" BorderThickness="1" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="TopToolbarStyle" TargetType="{x:Type Panel}">
+        <Setter Property="Margin" Value="0,0,0,4" />
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Offset="0" Color="Transparent"></GradientStop>
+                    <GradientStop Offset="0.35">
+                        <GradientStop.Color>
+                            <Color A="24" R="0" G="0" B="0" />
+                        </GradientStop.Color>
+                    </GradientStop>
+                    <GradientStop Offset="1" Color="Transparent"></GradientStop>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Resources>
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="OverridesDefaultStyle" Value="True"/>
+                <Setter Property="Margin" Value="2"/>
+                <Setter Property="FontSize" Value="11px"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Foreground" Value="#777" />
+                <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled" />
+                <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+                <Setter Property="FocusVisualStyle" Value="{StaticResource TopToolbarButtonFocusVisualStyle}" />
+                <Setter Property="Background" Value="Transparent" />
+
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Name="border" BorderThickness="1" BorderBrush="Transparent" CornerRadius="3" Background="{TemplateBinding Background}">
+                                <Border Name="InnerBorder" BorderThickness="1" BorderBrush="Transparent" Padding="4,2" CornerRadius="3">
+                                    <Grid>
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Name="contentShadow">
+                                            <ContentPresenter.RenderTransform>
+                                                <TranslateTransform X="1.0" Y="1.0" />
+                                            </ContentPresenter.RenderTransform>
+                                        </ContentPresenter>
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Name="content"/>
+                                    </Grid>
+                                </Border>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Foreground" Value="#aaa" />
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="InnerBorder" Property="BorderBrush" Value="#99ffffff" />
+                                    <Setter TargetName="border" Property="BorderBrush" Value="#bbb" />
+                                    <Setter Property="Foreground" Value="#555" />
+                                    <Setter Property="Background">
+                                        <Setter.Value>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                                                <GradientStop Color="#ffffff" Offset="0"/>
+                                                <GradientStop Color="#e9e9e9" Offset="0.15"/>
+                                                <GradientStop Color="#dddddd" Offset="0.85"/>
+                                            </LinearGradientBrush>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="InnerBorder" Property="BorderBrush" Value="#fff" />
+                                    <Setter TargetName="border" Property="BorderBrush" Value="#999" />
+                                    <Setter Property="Background">
+                                        <Setter.Value>
+                                            <LinearGradientBrush StartPoint="0,1" EndPoint="0,0" >
+                                                <GradientStop Color="#fff" Offset="0"/>
+                                                <GradientStop Color="#eee" Offset="0.10"/>
+                                                <GradientStop Color="#eee" Offset="0.80"/>
+                                                <GradientStop Color="#ddd" Offset="0.90"/>
+                                                <GradientStop Color="#aaa" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter TargetName="content" Property="RenderTransform" >
+                                        <Setter.Value>
+                                            <TranslateTransform Y="1.0" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Style.Resources>
+    </Style>
+</ResourceDictionary>

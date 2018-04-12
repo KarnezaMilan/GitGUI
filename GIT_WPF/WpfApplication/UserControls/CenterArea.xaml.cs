@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfApplication
+namespace WpfApplication.UserControls
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for CenterArea.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class CenterArea : UserControl
     {
-        public MainWindow()
+        public CenterArea()
         {
             InitializeComponent();
         }

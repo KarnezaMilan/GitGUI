@@ -1,1 +1,17 @@
 c:\users\mili\documents\visual studio 2013\Projects\WpfApplication\WpfApplication\bin\Debug\WpfApplication.exe.config
+C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApplication\bin\Debug\WpfApplication.exe.config
+C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApplication\bin\Debug\WpfApplication.exe
+C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApplication\bin\Debug\WpfApplication.pdb
+C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApplication\obj\Debug\UserControls\Menu.baml
+C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApplication\obj\Debug\UserControls\Menu.g.cs
+C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApplication\obj\Debug\App.g.cs
+C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApplication\obj\Debug\WpfApplication_MarkupCompile.cache
+C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApplication\obj\Debug\WpfApplication.g.resources
+C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApplication\obj\Debug\WpfApplication.Properties.Resources.resources
+C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApplication\obj\Debug\WpfApplication.csproj.GenerateResource.Cache
+C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApplication\obj\Debug\WpfApplication.exe
+C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApplication\obj\Debug\WpfApplication.pdb
+C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApplication\obj\Debug\Window1.baml
+C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApplication\obj\Debug\Window1.g.cs
+C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApplication\obj\Debug\View\MainVIew.baml
+C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApplication\obj\Debug\View\MainVIew.g.cs
