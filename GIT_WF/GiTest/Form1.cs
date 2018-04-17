@@ -291,11 +291,9 @@ namespace GiTest
 
         }
 
-   
 
-        private void CommitBTN_Click(object sender, EventArgs e)
-        {
 
-        }
+        
+
     }
 }
