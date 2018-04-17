@@ -18,11 +18,9 @@ c:\users\mili\documents\visual studio 2017\Projects\WpfApp1\WpfApp1\obj\Debug\Us
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\bin\Debug\WpfApp1.exe.config
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\bin\Debug\WpfApp1.exe
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\bin\Debug\WpfApp1.pdb
-C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\MainWindow.g.cs
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\App.g.cs
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\WpfApp1_MarkupCompile.cache
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\WpfApp1_MarkupCompile.lref
-C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\MainWindow.baml
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\WpfApp1.g.resources
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\WpfApp1.Properties.Resources.resources
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\WpfApp1.csproj.GenerateResource.Cache
@@ -40,3 +38,5 @@ C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\bin\Debug\Microsoft.Win
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\bin\Debug\LibGit2Sharp.pdb
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\bin\Debug\LibGit2Sharp.xml
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\bin\Debug\Microsoft.Windows.Shell.pdb
+C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\View\MainWindow.g.cs
+C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\View\MainWindow.baml

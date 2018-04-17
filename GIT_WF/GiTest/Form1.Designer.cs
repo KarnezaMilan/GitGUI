@@ -82,28 +82,28 @@
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
             this.closeToolStripMenuItem.Text = "Create";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
             // openReposotoryToolStripMenuItem
             // 
             this.openReposotoryToolStripMenuItem.Name = "openReposotoryToolStripMenuItem";
-            this.openReposotoryToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openReposotoryToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
             this.openReposotoryToolStripMenuItem.Text = "Open";
             this.openReposotoryToolStripMenuItem.Click += new System.EventHandler(this.openReposotoryToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem1
             // 
             this.closeToolStripMenuItem1.Name = "closeToolStripMenuItem1";
-            this.closeToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.closeToolStripMenuItem1.Size = new System.Drawing.Size(108, 22);
             this.closeToolStripMenuItem1.Text = "Clone";
             this.closeToolStripMenuItem1.Click += new System.EventHandler(this.closeToolStripMenuItem1_Click);
             // 
             // closeToolStripMenuItem2
             // 
             this.closeToolStripMenuItem2.Name = "closeToolStripMenuItem2";
-            this.closeToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.closeToolStripMenuItem2.Size = new System.Drawing.Size(108, 22);
             this.closeToolStripMenuItem2.Text = "Close";
             this.closeToolStripMenuItem2.Click += new System.EventHandler(this.closeToolStripMenuItem2_Click);
             // 
@@ -139,6 +139,7 @@
             this.CommitBTN.TabIndex = 10;
             this.CommitBTN.Text = "Commit";
             this.CommitBTN.UseVisualStyleBackColor = true;
+            this.CommitBTN.Click += new System.EventHandler(this.CommitBTN_Click);
             // 
             // AddBTN
             // 
@@ -152,12 +153,17 @@
             // 
             // PullBNT
             // 
+            this.PullBNT.BackColor = System.Drawing.SystemColors.Control;
+            this.PullBNT.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PullBNT.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.PullBNT.Image = global::GiTest.Properties.Resources.Pull;
             this.PullBNT.Location = new System.Drawing.Point(12, 39);
             this.PullBNT.Name = "PullBNT";
             this.PullBNT.Size = new System.Drawing.Size(70, 70);
             this.PullBNT.TabIndex = 12;
             this.PullBNT.Text = "Pull";
-            this.PullBNT.UseVisualStyleBackColor = true;
+            this.PullBNT.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.PullBNT.UseVisualStyleBackColor = false;
             this.PullBNT.Click += new System.EventHandler(this.PullBNT_Click);
             // 
             // PushBTN
@@ -277,6 +283,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(916, 592);
             this.Controls.Add(this.FIleLAB);
             this.Controls.Add(this.CommitBTN2);
@@ -293,6 +300,8 @@
             this.Controls.Add(this.RescanBTN);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.buttonAddSelected);
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form1";
             this.Text = "Git Gui Little";
             this.menuStrip1.ResumeLayout(false);
@@ -329,8 +338,6 @@
         private System.Windows.Forms.Button buttonAddSelected;
         private System.Windows.Forms.ColumnHeader columnAddName;
         private System.Windows.Forms.ToolStripMenuItem connectToolStripMenuItem;
-
-
     }
 }
 

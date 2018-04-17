@@ -140,7 +140,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listViewBranch);
-            this.Name = "BranchForm";
+            //this.Name = "BranchForm";
             this.Text = "BranchForm";
             this.Load += new System.EventHandler(this.BranchForm_Load);
             this.ResumeLayout(false);

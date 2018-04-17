@@ -33,6 +33,30 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bunifu.Core">
+      <HintPath>..\..\..\Bunifu\Bunifu.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuButton">
+      <HintPath>..\..\..\Bunifu\Bunifu.UI.WinForms.BunifuButton.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuCheckBox">
+      <HintPath>..\..\..\Bunifu\Bunifu.UI.WinForms.BunifuCheckBox.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuLabel">
+      <HintPath>..\..\..\Bunifu\Bunifu.UI.WinForms.BunifuLabel.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuProgressBar">
+      <HintPath>..\..\..\Bunifu\Bunifu.UI.WinForms.BunifuProgressBar.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuRadioButton">
+      <HintPath>..\..\..\Bunifu\Bunifu.UI.WinForms.BunifuRadioButton.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuTextbox">
+      <HintPath>..\..\..\Bunifu\Bunifu.UI.WinForms.BunifuTextbox.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu_UI_v1.5.3">
+      <HintPath>..\..\..\Bunifu\Bunifu_UI_v1.5.3.dll</HintPath>
+    </Reference>
     <Reference Include="LibGit2Sharp">
       <HintPath>..\packages\LibGit2Sharp.0.24.0\lib\net40\LibGit2Sharp.dll</HintPath>
     </Reference>
@@ -41,6 +65,12 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -101,6 +131,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="UserConnectForm.resx">
       <DependentUpon>UserConnectForm.cs</DependentUpon>
@@ -121,6 +152,74 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icons\Add.png" />
+    <Content Include="Icons\AddNote.png" />
+    <Content Include="Icons\Alert.png" />
+    <Content Include="Icons\Annotate.png" />
+    <Content Include="Icons\Archive.png" />
+    <Content Include="Icons\Branch-24.png" />
+    <Content Include="Icons\Branch.png" />
+    <Content Include="Icons\Cancel.png" />
+    <Content Include="Icons\Checkout.png" />
+    <Content Include="Icons\Clipboard.png" />
+    <Content Include="Icons\Clone.png" />
+    <Content Include="Icons\CloseWindow.png" />
+    <Content Include="Icons\Copy.png" />
+    <Content Include="Icons\CopyPatch.png" />
+    <Content Include="Icons\Cross.png" />
+    <Content Include="Icons\DatabaseRefresh.png" />
+    <Content Include="Icons\Delete.png" />
+    <Content Include="Icons\Detect.png" />
+    <Content Include="Icons\Edit.png" />
+    <Content Include="Icons\Email.png" />
+    <Content Include="Icons\Export.png" />
+    <Content Include="Icons\Fetch.png" />
+    <Content Include="Icons\Forget.png" />
+    <Content Include="Icons\Git-GUI.ico" />
+    <Content Include="Icons\Git-GUI.png" />
+    <Content Include="Icons\GitHub.png" />
+    <Content Include="Icons\Hash.png" />
+    <Content Include="Icons\History.png" />
+    <Content Include="Icons\Home.png" />
+    <Content Include="Icons\Ignore.png" />
+    <Content Include="Icons\Information.png" />
+    <Content Include="Icons\MaximizeWindow.png" />
+    <Content Include="Icons\Merge.png" />
+    <Content Include="Icons\Messages.png" />
+    <Content Include="Icons\MessageWrite.png" />
+    <Content Include="Icons\MinimizeWindow.png" />
+    <Content Include="Icons\Open.png" />
+    <Content Include="Icons\OpenIgnoreEditor.png" />
+    <Content Include="Icons\Patch.png" />
+    <Content Include="Icons\Plus.gif" />
+    <Content Include="Icons\Plus.png" />
+    <Content Include="Icons\Pull.png" />
+    <Content Include="Icons\Push.png" />
+    <Content Include="Icons\Question.png" />
+    <Content Include="Icons\Recent.png" />
+    <Content Include="Icons\Remote.png" />
+    <Content Include="Icons\Rename.png" />
+    <Content Include="Icons\RepositoryWrite.png" />
+    <Content Include="Icons\Reset.png" />
+    <Content Include="Icons\ResetHard.png" />
+    <Content Include="Icons\RestoreWindow.png" />
+    <Content Include="Icons\Revert.png" />
+    <Content Include="Icons\Save.png" />
+    <Content Include="Icons\Search.png" />
+    <Content Include="Icons\Settings.png" />
+    <Content Include="Icons\Stash-24.png" />
+    <Content Include="Icons\Stash.png" />
+    <Content Include="Icons\Statistics.png" />
+    <Content Include="Icons\Submodule.png" />
+    <Content Include="Icons\SVN.png" />
+    <Content Include="Icons\TabPlus.png" />
+    <Content Include="Icons\Tag.png" />
+    <Content Include="Icons\Tick.png" />
+    <Content Include="Icons\Unstage.png" />
+    <Content Include="Icons\VisualDiff.png" />
+    <Content Include="Icons\Warning.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

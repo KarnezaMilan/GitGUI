@@ -8,8 +8,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/git-gui.ico")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/git-gui.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/tabclosebutton.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icons/branch.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icons/fetch.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icons/git-gui.ico")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icons/git-gui.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icons/pull.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icons/push.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icons/remote.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icons/search.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icons/settings.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icons/stash.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icons/statistics.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icons/submodule.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icons/tag.png")]
 
 
