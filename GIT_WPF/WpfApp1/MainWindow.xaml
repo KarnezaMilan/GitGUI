@@ -4,11 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
-        xmlns:control = "clr-namespace:WpfApp1.UserControls" 
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    
+        Title="Wpf Basics" Width="1152" Height="546" WindowStartupLocation="CenterScreen">
+
+
+
     <Grid>
-        <control:MainMenu/>
+
     </Grid>
 </Window>
