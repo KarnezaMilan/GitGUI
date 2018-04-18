@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WpfApp1.Model
 {
-    class Commit
+    public class CommitModel
     {
         public string AuthorEmail { set; get; }
         public string AuthorName { set; get; }

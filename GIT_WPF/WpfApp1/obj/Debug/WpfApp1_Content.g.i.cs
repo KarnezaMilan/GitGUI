@@ -8,18 +8,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icons/branch.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icons/fetch.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icons/git-gui.ico")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icons/git-gui.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icons/pull.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icons/push.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icons/remote.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icons/search.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icons/settings.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icons/stash.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icons/statistics.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icons/submodule.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icons/tag.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icon/branch.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icon/fetch.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icon/git-gui.ico")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icon/git-gui.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icon/pull.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icon/push.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icon/remote.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icon/search.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icon/settings.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icon/stash.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icon/statistics.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icon/submodule.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/icon/tag.png")]
 
 
