@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="{Binding WindowTitle}" Width="1152" Height="546" WindowStartupLocation="CenterScreen">
+        Title="Wpf Basics" Width="1152" Height="546" WindowStartupLocation="CenterScreen">
 
 
 
@@ -16,9 +16,9 @@
                 <MenuItem Header="_File">
                     <MenuItem Header="_Exit"></MenuItem>
                 </MenuItem>
-                <MenuItem Header="_Repository">
-                    <MenuItem Header="_Open" Click="MenuItem_Click_Open"></MenuItem>
-                    <MenuItem Header="_Create" Click="MenuItem_Click_Create"></MenuItem>
+                <MenuItem Header="_Reposotory">
+                    <MenuItem Header="_Open"></MenuItem>
+                    <MenuItem Header="_Create"></MenuItem>
                     <MenuItem Header="_Clone"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Branch"></MenuItem>
@@ -45,20 +45,17 @@
                         <TextBlock>Commit</TextBlock>
                     </StackPanel>
                 </Button>
-                <ListBox  Name="TextAAA" Width="100">
-                    
-                </ListBox>
             </WrapPanel>
-            <!-- Commit history -->
+            <!-- Levi stolpec -->
             <DockPanel DockPanel.Dock="Bottom">
                 <DataGrid SelectionUnit="FullRow" HeadersVisibility="Column" AutoGenerateColumns="False" HorizontalAlignment="Stretch" Name="CommitHistory" VerticalAlignment="Stretch" DockPanel.Dock="Right">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Path=Hash}" Header="Hash"></DataGridTextColumn>
-                        <DataGridTextColumn Binding="{Binding Path=Source}" Header="Source"></DataGridTextColumn>
-                        <DataGridTextColumn Binding="{Binding Path=Description}" Header="Description"></DataGridTextColumn>
-                        <DataGridTextColumn Binding="{Binding Path=Date}" Header="Date"></DataGridTextColumn>
-                        <DataGridTextColumn Binding="{Binding Path=AuthorName}" Header="Author Name"></DataGridTextColumn>
-                        <DataGridTextColumn Binding="{Binding Path=AuthorEmail}" Header="Author Email"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Hash"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Source"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Description"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Date"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Author Name"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Author Email"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </DockPanel>
