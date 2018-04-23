@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Wpf Basics" Width="1152" Height="546" WindowStartupLocation="CenterScreen">
+        Title="Wpf Basics" Width="1152" Height="546" WindowStartupLocation="CenterScreen" >
 
 
 
@@ -45,21 +45,40 @@
                         <TextBlock>Commit</TextBlock>
                     </StackPanel>
                 </Button>
+                <Button Name="Rescan" Click="Rescan_Click">
+                    <StackPanel>
+                        <TextBlock>Rescan</TextBlock>
+                    </StackPanel>
+                </Button>
             </WrapPanel>
             <!-- Levi stolpec -->
             <DockPanel DockPanel.Dock="Bottom">
-                <DataGrid SelectionUnit="FullRow" HeadersVisibility="Column" AutoGenerateColumns="False" HorizontalAlignment="Stretch" Name="CommitHistory" VerticalAlignment="Stretch" DockPanel.Dock="Right">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Hash"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Source"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Description"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Date"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Author Name"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Author Email"></DataGridTextColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
+                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="250" DockPanel.Dock="Left" ClipToBounds="True" Background="LightSalmon">
+                    <ListView Margin="10" Name="List123">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Name" Width="110" DisplayMemberBinding="{Binding Name}" />
+                                <GridViewColumn Header="Status" Width="110" DisplayMemberBinding="{Binding Status}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </StackPanel>
+                <DockPanel DockPanel.Dock="Left">
+                    <DataGrid SelectionUnit="FullRow" HeadersVisibility="Column" AutoGenerateColumns="False" HorizontalAlignment="Stretch" Name="CommitHistory" VerticalAlignment="Stretch" DockPanel.Dock="Right">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Hash" Binding="{Binding Path=Hash}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Source" Binding="{Binding Path=Source}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Description" Binding="{Binding Path=Description}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Date" Binding="{Binding Path=Date}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Author Name" Binding="{Binding Path=AuthorName}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Author Email" Binding="{Binding Path=AuthorEmail}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+
+
             </DockPanel>
-            
+  
         </DockPanel>
 
     </Grid>

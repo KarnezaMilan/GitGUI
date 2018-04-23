@@ -63,6 +63,69 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\FileModel.cs" />
+    <Compile Include="UserControls\CenterArea.xaml.cs">
+      <DependentUpon>CenterArea.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ChangesetHistory.xaml.cs">
+      <DependentUpon>ChangesetHistory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CommitPanel.xaml.cs">
+      <DependentUpon>CommitPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\DiffPanel.xaml.cs">
+      <DependentUpon>DiffPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MainMenu.xaml.cs">
+      <DependentUpon>MainMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Panel.xaml.cs">
+      <DependentUpon>Panel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\StatusGrid.xaml.cs">
+      <DependentUpon>StatusGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Toolbars.xaml.cs">
+      <DependentUpon>Toolbars.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OpenWindow.xaml.cs">
+      <DependentUpon>OpenWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewUC.xaml.cs">
+      <DependentUpon>ViewUC.xaml</DependentUpon>
+    </Compile>
+    <Page Include="UserControls\CenterArea.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ChangesetHistory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\CommitPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\DiffPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MainMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Panel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\StatusGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Toolbars.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -71,12 +134,20 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Model\Commit.cs" />
+    <Compile Include="Model\CommitModel.cs" />
     <Compile Include="ViewModel\CommitHistory.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\OpenWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

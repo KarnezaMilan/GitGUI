@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="WpfApp1.UserControls.CommitPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp1.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="480" d:DesignWidth="640">
+
+    <DockPanel>
+        <StackPanel>
+            <StackPanel>
+                <WrapPanel Background="LightBlue">
+                    <TextBlock Text="Parent" />
+                </WrapPanel>
+            </StackPanel>
+
+            <StackPanel>
+                <WrapPanel HorizontalAlignment="Right">
+                    <Grid>
+                        <ComboBox ToolTip="Copy a previous commit message. The entire message will be copied."
+                                  DisplayMemberPath="CroppedMessage"
+                                  Width="135" Margin="0,4,4,4">
+                        </ComboBox>
+                        <WrapPanel Margin="8,9,0,0" Visibility="Visible">
+                            <TextBlock IsHitTestVisible="False" Text="Copy a message" Foreground="#333" />
+                        </WrapPanel>
+                    </Grid>
+                    <Button Margin="0,3,3,3">
+                        <WrapPanel>
+                            <TextBlock>Commit</TextBlock>
+                        </WrapPanel>
+                    </Button>
+                </WrapPanel>
+            </StackPanel>
+
+            <StackPanel>
+                <DockPanel Margin="4" VerticalAlignment="Stretch">
+                    <TextBox
+                             ToolTip="Enter your commit message."
+                             FontSize="12"
+                             FontFamily="Courier New"
+                             DockPanel.Dock="Top"
+                             Height="51" />
+
+                    <StackPanel DockPanel.Dock="Bottom" Margin="0,4,0,0" />
+                </DockPanel>
+            </StackPanel>
+            <StackPanel>
+                <Grid>
+                    <TextBox Margin="0,0,0,0">
+
+                    </TextBox>
+                </Grid>
+            </StackPanel>
+
+        </StackPanel>
+    </DockPanel>
+</UserControl>

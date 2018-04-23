@@ -1,0 +1,29 @@
+﻿<Window x:Class="WpfApp1.View.OpenWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.View"
+        mc:Ignorable="d"
+        Title="OpenWindow" Width="1152" Height="546" WindowStartupLocation="CenterScreen" >
+    <Grid Background="LemonChiffon">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" Background="Khaki">
+            <Button Content="Open repository" Margin="5" Name="OpenRepo" Click="OpenRepo_Click"></Button>
+            <Button Content="Close repository" Margin="5" Name="CloseRepo"></Button>
+            <Button Content="Clone repository" Margin="5" Name="CloneRepo"></Button>
+            <Button Content="UC Window" Margin="5" Name="UCWindow" Click="UCWindow_Click"> </Button>
+        </StackPanel>
+
+    </Grid>
+</Window>
