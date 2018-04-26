@@ -24,5 +24,7 @@ namespace WpfApp1.UserControls
         {
             InitializeComponent();
         }
+
+
     }
 }
