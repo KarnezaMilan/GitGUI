@@ -23,67 +23,34 @@
 
             <DockPanel Grid.Row="1">
                 <Grid>
-                    <TextBlock Margin="8"
-                               Foreground="#222">
-                               Nothing to commit.</TextBlock>
-
-                    <DataGrid
-                              BorderThickness="0"
-                              Tag="{Binding}">
-                        <DataGrid.InputBindings>
-                            <KeyBinding Command="{Binding StageUnstageCommand}"
-                                        CommandParameter="{Binding SelectedItems, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                        Gesture="Enter" />
-                            <KeyBinding Command="{Binding StageUnstageCommand}"
-                                        CommandParameter="{Binding SelectedItems, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                        Gesture="Delete" />
-                        </DataGrid.InputBindings>
-
+                    <DataGrid BorderThickness="0" Name="StageFilesDataGrid">
                         <DataGrid.Columns>
-                            <DataGridTemplateColumn Header="St" />
-                            <DataGridTemplateColumn Header="Filename" Width="*"  />
-                            <DataGridTextColumn Binding="{Binding Path=Size}"
-                                                Header="Size"/>
-                            <DataGridTextColumn Binding="{Binding Path=IsBinary}"
-                                                Header="Binary" />
+                            <DataGridTextColumn Binding="{Binding Path=Status}" Header="St" />
+                            <DataGridTextColumn Binding="{Binding Path=FileName}" Header="Filename" Width="*"  />
+                            <DataGridTextColumn Binding="{Binding Path=Size}" Header="Size"/>
+                            <DataGridTextColumn Binding="{Binding Path=IsBinary}" Header="Binary" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
             </DockPanel>
+
             <WrapPanel Grid.Row="2" Background="LightBlue">
-                <Label DockPanel.Dock="Left" Width="50">UnStage</Label>
+                <Label DockPanel.Dock="Left" Width="50">Unstage</Label>
 
-                </WrapPanel>
+            </WrapPanel>
 
-                <DockPanel Grid.Row="3">
-                    <Grid>
-                        <TextBlock Margin="8"
-                               Foreground="#222">
-                               Nothing to commit.</TextBlock>
-
-                        <DataGrid 
-                              BorderThickness="0"
-                              Tag="{Binding}">
-                            <DataGrid.InputBindings>
-                                <KeyBinding Command="{Binding StageUnstageCommand}"
-                                        CommandParameter="{Binding SelectedItems, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                        Gesture="Enter" />
-                                <KeyBinding Command="{Binding StageUnstageCommand}"
-                                        CommandParameter="{Binding SelectedItems, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                        Gesture="Delete" />
-                            </DataGrid.InputBindings>
-
-                            <DataGrid.Columns>
-                                <DataGridTemplateColumn Header="St" />
-                                <DataGridTemplateColumn Header="Filename" Width="*"  />
-                                <DataGridTextColumn Binding="{Binding Path=Size}"
-                                                Header="Size"/>
-                                <DataGridTextColumn Binding="{Binding Path=IsBinary}"
-                                                Header="Binary" />
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </Grid>
-                </DockPanel>
+            <DockPanel Grid.Row="3">
+                <Grid>
+                    <DataGrid BorderThickness="0" Name="UnStageFilesDataGrid">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Path=Status}" Header="St" />
+                            <DataGridTextColumn Binding="{Binding Path=FileName}" Header="Filename" Width="*"  />
+                            <DataGridTextColumn Binding="{Binding Path=Size}" Header="Size"/>
+                            <DataGridTextColumn Binding="{Binding Path=IsBinary}" Header="Binary" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </DockPanel>
         </Grid>
     </DockPanel>
     
