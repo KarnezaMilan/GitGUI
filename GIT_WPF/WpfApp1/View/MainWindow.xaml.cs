@@ -28,9 +28,9 @@ namespace WpfApp1
             InitializeComponent();
 
             this.PreLoad();
-            this.UnstageFileScan();
+            //this.UnstageFileScan();
         }
-
+        /*
         private void UnstageFileScan()
         {
             List<FileModel> FileList = new List<FileModel>();
@@ -65,7 +65,7 @@ namespace WpfApp1
             List123.ItemsSource = FileList;
 
         }
-
+        */
         private void PreLoad()
         {
             Repository repo = new Repository(Pot);
@@ -124,7 +124,12 @@ namespace WpfApp1
 
         private void Rescan_Click(object sender, RoutedEventArgs e)
         {
-            this.UnstageFileScan();
+            //this.UnstageFileScan();
+        }
+
+        private void CommitHistory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

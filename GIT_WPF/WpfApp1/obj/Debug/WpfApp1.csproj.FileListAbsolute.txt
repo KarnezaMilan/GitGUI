@@ -61,3 +61,4 @@ C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\UserControls\
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\UserControls\StatusGrid.baml
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\UserControls\Toolbars.baml
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\View\ViewUC.baml
+C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\WpfApp1.csprojResolveAssemblyReference.cache

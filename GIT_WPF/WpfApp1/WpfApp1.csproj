@@ -79,9 +79,7 @@
     <Compile Include="UserControls\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Panel.xaml.cs">
-      <DependentUpon>Panel.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="UserControls\Panel.xaml.cs" />
     <Compile Include="UserControls\StatusGrid.xaml.cs">
       <DependentUpon>StatusGrid.xaml</DependentUpon>
     </Compile>
@@ -115,8 +113,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Panel.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\StatusGrid.xaml">
       <SubType>Designer</SubType>
