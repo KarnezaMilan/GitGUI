@@ -5,34 +5,30 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp1.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <!--
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" MinHeight="72" />
-            <RowDefinition Height="6" />
-            <RowDefinition Height="*" MinHeight="72" />
-        </Grid.RowDefinitions>
+             d:DesignHeight="480" d:DesignWidth="640">
 
-        <userControls:Panel Grid.Row="0">
-            <userControls:Panel>
-                <WrapPanel Margin="0,4,0,4">
-                    <TextBlock>Staged</TextBlock>
-                    <TextBlock xml:space="preserve">:</TextBlock>
-                    <TextBlock Text="{Binding StatusItemsStaged.Count}" />
-                </WrapPanel>
-            </userControls:Panel>
-            <userControls:Panel>
+    <DockPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <WrapPanel Grid.Row="0" Background="LightBlue">
+                <Label DockPanel.Dock="Left" Width="50">Stage</Label>
+               
+            </WrapPanel>
+
+            <DockPanel Grid.Row="1">
                 <Grid>
                     <TextBlock Margin="8"
-                               Foreground="#222"
-                               Visibility="{Binding StatusItemsStaged.Count, Converter={StaticResource genericVisibilityConverter}, ConverterParameter=not}">Nothing to commit.</TextBlock>
+                               Foreground="#222">
+                               Nothing to commit.</TextBlock>
 
-                    <DataGrid 
-                              ItemsSource="{Binding StatusItemsStaged}"
-                              SelectionChanged="StatusGridSelectionChanged"
+                    <DataGrid
                               BorderThickness="0"
-                              Visibility="{Binding StatusItemsStaged.Count, Converter={StaticResource genericVisibilityConverter}}"
                               Tag="{Binding}">
                         <DataGrid.InputBindings>
                             <KeyBinding Command="{Binding StageUnstageCommand}"
@@ -44,56 +40,52 @@
                         </DataGrid.InputBindings>
 
                         <DataGrid.Columns>
-                            <DataGridTemplateColumn Header="St" CellTemplate="{StaticResource StatusGridStatusTemplate}" />
-                            <DataGridTemplateColumn Header="Filename" Width="*" CellTemplate="{StaticResource StatusGridFilenameTemplate}" />
+                            <DataGridTemplateColumn Header="St" />
+                            <DataGridTemplateColumn Header="Filename" Width="*"  />
                             <DataGridTextColumn Binding="{Binding Path=Size}"
-                                                Header="Size"
-                                                Foreground="{Binding Path=Status, Converter={StaticResource statusToColorConverter}, ConverterParameter=dark}" />
+                                                Header="Size"/>
                             <DataGridTextColumn Binding="{Binding Path=IsBinary}"
-                                                Header="Binary"
-                                                Foreground="{Binding Path=Status, Converter={StaticResource statusToColorConverter}, ConverterParameter=dark}" />
+                                                Header="Binary" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
-            </userControls:Panel>
-        </userControls:Panel>
+            </DockPanel>
+            <WrapPanel Grid.Row="2" Background="LightBlue">
+                <Label DockPanel.Dock="Left" Width="50">UnStage</Label>
 
-        <GridSplitter Grid.Row="1" Style="{StaticResource GridSplitterVerticalStyle}" />
+                </WrapPanel>
 
+                <DockPanel Grid.Row="3">
+                    <Grid>
+                        <TextBlock Margin="8"
+                               Foreground="#222">
+                               Nothing to commit.</TextBlock>
 
-        <Grid>
-                    <TextBlock Margin="8"
-                               Foreground="#222"
-                               Visibility="{Binding StatusItemsUnstaged.Count, Converter={StaticResource genericVisibilityConverter}, ConverterParameter=not}">Nothing to stage.</TextBlock>
-
-                    <DataGrid 
-                              ItemsSource="{Binding StatusItemsUnstaged}"
-                              SelectionChanged="StatusGridSelectionChanged"
+                        <DataGrid 
                               BorderThickness="0"
-                              Visibility="{Binding StatusItemsUnstaged.Count, Converter={StaticResource genericVisibilityConverter}}"
                               Tag="{Binding}">
-                        <DataGrid.InputBindings>
-                            <KeyBinding Command="{Binding StageUnstageCommand}"
+                            <DataGrid.InputBindings>
+                                <KeyBinding Command="{Binding StageUnstageCommand}"
                                         CommandParameter="{Binding SelectedItems, RelativeSource={RelativeSource AncestorType=DataGrid}}"
                                         Gesture="Enter" />
-                            <KeyBinding Command="{Binding StageUnstageCommand}"
+                                <KeyBinding Command="{Binding StageUnstageCommand}"
                                         CommandParameter="{Binding SelectedItems, RelativeSource={RelativeSource AncestorType=DataGrid}}"
                                         Gesture="Delete" />
-                        </DataGrid.InputBindings>
+                            </DataGrid.InputBindings>
 
-                        <DataGrid.Columns>
-                            <DataGridTemplateColumn Header="St" CellTemplate="{StaticResource StatusGridStatusTemplate}" />
-                            <DataGridTemplateColumn Header="Filename" Width="*" CellTemplate="{StaticResource StatusGridFilenameTemplate}" />
-                            <DataGridTextColumn Binding="{Binding Path=Size}"
-                                                Header="Size"
-                                                Foreground="{Binding Path=Status, Converter={StaticResource statusToColorConverter}, ConverterParameter=dark}" />
-                            <DataGridTextColumn Binding="{Binding Path=IsBinary}"
-                                                Header="Binary"
-                                                Foreground="{Binding Path=Status, Converter={StaticResource statusToColorConverter}, ConverterParameter=dark}" />
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </Grid>
-            </userControls:Panel>
-        </userControls:Panel>
-    </Grid>-->
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="St" />
+                                <DataGridTemplateColumn Header="Filename" Width="*"  />
+                                <DataGridTextColumn Binding="{Binding Path=Size}"
+                                                Header="Size"/>
+                                <DataGridTextColumn Binding="{Binding Path=IsBinary}"
+                                                Header="Binary" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </DockPanel>
+        </Grid>
+    </DockPanel>
+    
+    
 </UserControl>
