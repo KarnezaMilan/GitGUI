@@ -24,5 +24,15 @@ namespace WpfApp1.UserControls
         {
             InitializeComponent();
         }
+
+        private void AddBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RescanBtn_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }

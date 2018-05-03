@@ -19,49 +19,33 @@
 
                 <Separator Width="30" Height="1"/>
 
-                <Button Command="{Binding CreateBranchCommand}">
+                <Button>
                     <StackPanel>
-                        <Image Stretch="None" />
                         <TextBlock>Branch</TextBlock>
                     </StackPanel>
                 </Button>
-                <Button IsEnabled="False">
-                    <StackPanel>
-                        <Image Stretch="None" />
-                        <TextBlock>Stash</TextBlock>
-                    </StackPanel>
-                </Button>
-                <Button IsEnabled="False">
-                    <StackPanel>
-                        <Image Stretch="None" />
-                        <TextBlock>Search</TextBlock>
-                    </StackPanel>
-                </Button>
-                <Button IsEnabled="False">
-                    <StackPanel>
-                        <Image Stretch="None" />
-                        <TextBlock>Statistics</TextBlock>
-                    </StackPanel>
-                </Button>
+
 
                 <Separator Width="30" Height="1" />
 
-                <Button IsEnabled="False">
+                <Button Name="AddBtn" Click="AddBtn_Click">
                     <StackPanel>
-                        <Image Stretch="None" />
-                        <TextBlock>Fetch</TextBlock>
+                        <TextBlock>Add</TextBlock>
                     </StackPanel>
                 </Button>
-                <Button IsEnabled="False">
+                <Button Name="PullBtn">
                     <StackPanel>
-                        <Image Stretch="None" />
                         <TextBlock>Pull</TextBlock>
                     </StackPanel>
                 </Button>
-                <Button IsEnabled="False">
+                <Button Name="PushBtn">
                     <StackPanel>
-                        <Image  Stretch="None" />
                         <TextBlock>Push</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Name="RescanBtn" Click="RescanBtn_Click">
+                    <StackPanel>
+                        <TextBlock>Rescan</TextBlock>
                     </StackPanel>
                 </Button>
             </WrapPanel>
