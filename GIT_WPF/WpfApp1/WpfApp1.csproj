@@ -86,6 +86,7 @@
     <Compile Include="UserControls\Toolbars.xaml.cs">
       <DependentUpon>Toolbars.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\RepositoryViewModel.cs" />
     <Compile Include="View\OpenWindow.xaml.cs">
       <DependentUpon>OpenWindow.xaml</DependentUpon>
     </Compile>
