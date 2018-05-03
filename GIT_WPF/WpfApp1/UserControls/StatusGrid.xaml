@@ -24,12 +24,13 @@
             <DockPanel Grid.Row="1">
                 <Grid>
                     <DataGrid BorderThickness="0" Name="StageFilesDataGrid">
+                        <!--
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Path=Status}" Header="St" />
                             <DataGridTextColumn Binding="{Binding Path=FileName}" Header="Filename" Width="*"  />
                             <DataGridTextColumn Binding="{Binding Path=Size}" Header="Size"/>
                             <DataGridTextColumn Binding="{Binding Path=IsBinary}" Header="Binary" />
-                        </DataGrid.Columns>
+                        </DataGrid.Columns>-->
                     </DataGrid>
                 </Grid>
             </DockPanel>
@@ -42,12 +43,13 @@
             <DockPanel Grid.Row="3">
                 <Grid>
                     <DataGrid BorderThickness="0" Name="UnStageFilesDataGrid">
+                        <!--
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Path=Status}" Header="St" />
                             <DataGridTextColumn Binding="{Binding Path=FileName}" Header="Filename" Width="*"  />
                             <DataGridTextColumn Binding="{Binding Path=Size}" Header="Size"/>
                             <DataGridTextColumn Binding="{Binding Path=IsBinary}" Header="Binary" />
-                        </DataGrid.Columns>
+                        </DataGrid.Columns>>-->
                     </DataGrid>
                 </Grid>
             </DockPanel>
