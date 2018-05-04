@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfApp1.ViewModel;
 
 namespace WpfApp1.UserControls
 {
@@ -19,7 +20,10 @@ namespace WpfApp1.UserControls
     /// Interaction logic for Toolbars.xaml
     /// </summary>
     public partial class Toolbars : UserControl
-    {
+    { 
+
+        public string Pot = "C:/Users/Mili/Desktop/Novamapa";
+
         public Toolbars()
         {
             InitializeComponent();
@@ -27,12 +31,19 @@ namespace WpfApp1.UserControls
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            RepositoryViewModel repoVM = new RepositoryViewModel(Pot);
+            repoVM.AddToStage();
         }
 
         private void RescanBtn_Click(object sender, RoutedEventArgs e)
         {
-            
+
+        }
+
+        private void ResetBtn_Click(object sender, RoutedEventArgs e)
+        {
+            RepositoryViewModel repoVM = new RepositoryViewModel(Pot);
+            repoVM.ResetStage();
         }
     }
 }

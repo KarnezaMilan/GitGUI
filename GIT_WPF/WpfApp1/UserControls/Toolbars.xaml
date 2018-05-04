@@ -33,6 +33,11 @@
                         <TextBlock>Add</TextBlock>
                     </StackPanel>
                 </Button>
+                <Button Name="ResetBtn" Click="ResetBtn_Click">
+                    <StackPanel>
+                        <TextBlock>Reset</TextBlock>
+                    </StackPanel>
+                </Button>
                 <Button Name="PullBtn">
                     <StackPanel>
                         <TextBlock>Pull</TextBlock>

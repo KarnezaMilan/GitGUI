@@ -24,5 +24,12 @@ namespace WpfApp1.UserControls
         {
             InitializeComponent();
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            View.OpenWindow ow = new View.OpenWindow();
+            ow.Show();
+
+        }
     }
 }

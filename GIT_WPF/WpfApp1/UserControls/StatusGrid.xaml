@@ -20,17 +20,16 @@
 
             <WrapPanel Grid.Row="0" Background="LightBlue">
                 <Label DockPanel.Dock="Left" Width="50">Stage</Label>
-               
             </WrapPanel>
 
             <DockPanel Grid.Row="1">
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" BorderThickness="0" Name="StageFilesDataGrid" ItemsSource="{Binding ListFileStage}">
+                    <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" BorderThickness="0" Name="StageFilesDataGrid" ItemsSource="{Binding ListFileStage}" SelectedItem="{Binding MySelectedItem, Mode=TwoWay}">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding Path=Status}" Header="St" />
-                            <DataGridTextColumn Binding="{Binding Path=FileName}" Header="Filename" Width="*"  />
-                            <DataGridTextColumn Binding="{Binding Path=Size}" Header="Size"/>
-                            <DataGridTextColumn Binding="{Binding Path=IsBinary}" Header="Binary" />
+                            <DataGridTextColumn Binding="{Binding Path=Status, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Header="St" />
+                            <DataGridTextColumn Binding="{Binding Path=FileName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Header="Filename" Width="*"  />
+                            <DataGridTextColumn Binding="{Binding Path=Size, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Header="Size"/>
+                            <DataGridTextColumn Binding="{Binding Path=IsBinary, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Header="Binary" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -43,7 +42,7 @@
 
             <DockPanel Grid.Row="3">
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" BorderThickness="0" Name="UnStageFilesDataGrid" ItemsSource="{Binding ListFileUnstage}">
+                    <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" BorderThickness="0" Name="UnStageFilesDataGrid" ItemsSource="{Binding ListFileUnstage}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Path=Status}" Header="St" />
                             <DataGridTextColumn Binding="{Binding Path=FileName}" Header="Filename" Width="*"  />

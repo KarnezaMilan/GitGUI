@@ -35,5 +35,10 @@ namespace WpfApp1.UserControls
             DataContext = new RepositoryViewModel(Pot);
         }
 
+        private void HHh_Click(object sender, RoutedEventArgs e)
+        {
+            RepositoryViewModel aa = new RepositoryViewModel(Pot);
+            aa.ResetStage();
+        }
     }
 }

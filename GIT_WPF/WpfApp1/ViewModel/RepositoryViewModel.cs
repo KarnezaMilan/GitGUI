@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -10,46 +11,78 @@ using WpfApp1.Model;
 
 namespace WpfApp1.ViewModel
 {
-    public class RepositoryViewModel
+    public class RepositoryViewModel : BaseViewModel
     {
         #region Atribute
+        //**** Atribute ****
         private string _pot;
-        private ObservableCollection<FileModel> _ListFileStage;
+        private ObservableCollection<FileModel> _listFileStage;
         private ObservableCollection<FileModel> _listFileUnstage;
+        private FileModel _selectedFileInStageFiles;
+
         #endregion
 
         #region Property
+        //**** Property ****
         public ObservableCollection<FileModel> ListFileUnstage
         {
             get { return _listFileUnstage; }
-            set { _listFileUnstage = value; }
+            set
+            {
+                _listFileUnstage = value;
+                NotifyPropertyChanged("ListFileUnstage");
+            }
         }
 
         public ObservableCollection<FileModel> ListFileStage
         {
-            get { return _ListFileStage; }
-            set { _ListFileStage = value; }
+            get { return _listFileStage; }
+            set
+            {
+                _listFileStage = value;
+                NotifyPropertyChanged("ListFileStage");
+            }
         }
 
         public string Pot
         {
             get { return _pot; }
-            set { _pot = value; }
+            set
+            {
+                _pot = value;
+                NotifyPropertyChanged("Pot");
+            }
+        }
+
+        public FileModel SelectedFileInStageFiles
+        {
+            get { return _selectedFileInStageFiles; }
+            set
+            {
+                _selectedFileInStageFiles = value;
+                NotifyPropertyChanged("SelectedFileInStageFiles");
+            }
         }
         #endregion
 
         #region Constructor
+        //**** Constructor ****
         public RepositoryViewModel(string pot)
         {
             this.Pot = pot;
             ListFileStage = StageFiles(this.Pot);
             ListFileUnstage = UnStageFiles(this.Pot);
         }
+        public RepositoryViewModel()
+        {
+        }
         #endregion
 
         #region Method
+        //**** Method ****
 
-        public ObservableCollection<FileModel> StageFiles(string fileFullPath)
+        //Get the List of Stage Files
+        private ObservableCollection<FileModel> StageFiles(string fileFullPath)
         {
             ObservableCollection<FileModel> listOfStageFiles = new ObservableCollection<FileModel>();
             using (var repo = new Repository(fileFullPath))
@@ -63,14 +96,17 @@ namespace WpfApp1.ViewModel
                     fm.Size = GetFormattedFileSize(fileFullPath + "/" + fm.FileName);
                     if (fm.Status.Contains("ModifiedInIndex") == true)
                     {
+
                         listOfStageFiles.Add(fm);
+
                     }
                 }
             }
             return listOfStageFiles;
         }
 
-        public static string GetFormattedFileSize(string fileFullPath)
+        //Get the size of file
+        private static string GetFormattedFileSize(string fileFullPath)
         {
             if (!File.Exists(fileFullPath))
                 return "--";
@@ -89,7 +125,8 @@ namespace WpfApp1.ViewModel
             return string.Format("{0:0.##} {1}", bytes, suffixes[order]);
         }
 
-        public ObservableCollection<FileModel> UnStageFiles(string fileFullPath)
+        //get the List of Unstagefiles
+        private ObservableCollection<FileModel> UnStageFiles(string fileFullPath)
         {
             ObservableCollection<FileModel> listOfUnStageFiles = new ObservableCollection<FileModel>();
             using (var repo = new Repository(fileFullPath))
@@ -113,19 +150,37 @@ namespace WpfApp1.ViewModel
             return listOfUnStageFiles;
         }
 
-
-
         // Add to stage
-
         public void AddToStage()
         {
             using (var repo = new Repository(Pot))
             {
                 Commands.Stage(repo, "*");
-                this.ListFileStage= StageFiles(Pot);
+                /*this.ListFileStage = new ObservableCollection<FileModel>();
+                this.ListFileUnstage = new ObservableCollection<FileModel>();*/
+                this.ListFileUnstage = this.UnStageFiles(Pot);
+                this.ListFileStage = this.StageFiles(Pot);
             }
         }
+
+        public void ResetStage()
+        {
+            using (var repo = new Repository(this.Pot))
+            {
+                Commit currentCommit = repo.Head.Tip;
+                repo.Reset(ResetMode.Mixed, currentCommit);
+            }
+            /*this.ListFileStage = new ObservableCollection<FileModel>();
+            this.ListFileUnstage = new ObservableCollection<FileModel>();*/
+            this.ListFileUnstage = this.UnStageFiles(Pot);
+            this.ListFileStage = this.StageFiles(Pot);
+        }
+
+
+
         #endregion
+
+
 
     }
 }
