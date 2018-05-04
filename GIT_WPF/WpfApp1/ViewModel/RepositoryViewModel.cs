@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WpfApp1.Model;
+using WpfApp1.Other;
 
 namespace WpfApp1.ViewModel
 {
@@ -19,9 +20,10 @@ namespace WpfApp1.ViewModel
         private ObservableCollection<FileModel> _listFileStage;
         private ObservableCollection<FileModel> _listFileUnstage;
         private FileModel _selectedFileInStageFiles;
+        private string _commitMessage;
 
         #endregion
-
+        
         #region Property
         //**** Property ****
         public ObservableCollection<FileModel> ListFileUnstage
@@ -63,7 +65,66 @@ namespace WpfApp1.ViewModel
                 NotifyPropertyChanged("SelectedFileInStageFiles");
             }
         }
+
+        public string CommitMessage
+        {
+            get { return _commitMessage; }
+            set
+            {
+                _commitMessage = value;
+                NotifyPropertyChanged("CommitMessage");
+            }
+        }
         #endregion
+
+
+        #region Command
+        //**** Command ****
+
+        // Command property
+        public DelegateCommand CommitCommand { get; private set; }
+
+
+
+        //Comand method
+
+        public void Commit(object action)
+        {
+            
+            /*
+            // Write content to file system
+            if (richTextBoxCommitText.Text == "")
+            {
+                MessageBox.Show("Write commit message");
+            }
+            else
+            {
+
+
+                LibGit2Sharp.Commands.Stage(repo, "*");
+
+
+                // Create the committer's signature and commit
+
+                UserConnectForm form = new UserConnectForm();
+                form.ShowDialog();
+
+                Signature author = new Signature(form.ReturnName(), form.ReturnEmail(), DateTime.Now);
+                Signature committer = author;
+
+                // Commit to the repository
+                Commit commit = repo.Commit(richTextBoxCommitText.Text, author, committer);
+
+
+
+                MessageBox.Show("YEY");
+            }*/
+        }
+
+
+
+        #endregion
+
 
         #region Constructor
         //**** Constructor ****
@@ -72,6 +133,9 @@ namespace WpfApp1.ViewModel
             this.Pot = pot;
             ListFileStage = StageFiles(this.Pot);
             ListFileUnstage = UnStageFiles(this.Pot);
+
+            //Commands
+            CommitCommand = new DelegateCommand(Commit);
         }
         public RepositoryViewModel()
         {
@@ -175,10 +239,16 @@ namespace WpfApp1.ViewModel
             this.ListFileUnstage = this.UnStageFiles(Pot);
             this.ListFileStage = this.StageFiles(Pot);
         }
-
-
-
         #endregion
+
+        /*
+        //COMMIT
+        //
+        //**/
+
+        
+
+
 
 
 
