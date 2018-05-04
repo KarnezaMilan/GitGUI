@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WpfApp1.Model;
 using WpfApp1.UserControls;
+using WpfApp1.ViewModel;
 
 namespace WpfApp1.View
 {
@@ -27,25 +28,8 @@ namespace WpfApp1.View
         public ViewUC()
         {
             InitializeComponent();
-            this.Preload();
         }
 
-        public void Preload()
-        {
-
-
-        }
         
-
-        public void StageFileDataGrid()
-        {
-        }
-
-        public void UnStageFileDataGrid()
-        {
-        }
-
-
-
     }
 }

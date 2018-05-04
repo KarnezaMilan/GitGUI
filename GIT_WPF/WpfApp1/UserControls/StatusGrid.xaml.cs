@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfApp1.Model;
 using WpfApp1.ViewModel;
+using System.ComponentModel;
 
 namespace WpfApp1.UserControls
 {
@@ -30,15 +31,9 @@ namespace WpfApp1.UserControls
         public StatusGrid()
         {
             InitializeComponent();
-            PreLoad();
+
+            DataContext = new RepositoryViewModel(Pot);
         }
 
-        private void PreLoad()
-        {
-            RepositoryViewModel repoVM = new RepositoryViewModel();
-            StageFilesDataGrid.ItemsSource = repoVM.StageFiles(Pot);
-            UnStageFilesDataGrid.ItemsSource = repoVM.UnStageFiles(Pot);
-        }
-        
     }
 }
