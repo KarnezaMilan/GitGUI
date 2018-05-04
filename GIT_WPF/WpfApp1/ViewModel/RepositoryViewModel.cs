@@ -1,6 +1,7 @@
 ﻿using LibGit2Sharp;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -9,12 +10,48 @@ using WpfApp1.Model;
 
 namespace WpfApp1.ViewModel
 {
-    class RepositoryViewModel
+    public class RepositoryViewModel
     {
+        #region Atribute
+        private string _pot;
+        private ObservableCollection<FileModel> _ListFileStage;
+        private ObservableCollection<FileModel> _listFileUnstage;
+        #endregion
 
-        public List<FileModel> StageFiles(string fileFullPath)
+        #region Property
+        public ObservableCollection<FileModel> ListFileUnstage
         {
-            List<FileModel> listOfStageFiles = new List<FileModel>();
+            get { return _listFileUnstage; }
+            set { _listFileUnstage = value; }
+        }
+
+        public ObservableCollection<FileModel> ListFileStage
+        {
+            get { return _ListFileStage; }
+            set { _ListFileStage = value; }
+        }
+
+        public string Pot
+        {
+            get { return _pot; }
+            set { _pot = value; }
+        }
+        #endregion
+
+        #region Constructor
+        public RepositoryViewModel(string pot)
+        {
+            this.Pot = pot;
+            ListFileStage = StageFiles(this.Pot);
+            ListFileUnstage = UnStageFiles(this.Pot);
+        }
+        #endregion
+
+        #region Method
+
+        public ObservableCollection<FileModel> StageFiles(string fileFullPath)
+        {
+            ObservableCollection<FileModel> listOfStageFiles = new ObservableCollection<FileModel>();
             using (var repo = new Repository(fileFullPath))
             {
                 foreach (var item in repo.RetrieveStatus(new LibGit2Sharp.StatusOptions()))
@@ -33,9 +70,28 @@ namespace WpfApp1.ViewModel
             return listOfStageFiles;
         }
 
-        public List<FileModel> UnStageFiles(string fileFullPath)
+        public static string GetFormattedFileSize(string fileFullPath)
         {
-            List<FileModel> listOfUnStageFiles = new List<FileModel>();
+            if (!File.Exists(fileFullPath))
+                return "--";
+
+            double bytes = new System.IO.FileInfo(fileFullPath).Length;
+
+            string[] suffixes = { "B", "KB", "MB", "GB" };
+            int order = 0;
+
+            while (bytes >= 1024 && order + 1 < suffixes.Length)
+            {
+                order++;
+                bytes = bytes / 1024;
+            }
+
+            return string.Format("{0:0.##} {1}", bytes, suffixes[order]);
+        }
+
+        public ObservableCollection<FileModel> UnStageFiles(string fileFullPath)
+        {
+            ObservableCollection<FileModel> listOfUnStageFiles = new ObservableCollection<FileModel>();
             using (var repo = new Repository(fileFullPath))
             {
                 foreach (var item in repo.RetrieveStatus(new LibGit2Sharp.StatusOptions()))
@@ -58,32 +114,18 @@ namespace WpfApp1.ViewModel
         }
 
 
-        /// <summary>
-        /// Size Of DAta
-        /// </summary>
-        /// <param name="fileFullPath"></param>
-        /// <returns></returns>
-        public static string GetFormattedFileSize(string fileFullPath)
+
+        // Add to stage
+
+        public void AddToStage()
         {
-            if (!File.Exists(fileFullPath))
-                return "--";
-
-            double bytes = new System.IO.FileInfo(fileFullPath).Length;
-
-            string[] suffixes = { "B", "KB", "MB", "GB" };
-            int order = 0;
-
-            while (bytes >= 1024 && order + 1 < suffixes.Length)
+            using (var repo = new Repository(Pot))
             {
-                order++;
-                bytes = bytes / 1024;
+                Commands.Stage(repo, "*");
+                this.ListFileStage= StageFiles(Pot);
             }
-
-            return string.Format("{0:0.##} {1}", bytes, suffixes[order]);
         }
-
-
-
+        #endregion
 
     }
 }

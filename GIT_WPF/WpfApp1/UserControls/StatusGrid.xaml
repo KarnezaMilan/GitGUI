@@ -4,8 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp1.UserControls"
+             xmlns:l="clr-namespace:WpfApp1.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="480" d:DesignWidth="640">
+
 
     <DockPanel>
         <Grid>
@@ -23,14 +25,13 @@
 
             <DockPanel Grid.Row="1">
                 <Grid>
-                    <DataGrid BorderThickness="0" Name="StageFilesDataGrid">
-                        <!--
+                    <DataGrid AutoGenerateColumns="False" BorderThickness="0" Name="StageFilesDataGrid" ItemsSource="{Binding ListFileStage}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Path=Status}" Header="St" />
                             <DataGridTextColumn Binding="{Binding Path=FileName}" Header="Filename" Width="*"  />
                             <DataGridTextColumn Binding="{Binding Path=Size}" Header="Size"/>
                             <DataGridTextColumn Binding="{Binding Path=IsBinary}" Header="Binary" />
-                        </DataGrid.Columns>-->
+                        </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
             </DockPanel>
@@ -42,14 +43,13 @@
 
             <DockPanel Grid.Row="3">
                 <Grid>
-                    <DataGrid BorderThickness="0" Name="UnStageFilesDataGrid">
-                        <!--
+                    <DataGrid AutoGenerateColumns="False" BorderThickness="0" Name="UnStageFilesDataGrid" ItemsSource="{Binding ListFileUnstage}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Path=Status}" Header="St" />
                             <DataGridTextColumn Binding="{Binding Path=FileName}" Header="Filename" Width="*"  />
                             <DataGridTextColumn Binding="{Binding Path=Size}" Header="Size"/>
                             <DataGridTextColumn Binding="{Binding Path=IsBinary}" Header="Binary" />
-                        </DataGrid.Columns>>-->
+                        </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
             </DockPanel>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfApp1.View"
         xmlns:controls="clr-namespace:WpfApp1.UserControls"
         mc:Ignorable="d"
-        Title="ViewUC" Width="1152" Height="600" WindowStartupLocation="CenterScreen" >
+        Title="ViewUC" Width="1152" Height="600" WindowStartupLocation="CenterScreen">
 
 
 
