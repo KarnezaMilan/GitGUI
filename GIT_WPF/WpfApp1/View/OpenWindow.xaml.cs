@@ -26,9 +26,6 @@ namespace WpfApp1.View
 
         private void OpenRepo_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mw = new MainWindow();
-            mw.Show();
-            this.Close();
         }
 
         private void UCWindow_Click(object sender, RoutedEventArgs e)

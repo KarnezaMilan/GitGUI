@@ -28,6 +28,7 @@ namespace WpfApp1.View
         public ViewUC()
         {
             InitializeComponent();
+            DataContext = new RepositoryViewModel(Pot);
         }
 
         

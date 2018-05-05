@@ -2,54 +2,180 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WpfApp1.Model;
+using WpfApp1.Other;
 
 namespace WpfApp1.ViewModel
 {
-    public class RepositoryViewModel
+    public class RepositoryViewModel : BaseViewModel
     {
         #region Atribute
+        //**** Atribute ****
         private string _pot;
-        private ObservableCollection<FileModel> _ListFileStage;
+        private ObservableCollection<FileModel> _listFileStage;
         private ObservableCollection<FileModel> _listFileUnstage;
+        private ObservableCollection<CommitModel> _listCommitHistory;
+        private FileModel _selectedFileForDiff;
+        private string _commitMessage;
+        private string _statusItemDiff;
+
         #endregion
 
         #region Property
+        //**** Property ****
         public ObservableCollection<FileModel> ListFileUnstage
         {
             get { return _listFileUnstage; }
-            set { _listFileUnstage = value; }
+            set
+            {
+                _listFileUnstage = value;
+                NotifyPropertyChanged("ListFileUnstage");
+            }
         }
 
         public ObservableCollection<FileModel> ListFileStage
         {
-            get { return _ListFileStage; }
-            set { _ListFileStage = value; }
+            get { return _listFileStage; }
+            set
+            {
+                _listFileStage = value;
+                NotifyPropertyChanged("ListFileStage");
+            }
         }
 
         public string Pot
         {
             get { return _pot; }
-            set { _pot = value; }
+            set
+            {
+                _pot = value;
+                NotifyPropertyChanged("Pot");
+            }
+        }
+
+        public FileModel SelectedFileForDiff
+        {
+            get { return _selectedFileForDiff; }
+            set
+            {
+                if (value != null)
+                {
+                    _selectedFileForDiff = value;
+                    FileDiff();
+                }
+                NotifyPropertyChanged("SelectedFileForDiff");
+            }
+        }
+
+        public string CommitMessage
+        {
+            get { return _commitMessage; }
+            set
+            {
+                _commitMessage = value;
+                NotifyPropertyChanged("CommitMessage");
+            }
+        }
+
+        public ObservableCollection<CommitModel> ListCommitHistory
+        {
+            get { return _listCommitHistory; }
+            set
+            {
+                _listCommitHistory = value;
+                NotifyPropertyChanged("ListCommitHistory");
+            }
+        }
+
+        public string StatusItemDiff
+        {
+            get { return _statusItemDiff; }
+            set
+            {
+                _statusItemDiff = value;
+                NotifyPropertyChanged("StatusItemDiff");
+            }
         }
         #endregion
 
+
+        #region Command
+        //**** Command ****
+
+        // Command property
+        public DelegateCommand CommitCommand { get; private set; }
+
+
+
+        //Comand method
+
+        public void Commit(object action)
+        {
+            
+            /*
+            // Write content to file system
+            if (richTextBoxCommitText.Text == "")
+            {
+                MessageBox.Show("Write commit message");
+            }
+            else
+            {
+
+
+                LibGit2Sharp.Commands.Stage(repo, "*");
+
+
+                // Create the committer's signature and commit
+
+                UserConnectForm form = new UserConnectForm();
+                form.ShowDialog();
+
+                Signature author = new Signature(form.ReturnName(), form.ReturnEmail(), DateTime.Now);
+                Signature committer = author;
+
+                // Commit to the repository
+                Commit commit = repo.Commit(richTextBoxCommitText.Text, author, committer);
+
+
+
+                MessageBox.Show("YEY");
+            }*/
+        }
+
+
+
+        #endregion
+
+
         #region Constructor
+        //**** Constructor ****
         public RepositoryViewModel(string pot)
         {
             this.Pot = pot;
             ListFileStage = StageFiles(this.Pot);
             ListFileUnstage = UnStageFiles(this.Pot);
+            ListCommitHistory = CommitHistory();
+
+            StatusItemDiff = "";
+
+            //Commands
+            CommitCommand = new DelegateCommand(Commit);
+        }
+        public RepositoryViewModel()
+        {
         }
         #endregion
 
         #region Method
+        //**** Method ****
 
-        public ObservableCollection<FileModel> StageFiles(string fileFullPath)
+        //Get the List of Stage Files
+        private ObservableCollection<FileModel> StageFiles(string fileFullPath)
         {
             ObservableCollection<FileModel> listOfStageFiles = new ObservableCollection<FileModel>();
             using (var repo = new Repository(fileFullPath))
@@ -63,14 +189,17 @@ namespace WpfApp1.ViewModel
                     fm.Size = GetFormattedFileSize(fileFullPath + "/" + fm.FileName);
                     if (fm.Status.Contains("ModifiedInIndex") == true)
                     {
+
                         listOfStageFiles.Add(fm);
+
                     }
                 }
             }
             return listOfStageFiles;
         }
 
-        public static string GetFormattedFileSize(string fileFullPath)
+        //Get the size of file
+        private static string GetFormattedFileSize(string fileFullPath)
         {
             if (!File.Exists(fileFullPath))
                 return "--";
@@ -89,7 +218,8 @@ namespace WpfApp1.ViewModel
             return string.Format("{0:0.##} {1}", bytes, suffixes[order]);
         }
 
-        public ObservableCollection<FileModel> UnStageFiles(string fileFullPath)
+        //get the List of Unstagefiles
+        private ObservableCollection<FileModel> UnStageFiles(string fileFullPath)
         {
             ObservableCollection<FileModel> listOfUnStageFiles = new ObservableCollection<FileModel>();
             using (var repo = new Repository(fileFullPath))
@@ -113,19 +243,71 @@ namespace WpfApp1.ViewModel
             return listOfUnStageFiles;
         }
 
-
-
         // Add to stage
-
         public void AddToStage()
         {
             using (var repo = new Repository(Pot))
             {
                 Commands.Stage(repo, "*");
-                this.ListFileStage= StageFiles(Pot);
+                /*this.ListFileStage = new ObservableCollection<FileModel>();
+                this.ListFileUnstage = new ObservableCollection<FileModel>();*/
+                this.ListFileUnstage = this.UnStageFiles(Pot);
+                this.ListFileStage = this.StageFiles(Pot);
             }
         }
+
+        public void ResetStage()
+        {
+            using (var repo = new Repository(this.Pot))
+            {
+                Commit currentCommit = repo.Head.Tip;
+                repo.Reset(ResetMode.Mixed, currentCommit);
+            }
+            /*this.ListFileStage = new ObservableCollection<FileModel>();
+            this.ListFileUnstage = new ObservableCollection<FileModel>();*/
+            this.ListFileUnstage = this.UnStageFiles(Pot);
+            this.ListFileStage = this.StageFiles(Pot);
+        }
+
+        public ObservableCollection<CommitModel> CommitHistory()
+        {
+            ObservableCollection<CommitModel> newList = new ObservableCollection<CommitModel>();
+            Repository repo = new Repository(Pot);
+
+            foreach (LibGit2Sharp.Commit commit in repo.Commits)
+            {
+
+
+                CommitModel c = new CommitModel();
+                c.AuthorEmail = commit.Author.Email;
+                c.AuthorName = commit.Author.Name;
+                c.Date = commit.Author.When.ToString("d.M.yyyy H:m:s");
+                c.Description = commit.MessageShort;
+                c.Hash = commit.Sha;
+
+                newList.Add(c);
+            };
+            return newList;
+        }
+
+        public void FileDiff()
+        {
+
+            var repo = new Repository(this.Pot);
+            var patch = repo.Diff.Compare<Patch>(new List<string>() { SelectedFileForDiff.FileName });
+
+
+            this.StatusItemDiff =patch;
+        }
+
         #endregion
+
+
+        
+
+
+
+
 
     }
 }
