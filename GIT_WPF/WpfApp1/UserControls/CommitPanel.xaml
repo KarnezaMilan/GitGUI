@@ -30,11 +30,9 @@
                              Height="51" 
                              Text="{Binding Path=CommitMessage}"/>
             </DockPanel>
-            <Grid Grid.Row="2">
-                <TextBox Margin="5">
-
-                </TextBox>
-            </Grid>
+            <DockPanel Grid.Row="2">
+                <local:DiffPanel DockPanel.Dock="Top" Margin="5"/>
+            </DockPanel>
 
         </Grid>
     </DockPanel>

@@ -20,11 +20,11 @@ namespace WpfApp1.ViewModel
         private ObservableCollection<FileModel> _listFileStage;
         private ObservableCollection<FileModel> _listFileUnstage;
         private ObservableCollection<CommitModel> _listCommitHistory;
-        private FileModel _selectedFileInStageFiles;
+        private FileModel _selectedFileForDiff;
         private string _commitMessage;
+        private string _statusItemDiff;
 
         #endregion
-
 
         #region Property
         //**** Property ****
@@ -58,13 +58,17 @@ namespace WpfApp1.ViewModel
             }
         }
 
-        public FileModel SelectedFileInStageFiles
+        public FileModel SelectedFileForDiff
         {
-            get { return _selectedFileInStageFiles; }
+            get { return _selectedFileForDiff; }
             set
             {
-                _selectedFileInStageFiles = value;
-                NotifyPropertyChanged("SelectedFileInStageFiles");
+                if (value != null)
+                {
+                    _selectedFileForDiff = value;
+                    FileDiff();
+                }
+                NotifyPropertyChanged("SelectedFileForDiff");
             }
         }
 
@@ -85,6 +89,16 @@ namespace WpfApp1.ViewModel
             {
                 _listCommitHistory = value;
                 NotifyPropertyChanged("ListCommitHistory");
+            }
+        }
+
+        public string StatusItemDiff
+        {
+            get { return _statusItemDiff; }
+            set
+            {
+                _statusItemDiff = value;
+                NotifyPropertyChanged("StatusItemDiff");
             }
         }
         #endregion
@@ -146,6 +160,8 @@ namespace WpfApp1.ViewModel
             ListFileStage = StageFiles(this.Pot);
             ListFileUnstage = UnStageFiles(this.Pot);
             ListCommitHistory = CommitHistory();
+
+            StatusItemDiff = "";
 
             //Commands
             CommitCommand = new DelegateCommand(Commit);
@@ -274,12 +290,18 @@ namespace WpfApp1.ViewModel
             return newList;
         }
 
+        public void FileDiff()
+        {
+
+            var repo = new Repository(this.Pot);
+            var patch = repo.Diff.Compare<Patch>(new List<string>() { SelectedFileForDiff.FileName });
+
+
+            this.StatusItemDiff =patch;
+        }
+
         #endregion
 
-        /*
-        //COMMIT
-        //
-        //**/
 
         
 
