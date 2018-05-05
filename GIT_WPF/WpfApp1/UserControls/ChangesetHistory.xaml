@@ -6,14 +6,13 @@
              xmlns:local="clr-namespace:WpfApp1.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="600" >
-    
+
     <Grid>
-        <DataGrid SelectionUnit="FullRow" HeadersVisibility="Column" AutoGenerateColumns="False" HorizontalAlignment="Stretch" Name="CommitHistory" VerticalAlignment="Stretch">
+        <DataGrid SelectionUnit="FullRow" CanUserAddRows="False" HeadersVisibility="Column" AutoGenerateColumns="False" HorizontalAlignment="Stretch"  Name="CommitHistory" ItemsSource="{Binding ListCommitHistory}"   VerticalAlignment="Stretch">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Graph"></DataGridTextColumn>
                 <DataGridTextColumn Header="Hash" Binding="{Binding Path=Hash}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Source" Binding="{Binding Path=Source}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Description" Binding="{Binding Path=Description}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Description" Binding="{Binding Path=Description}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Date" Binding="{Binding Path=Date}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Author Name" Binding="{Binding Path=AuthorName}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Author Email" Binding="{Binding Path=AuthorEmail}"></DataGridTextColumn>

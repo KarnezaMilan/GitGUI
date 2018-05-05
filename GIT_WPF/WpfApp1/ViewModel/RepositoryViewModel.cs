@@ -19,11 +19,13 @@ namespace WpfApp1.ViewModel
         private string _pot;
         private ObservableCollection<FileModel> _listFileStage;
         private ObservableCollection<FileModel> _listFileUnstage;
+        private ObservableCollection<CommitModel> _listCommitHistory;
         private FileModel _selectedFileInStageFiles;
         private string _commitMessage;
 
         #endregion
-        
+
+
         #region Property
         //**** Property ****
         public ObservableCollection<FileModel> ListFileUnstage
@@ -73,6 +75,16 @@ namespace WpfApp1.ViewModel
             {
                 _commitMessage = value;
                 NotifyPropertyChanged("CommitMessage");
+            }
+        }
+
+        public ObservableCollection<CommitModel> ListCommitHistory
+        {
+            get { return _listCommitHistory; }
+            set
+            {
+                _listCommitHistory = value;
+                NotifyPropertyChanged("ListCommitHistory");
             }
         }
         #endregion
@@ -133,6 +145,7 @@ namespace WpfApp1.ViewModel
             this.Pot = pot;
             ListFileStage = StageFiles(this.Pot);
             ListFileUnstage = UnStageFiles(this.Pot);
+            ListCommitHistory = CommitHistory();
 
             //Commands
             CommitCommand = new DelegateCommand(Commit);
@@ -239,6 +252,28 @@ namespace WpfApp1.ViewModel
             this.ListFileUnstage = this.UnStageFiles(Pot);
             this.ListFileStage = this.StageFiles(Pot);
         }
+
+        public ObservableCollection<CommitModel> CommitHistory()
+        {
+            ObservableCollection<CommitModel> newList = new ObservableCollection<CommitModel>();
+            Repository repo = new Repository(Pot);
+
+            foreach (LibGit2Sharp.Commit commit in repo.Commits)
+            {
+
+
+                CommitModel c = new CommitModel();
+                c.AuthorEmail = commit.Author.Email;
+                c.AuthorName = commit.Author.Name;
+                c.Date = commit.Author.When.ToString("d.M.yyyy H:m:s");
+                c.Description = commit.MessageShort;
+                c.Hash = commit.Sha;
+
+                newList.Add(c);
+            };
+            return newList;
+        }
+
         #endregion
 
         /*

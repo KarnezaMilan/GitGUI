@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace WpfApp1.Model
 {
-    class CommitModel
+    public class CommitModel
     {
         public string AuthorEmail { set; get; }
         public string AuthorName { set; get; }
         public string Date { set; get; }
         public string Description { set; get; }
         public string Hash { set; get; }
-        public string Source { set; get; }
     }
 }
