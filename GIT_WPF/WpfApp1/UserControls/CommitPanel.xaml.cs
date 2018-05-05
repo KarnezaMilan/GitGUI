@@ -21,14 +21,9 @@ namespace WpfApp1.UserControls
     /// </summary>
     public partial class CommitPanel : UserControl
     {
-        public string Pot = "C:/Users/Mili/Desktop/Novamapa";
-
-
         public CommitPanel()
         {
             InitializeComponent();
-
-            DataContext = new RepositoryViewModel(Pot);
         }
 
     }

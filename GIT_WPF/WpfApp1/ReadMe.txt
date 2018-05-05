@@ -3,13 +3,16 @@
 
 TO DO:
 
-- Commit History Binding
 
 - Commit
 
 - Stage - UnStage - Rescan
 
+- open repo
 
+- clone repo
+
+- create repo
 
 
 

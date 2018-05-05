@@ -23,14 +23,10 @@ namespace WpfApp1.UserControls
     /// </summary>
     public partial class ChangesetHistory : UserControl
     {
-        public string Pot = "C:/Users/Mili/Desktop/Novamapa";
-
 
         public ChangesetHistory()
         {
             InitializeComponent();
-
-            DataContext = new RepositoryViewModel(Pot);
         }
 
     }

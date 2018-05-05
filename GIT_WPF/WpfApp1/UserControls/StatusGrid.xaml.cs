@@ -31,10 +31,8 @@ namespace WpfApp1.UserControls
         public StatusGrid()
         {
             InitializeComponent();
-
-            DataContext = new RepositoryViewModel(Pot);
         }
-
+        
         private void HHh_Click(object sender, RoutedEventArgs e)
         {
             RepositoryViewModel aa = new RepositoryViewModel(Pot);

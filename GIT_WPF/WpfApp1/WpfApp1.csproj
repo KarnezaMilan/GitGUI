@@ -169,7 +169,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="ReadMe.txt" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\Git-GUI.ico" />
     <Resource Include="Resource\Git-GUI.png" />
