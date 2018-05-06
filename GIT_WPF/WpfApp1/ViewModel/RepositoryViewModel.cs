@@ -155,11 +155,19 @@ namespace WpfApp1.ViewModel
         #region Constructor
         //**** Constructor ****
         public RepositoryViewModel(string pot)
-        {
+        {/*
             this.Pot = pot;
             ListFileStage = StageFiles(this.Pot);
             ListFileUnstage = UnStageFiles(this.Pot);
             ListCommitHistory = CommitHistory();
+            */
+
+            this.Pot = pot;
+            ListFileStage = new ObservableCollection<FileModel>();
+            ListFileUnstage = new ObservableCollection<FileModel>();
+            StageOrUnstageFileToList(Pot);
+            ListCommitHistory = CommitHistory();
+
 
             StatusItemDiff = "";
 
@@ -174,10 +182,14 @@ namespace WpfApp1.ViewModel
         #region Method
         //**** Method ****
 
+
         //Get the List of Stage Files
+        /*
         private ObservableCollection<FileModel> StageFiles(string fileFullPath)
         {
+            
             ObservableCollection<FileModel> listOfStageFiles = new ObservableCollection<FileModel>();
+
             using (var repo = new Repository(fileFullPath))
             {
                 foreach (var item in repo.RetrieveStatus(new LibGit2Sharp.StatusOptions()))
@@ -187,15 +199,50 @@ namespace WpfApp1.ViewModel
                     fm.FileName = item.FilePath;
                     fm.Status = item.State.ToString();
                     fm.Size = GetFormattedFileSize(fileFullPath + "/" + fm.FileName);
+                    if (item.State == FileStatus.DeletedFromIndex || item.State == FileStatus.ModifiedInIndex || item.State == FileStatus.NewInIndex || item.State == FileStatus.RenamedInIndex || item.State == FileStatus.TypeChangeInIndex)
+                    {
+                        listOfStageFiles.Add(fm);
+                    }/*
                     if (fm.Status.Contains("ModifiedInIndex") == true)
                     {
 
                         listOfStageFiles.Add(fm);
 
-                    }
+                    }*//*
                 }
             }
+
             return listOfStageFiles;
+        }
+
+    */
+        private void StageOrUnstageFileToList(string fileFullPath)
+        {
+
+            ListFileStage = new ObservableCollection<FileModel>();
+            ListFileUnstage = new ObservableCollection<FileModel>();
+
+            using (var repo = new Repository(fileFullPath))
+            {
+                foreach (var item in repo.RetrieveStatus(new LibGit2Sharp.StatusOptions()))
+                {
+
+                    FileModel fm = new FileModel();
+                    fm.FileName = item.FilePath;
+                    fm.Status = item.State.ToString();
+                    fm.Size = GetFormattedFileSize(fileFullPath + "/" + fm.FileName);
+                    if (item.State == FileStatus.DeletedFromIndex || item.State == FileStatus.ModifiedInIndex || item.State == FileStatus.NewInIndex || item.State == FileStatus.RenamedInIndex || item.State == FileStatus.TypeChangeInIndex)
+                    {
+                        ListFileStage.Add(fm);
+                    }
+                    else
+                    {
+                        ListFileUnstage.Add(fm);
+                    }
+
+                }
+            }
+  
         }
 
         //Get the size of file
@@ -217,7 +264,7 @@ namespace WpfApp1.ViewModel
 
             return string.Format("{0:0.##} {1}", bytes, suffixes[order]);
         }
-
+        /*
         //get the List of Unstagefiles
         private ObservableCollection<FileModel> UnStageFiles(string fileFullPath)
         {
@@ -241,8 +288,8 @@ namespace WpfApp1.ViewModel
                 }
             }
             return listOfUnStageFiles;
-        }
-
+        }*/
+        /*
         // Add to stage
         public void AddToStage()
         {
@@ -250,7 +297,7 @@ namespace WpfApp1.ViewModel
             {
                 Commands.Stage(repo, "*");
                 /*this.ListFileStage = new ObservableCollection<FileModel>();
-                this.ListFileUnstage = new ObservableCollection<FileModel>();*/
+                this.ListFileUnstage = new ObservableCollection<FileModel>();*//*
                 this.ListFileUnstage = this.UnStageFiles(Pot);
                 this.ListFileStage = this.StageFiles(Pot);
             }
@@ -264,10 +311,10 @@ namespace WpfApp1.ViewModel
                 repo.Reset(ResetMode.Mixed, currentCommit);
             }
             /*this.ListFileStage = new ObservableCollection<FileModel>();
-            this.ListFileUnstage = new ObservableCollection<FileModel>();*/
-            this.ListFileUnstage = this.UnStageFiles(Pot);
+            this.ListFileUnstage = new ObservableCollection<FileModel>();*//*
+            this.ListFileUnstage = this.UnStageFiles(Pot);/*
             this.ListFileStage = this.StageFiles(Pot);
-        }
+        }*/
 
         public ObservableCollection<CommitModel> CommitHistory()
         {
