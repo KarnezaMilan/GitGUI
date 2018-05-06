@@ -19,10 +19,10 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" Background="Khaki">
-            <Button Content="Open repository" Margin="5" Name="OpenRepo" Click="OpenRepo_Click"></Button>
-            <Button Content="Close repository" Margin="5" Name="CloseRepo"></Button>
-            <Button Content="Clone repository" Margin="5" Name="CloneRepo"></Button>
-            <Button Content="UC Window" Margin="5" Name="UCWindow" Click="UCWindow_Click"> </Button>
+            <Button Content="Open repository" Margin="5" Name="OpenRepo" Click="OpenRepo_Click" Command="{Binding Path=AddToStageCommand}"/>
+            <Button Content="Close repository" Margin="5" Name="CloseRepo" Click="CloseRepo_Click" Command="{Binding Path=AddToStageCommand}"/>
+            <Button Content="Clone repository" Margin="5" Name="CloneRepo" Click="CloneRepo_Click" Command="{Binding Path=AddToStageCommand}"/>
+            <Button Content="UC Window" Margin="5" Name="UCWindow" Command="{Binding Path=AddToStageCommand}" />
         </StackPanel>
 
     </Grid>
