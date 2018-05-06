@@ -34,9 +34,9 @@ namespace WpfApp1.UserControls
         }
         
         private void HHh_Click(object sender, RoutedEventArgs e)
-        {
+        {/*
             RepositoryViewModel aa = new RepositoryViewModel(Pot);
-            aa.ResetStage();
+            aa.ResetStage();*/
         }
     }
 }

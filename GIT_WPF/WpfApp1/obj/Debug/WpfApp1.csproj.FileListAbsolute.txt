@@ -20,7 +20,6 @@ C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\UserControls\
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\UserControls\CommitPanel.g.cs
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\UserControls\DiffPanel.g.cs
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\UserControls\MainMenu.g.cs
-C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\UserControls\Panel.g.cs
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\UserControls\Toolbars.g.cs
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\View\OpenWindow.g.cs
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\View\ViewUC.g.cs
@@ -49,7 +48,6 @@ C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\UserControls\
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\UserControls\CommitPanel.baml
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\UserControls\DiffPanel.baml
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\UserControls\MainMenu.baml
-C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\UserControls\Panel.baml
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\UserControls\StatusGrid.baml
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\UserControls\Toolbars.baml
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\View\OpenWindow.baml

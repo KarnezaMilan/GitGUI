@@ -121,6 +121,21 @@ namespace WpfApp1.ViewModel
 
         public void Commit(object action)
         {
+
+            using (var repo = new Repository(Pot))
+            {
+
+                Signature author = new Signature("James", "@jugglingnutcase", DateTime.Now);
+                Signature committer = author;
+
+                // Commit to the repository
+                Commit commit = repo.Commit(CommitMessage, author, committer);
+
+            }
+            // Vizual efekt
+            CommitMessage = "";
+            StageOrUnstageFileToList();
+            CommitHistory();
         }
 
         public void AddToStage(object action)
@@ -130,6 +145,10 @@ namespace WpfApp1.ViewModel
                 Commands.Stage(repo, "*");
             }
             StageOrUnstageFileToList();
+            /*if(ListFileUnstage.Count==0)
+            {*/
+                StatusItemDiff = "";
+            //}
         }
 
         public void ResetStage(object action)
@@ -152,6 +171,32 @@ namespace WpfApp1.ViewModel
 
         #region Constructor
         //**** Constructor ****
+
+        public RepositoryViewModel(string pot, bool needToInit)
+        {
+            this.Pot = pot;
+            ListFileStage = new ObservableCollection<FileModel>();
+            ListFileUnstage = new ObservableCollection<FileModel>();
+            ListCommitHistory = new ObservableCollection<CommitModel>();
+            StageOrUnstageFileToList();
+            CommitHistory();
+
+
+            InitRepo();
+
+
+            StatusItemDiff = "";
+
+            //Commands
+            CommitCommand = new DelegateCommand(Commit);
+            AddToStageCommand = new DelegateCommand(AddToStage);
+            ResetStageCommand = new DelegateCommand(ResetStage);
+            RescanCommand = new DelegateCommand(Rescan);
+        }
+
+
+
+
         public RepositoryViewModel(string pot)
         {/*
             this.Pot = pot;
@@ -163,8 +208,9 @@ namespace WpfApp1.ViewModel
             this.Pot = pot;
             ListFileStage = new ObservableCollection<FileModel>();
             ListFileUnstage = new ObservableCollection<FileModel>();
+            ListCommitHistory = new ObservableCollection<CommitModel>();
             StageOrUnstageFileToList();
-            ListCommitHistory = CommitHistory();
+            CommitHistory();
 
 
             StatusItemDiff = "";
@@ -217,6 +263,12 @@ namespace WpfApp1.ViewModel
         }
 
     */
+
+        public void InitRepo()
+        {
+            Repository.Init(this.Pot);
+        }
+
         private void StageOrUnstageFileToList()
         {
 
@@ -317,9 +369,10 @@ namespace WpfApp1.ViewModel
             this.ListFileStage = this.StageFiles(Pot);
         }*/
 
-        public ObservableCollection<CommitModel> CommitHistory()
+        public void CommitHistory()
         {
-            ObservableCollection<CommitModel> newList = new ObservableCollection<CommitModel>();
+            ListCommitHistory = new ObservableCollection<CommitModel>();
+
             Repository repo = new Repository(Pot);
 
             foreach (LibGit2Sharp.Commit commit in repo.Commits)
@@ -333,9 +386,9 @@ namespace WpfApp1.ViewModel
                 c.Description = commit.MessageShort;
                 c.Hash = commit.Sha;
 
-                newList.Add(c);
+                ListCommitHistory.Add(c);
             };
-            return newList;
+
         }
 
         public void FileDiff()

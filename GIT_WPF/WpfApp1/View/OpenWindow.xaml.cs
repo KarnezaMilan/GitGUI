@@ -26,13 +26,36 @@ namespace WpfApp1.View
         public OpenWindow()
         {
             InitializeComponent();
+            CloneRepoPanel.Visibility = Visibility.Hidden;
         }
 
         private void OpenRepo_Click(object sender, RoutedEventArgs e)
         {
+            CloneRepoPanel.Visibility = Visibility.Hidden;
             var dialog = new FolderBrowserDialog
             {
                 ShowNewFolderButton = false
+            };
+
+            DialogResult result = dialog.ShowDialog();
+            string selectedFolder = null;
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+                selectedFolder = dialog.SelectedPath;
+
+                ViewUC view = new ViewUC(selectedFolder, true);
+                view.Show();
+                this.Close();
+
+            }
+        }
+
+        private void CreateRepo_Click(object sender, RoutedEventArgs e)
+        {
+            CloneRepoPanel.Visibility = Visibility.Hidden;
+            var dialog = new FolderBrowserDialog
+            {
+                ShowNewFolderButton = true
             };
 
             DialogResult result = dialog.ShowDialog();
@@ -48,22 +71,53 @@ namespace WpfApp1.View
             }
         }
 
-        private void UCWindow_Click(object sender, RoutedEventArgs e)
-        {
-            ViewUC uc = new ViewUC();
-            uc.Show();
-            this.Close();
-        }
-
-
-        private void CloseRepo_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void CloneRepo_Click(object sender, RoutedEventArgs e)
         {
+            if(CloneRepoPanel.Visibility==Visibility.Visible)
+            {
+                CloneRepoPanel.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                CloneRepoPanel.Visibility = Visibility.Visible;
+            }
+            
+        }
 
+        private void CloneRepoPaste_Click(object sender, RoutedEventArgs e)
+        {
+            UrlTextbox.Paste();
+        }
+
+        private void CloneRepoSerch_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new FolderBrowserDialog
+            {
+                ShowNewFolderButton = true
+            };
+
+            DialogResult result = dialog.ShowDialog();
+            /*string selectedFolder = null;
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+                
+                selectedFolder = dialog.SelectedPath;
+
+                ViewUC view = new ViewUC(selectedFolder);
+                view.Show();
+                this.Close();
+                
+            }*/
+        }
+
+        private void CloneRepoClone_Click(object sender, RoutedEventArgs e)
+        {
+            if(UrlTextbox.Text!=null && LocalTextbox.Text!=null)
+            {
+                ViewUC view = new ViewUC(LocalTextbox.Text);
+                view.Show();
+                this.Close();
+            }
         }
     }
 }
