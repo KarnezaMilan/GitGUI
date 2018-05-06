@@ -175,14 +175,32 @@ namespace WpfApp1.ViewModel
         public RepositoryViewModel(string pot, bool needToInit)
         {
             this.Pot = pot;
+            InitRepo();
+            ListFileStage = new ObservableCollection<FileModel>();
+            ListFileUnstage = new ObservableCollection<FileModel>();
+            ListCommitHistory = new ObservableCollection<CommitModel>();
+
+
+
+            StatusItemDiff = "";
+
+            //Commands
+            CommitCommand = new DelegateCommand(Commit);
+            AddToStageCommand = new DelegateCommand(AddToStage);
+            ResetStageCommand = new DelegateCommand(ResetStage);
+            RescanCommand = new DelegateCommand(Rescan);
+
+        }
+
+        public RepositoryViewModel(string pot, string remoteUrl)
+        {
+            this.Pot = pot;
+            CloneRepo(remoteUrl);
             ListFileStage = new ObservableCollection<FileModel>();
             ListFileUnstage = new ObservableCollection<FileModel>();
             ListCommitHistory = new ObservableCollection<CommitModel>();
             StageOrUnstageFileToList();
             CommitHistory();
-
-
-            InitRepo();
 
 
             StatusItemDiff = "";
@@ -193,8 +211,6 @@ namespace WpfApp1.ViewModel
             ResetStageCommand = new DelegateCommand(ResetStage);
             RescanCommand = new DelegateCommand(Rescan);
         }
-
-
 
 
         public RepositoryViewModel(string pot)
@@ -263,8 +279,14 @@ namespace WpfApp1.ViewModel
         }
 
     */
+        private void CloneRepo(string remote)
+        {
+            Repository.Clone(remote, this.Pot);
+        }
 
-        public void InitRepo()
+
+
+        private void InitRepo()
         {
             Repository.Init(this.Pot);
         }
