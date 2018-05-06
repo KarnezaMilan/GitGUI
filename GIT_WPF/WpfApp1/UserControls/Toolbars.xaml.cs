@@ -20,30 +20,11 @@ namespace WpfApp1.UserControls
     /// Interaction logic for Toolbars.xaml
     /// </summary>
     public partial class Toolbars : UserControl
-    { 
-
-        public string Pot = "C:/Users/Mili/Desktop/Novamapa";
-
+    {
         public Toolbars()
         {
             InitializeComponent();
         }
-
-        private void AddBtn_Click(object sender, RoutedEventArgs e)
-        {
-            RepositoryViewModel repoVM = new RepositoryViewModel(Pot);
-            repoVM.AddToStage();
-        }
-
-        private void RescanBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ResetBtn_Click(object sender, RoutedEventArgs e)
-        {
-            RepositoryViewModel repoVM = new RepositoryViewModel(Pot);
-            repoVM.ResetStage();
-        }
     }
 }
+       

@@ -28,12 +28,12 @@
 
                 <Separator Width="30" Height="1" />
 
-                <Button Name="AddBtn" Click="AddBtn_Click">
+                <Button Name="AddBtn" Command="{Binding Path=AddToStageCommand}">
                     <StackPanel>
                         <TextBlock>Add</TextBlock>
                     </StackPanel>
                 </Button>
-                <Button Name="ResetBtn" Click="ResetBtn_Click">
+                <Button Name="ResetBtn" Command="{Binding Path=ResetStageCommand}">
                     <StackPanel>
                         <TextBlock>Reset</TextBlock>
                     </StackPanel>
@@ -48,7 +48,7 @@
                         <TextBlock>Push</TextBlock>
                     </StackPanel>
                 </Button>
-                <Button Name="RescanBtn" Click="RescanBtn_Click">
+                <Button Name="RescanBtn">
                     <StackPanel>
                         <TextBlock>Rescan</TextBlock>
                     </StackPanel>

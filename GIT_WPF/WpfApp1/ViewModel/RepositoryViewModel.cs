@@ -25,6 +25,7 @@ namespace WpfApp1.ViewModel
         private string _statusItemDiff;
 
         #endregion
+      
 
         #region Property
         //**** Property ****
@@ -110,44 +111,34 @@ namespace WpfApp1.ViewModel
         // Command property
         public DelegateCommand CommitCommand { get; private set; }
 
+        public DelegateCommand AddToStageCommand { get; set; }
 
+        public DelegateCommand ResetStageCommand { get; set; }
 
         //Comand method
 
         public void Commit(object action)
         {
-            
-            /*
-            // Write content to file system
-            if (richTextBoxCommitText.Text == "")
-            {
-                MessageBox.Show("Write commit message");
-            }
-            else
-            {
-
-
-                LibGit2Sharp.Commands.Stage(repo, "*");
-
-
-                // Create the committer's signature and commit
-
-                UserConnectForm form = new UserConnectForm();
-                form.ShowDialog();
-
-                Signature author = new Signature(form.ReturnName(), form.ReturnEmail(), DateTime.Now);
-                Signature committer = author;
-
-                // Commit to the repository
-                Commit commit = repo.Commit(richTextBoxCommitText.Text, author, committer);
-
-
-
-                MessageBox.Show("YEY");
-            }*/
         }
 
+        public void AddToStage(object action)
+        {
+            using (var repo = new Repository(this.Pot))
+            {
+                Commands.Stage(repo, "*");
+            }
+            StageOrUnstageFileToList();
+        }
 
+        public void ResetStage(object action)
+        {
+            using (var repo = new Repository(this.Pot))
+            {
+                Commit currentCommit = repo.Head.Tip;
+                repo.Reset(ResetMode.Mixed, currentCommit);
+            }
+            StageOrUnstageFileToList();
+        }
 
         #endregion
 
@@ -165,7 +156,7 @@ namespace WpfApp1.ViewModel
             this.Pot = pot;
             ListFileStage = new ObservableCollection<FileModel>();
             ListFileUnstage = new ObservableCollection<FileModel>();
-            StageOrUnstageFileToList(Pot);
+            StageOrUnstageFileToList();
             ListCommitHistory = CommitHistory();
 
 
@@ -173,6 +164,8 @@ namespace WpfApp1.ViewModel
 
             //Commands
             CommitCommand = new DelegateCommand(Commit);
+            AddToStageCommand = new DelegateCommand(AddToStage);
+            ResetStageCommand = new DelegateCommand(ResetStage);
         }
         public RepositoryViewModel()
         {
@@ -216,13 +209,13 @@ namespace WpfApp1.ViewModel
         }
 
     */
-        private void StageOrUnstageFileToList(string fileFullPath)
+        private void StageOrUnstageFileToList()
         {
 
             ListFileStage = new ObservableCollection<FileModel>();
             ListFileUnstage = new ObservableCollection<FileModel>();
 
-            using (var repo = new Repository(fileFullPath))
+            using (var repo = new Repository(Pot))
             {
                 foreach (var item in repo.RetrieveStatus(new LibGit2Sharp.StatusOptions()))
                 {
@@ -230,7 +223,7 @@ namespace WpfApp1.ViewModel
                     FileModel fm = new FileModel();
                     fm.FileName = item.FilePath;
                     fm.Status = item.State.ToString();
-                    fm.Size = GetFormattedFileSize(fileFullPath + "/" + fm.FileName);
+                    fm.Size = GetFormattedFileSize(Pot + "/" + fm.FileName);
                     if (item.State == FileStatus.DeletedFromIndex || item.State == FileStatus.ModifiedInIndex || item.State == FileStatus.NewInIndex || item.State == FileStatus.RenamedInIndex || item.State == FileStatus.TypeChangeInIndex)
                     {
                         ListFileStage.Add(fm);
