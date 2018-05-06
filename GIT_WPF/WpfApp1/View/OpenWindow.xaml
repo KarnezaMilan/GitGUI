@@ -9,21 +9,42 @@
     <Grid Background="LemonChiffon">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="3*" />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
-            <RowDefinition Height="2*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" Background="Khaki">
-            <Button Content="Open repository" Margin="5" Name="OpenRepo" Click="OpenRepo_Click"></Button>
-            <Button Content="Close repository" Margin="5" Name="CloseRepo"></Button>
-            <Button Content="Clone repository" Margin="5" Name="CloneRepo"></Button>
-            <Button Content="UC Window" Margin="5" Name="UCWindow" Click="UCWindow_Click"> </Button>
+        <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" Background="Khaki" Orientation="Vertical">
+            <Button Content="Open repository" Margin="5" Name="OpenRepo" Click="OpenRepo_Click" />
+            <Button Content="Create repository" Margin="5" Name="CreateRepo" Click="CreateRepo_Click" />
+            <Button Content="Clone repository" Margin="5" Name="CloneRepo" Click="CloneRepo_Click" />
         </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="2" >
+            <StackPanel Name="CloneRepoPanel" Background="PaleGoldenrod" >
+                <StackPanel  Orientation="Horizontal" Margin="10">
+                    <Label Content="URL : " Width="50px" />
+                    <TextBox Width="400px" Name="UrlTextbox"/>
+                    <Button Content="Paste" Width="150px" Margin="10,0,0,0" Name="CloneRepoPaste" Click="CloneRepoPaste_Click"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="10" >
+                    <Label Content="Local: " Width="50px" />
+                    <TextBox Width="400px" Name="LocalTextbox"/>
+                    <Button Content="Search" Width="150px"  Margin="10,0,0,0" Name="CloneRepoSerch" Click="CloneRepoSerch_Click"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Width="460px"/>
+                    <Button Content="Clone" Width="150px" Height="25px" Margin="10,0" Name="CloneRepoClone" Click="CloneRepoClone_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        
+        
 
     </Grid>
 </Window>

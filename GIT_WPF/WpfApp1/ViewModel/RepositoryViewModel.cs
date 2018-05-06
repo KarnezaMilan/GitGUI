@@ -25,6 +25,7 @@ namespace WpfApp1.ViewModel
         private string _statusItemDiff;
 
         #endregion
+      
 
         #region Property
         //**** Property ****
@@ -110,61 +111,115 @@ namespace WpfApp1.ViewModel
         // Command property
         public DelegateCommand CommitCommand { get; private set; }
 
+        public DelegateCommand AddToStageCommand { get; set; }
 
+        public DelegateCommand ResetStageCommand { get; set; }
+
+        public DelegateCommand RescanCommand { get; set; }
 
         //Comand method
 
         public void Commit(object action)
         {
-            
-            /*
-            // Write content to file system
-            if (richTextBoxCommitText.Text == "")
-            {
-                MessageBox.Show("Write commit message");
-            }
-            else
+
+            using (var repo = new Repository(Pot))
             {
 
-
-                LibGit2Sharp.Commands.Stage(repo, "*");
-
-
-                // Create the committer's signature and commit
-
-                UserConnectForm form = new UserConnectForm();
-                form.ShowDialog();
-
-                Signature author = new Signature(form.ReturnName(), form.ReturnEmail(), DateTime.Now);
+                Signature author = new Signature("James", "@jugglingnutcase", DateTime.Now);
                 Signature committer = author;
 
                 // Commit to the repository
-                Commit commit = repo.Commit(richTextBoxCommitText.Text, author, committer);
+                Commit commit = repo.Commit(CommitMessage, author, committer);
 
-
-
-                MessageBox.Show("YEY");
-            }*/
+            }
+            // Vizual efekt
+            CommitMessage = "";
+            StageOrUnstageFileToList();
+            CommitHistory();
         }
 
+        public void AddToStage(object action)
+        {
+            using (var repo = new Repository(this.Pot))
+            {
+                Commands.Stage(repo, "*");
+            }
+            StageOrUnstageFileToList();
+            /*if(ListFileUnstage.Count==0)
+            {*/
+                StatusItemDiff = "";
+            //}
+        }
 
+        public void ResetStage(object action)
+        {
+            using (var repo = new Repository(this.Pot))
+            {
+                Commit currentCommit = repo.Head.Tip;
+                repo.Reset(ResetMode.Mixed, currentCommit);
+            }
+            StageOrUnstageFileToList();
+        }
+
+        public void Rescan(object action)
+        {
+            StageOrUnstageFileToList();
+        }
 
         #endregion
 
 
         #region Constructor
         //**** Constructor ****
-        public RepositoryViewModel(string pot)
+
+        public RepositoryViewModel(string pot, bool needToInit)
         {
             this.Pot = pot;
-            ListFileStage = StageFiles(this.Pot);
-            ListFileUnstage = UnStageFiles(this.Pot);
-            ListCommitHistory = CommitHistory();
+            ListFileStage = new ObservableCollection<FileModel>();
+            ListFileUnstage = new ObservableCollection<FileModel>();
+            ListCommitHistory = new ObservableCollection<CommitModel>();
+            StageOrUnstageFileToList();
+            CommitHistory();
+
+
+            InitRepo();
+
 
             StatusItemDiff = "";
 
             //Commands
             CommitCommand = new DelegateCommand(Commit);
+            AddToStageCommand = new DelegateCommand(AddToStage);
+            ResetStageCommand = new DelegateCommand(ResetStage);
+            RescanCommand = new DelegateCommand(Rescan);
+        }
+
+
+
+
+        public RepositoryViewModel(string pot)
+        {/*
+            this.Pot = pot;
+            ListFileStage = StageFiles(this.Pot);
+            ListFileUnstage = UnStageFiles(this.Pot);
+            ListCommitHistory = CommitHistory();
+            */
+
+            this.Pot = pot;
+            ListFileStage = new ObservableCollection<FileModel>();
+            ListFileUnstage = new ObservableCollection<FileModel>();
+            ListCommitHistory = new ObservableCollection<CommitModel>();
+            StageOrUnstageFileToList();
+            CommitHistory();
+
+
+            StatusItemDiff = "";
+
+            //Commands
+            CommitCommand = new DelegateCommand(Commit);
+            AddToStageCommand = new DelegateCommand(AddToStage);
+            ResetStageCommand = new DelegateCommand(ResetStage);
+            RescanCommand = new DelegateCommand(Rescan);
         }
         public RepositoryViewModel()
         {
@@ -174,10 +229,14 @@ namespace WpfApp1.ViewModel
         #region Method
         //**** Method ****
 
+
         //Get the List of Stage Files
+        /*
         private ObservableCollection<FileModel> StageFiles(string fileFullPath)
         {
+            
             ObservableCollection<FileModel> listOfStageFiles = new ObservableCollection<FileModel>();
+
             using (var repo = new Repository(fileFullPath))
             {
                 foreach (var item in repo.RetrieveStatus(new LibGit2Sharp.StatusOptions()))
@@ -187,15 +246,56 @@ namespace WpfApp1.ViewModel
                     fm.FileName = item.FilePath;
                     fm.Status = item.State.ToString();
                     fm.Size = GetFormattedFileSize(fileFullPath + "/" + fm.FileName);
+                    if (item.State == FileStatus.DeletedFromIndex || item.State == FileStatus.ModifiedInIndex || item.State == FileStatus.NewInIndex || item.State == FileStatus.RenamedInIndex || item.State == FileStatus.TypeChangeInIndex)
+                    {
+                        listOfStageFiles.Add(fm);
+                    }/*
                     if (fm.Status.Contains("ModifiedInIndex") == true)
                     {
 
                         listOfStageFiles.Add(fm);
 
-                    }
+                    }*//*
                 }
             }
+
             return listOfStageFiles;
+        }
+
+    */
+
+        public void InitRepo()
+        {
+            Repository.Init(this.Pot);
+        }
+
+        private void StageOrUnstageFileToList()
+        {
+
+            ListFileStage = new ObservableCollection<FileModel>();
+            ListFileUnstage = new ObservableCollection<FileModel>();
+
+            using (var repo = new Repository(Pot))
+            {
+                foreach (var item in repo.RetrieveStatus(new LibGit2Sharp.StatusOptions()))
+                {
+
+                    FileModel fm = new FileModel();
+                    fm.FileName = item.FilePath;
+                    fm.Status = item.State.ToString();
+                    fm.Size = GetFormattedFileSize(Pot + "/" + fm.FileName);
+                    if (item.State == FileStatus.DeletedFromIndex || item.State == FileStatus.ModifiedInIndex || item.State == FileStatus.NewInIndex || item.State == FileStatus.RenamedInIndex || item.State == FileStatus.TypeChangeInIndex)
+                    {
+                        ListFileStage.Add(fm);
+                    }
+                    else
+                    {
+                        ListFileUnstage.Add(fm);
+                    }
+
+                }
+            }
+  
         }
 
         //Get the size of file
@@ -217,7 +317,7 @@ namespace WpfApp1.ViewModel
 
             return string.Format("{0:0.##} {1}", bytes, suffixes[order]);
         }
-
+        /*
         //get the List of Unstagefiles
         private ObservableCollection<FileModel> UnStageFiles(string fileFullPath)
         {
@@ -241,8 +341,8 @@ namespace WpfApp1.ViewModel
                 }
             }
             return listOfUnStageFiles;
-        }
-
+        }*/
+        /*
         // Add to stage
         public void AddToStage()
         {
@@ -250,7 +350,7 @@ namespace WpfApp1.ViewModel
             {
                 Commands.Stage(repo, "*");
                 /*this.ListFileStage = new ObservableCollection<FileModel>();
-                this.ListFileUnstage = new ObservableCollection<FileModel>();*/
+                this.ListFileUnstage = new ObservableCollection<FileModel>();*//*
                 this.ListFileUnstage = this.UnStageFiles(Pot);
                 this.ListFileStage = this.StageFiles(Pot);
             }
@@ -264,14 +364,15 @@ namespace WpfApp1.ViewModel
                 repo.Reset(ResetMode.Mixed, currentCommit);
             }
             /*this.ListFileStage = new ObservableCollection<FileModel>();
-            this.ListFileUnstage = new ObservableCollection<FileModel>();*/
-            this.ListFileUnstage = this.UnStageFiles(Pot);
+            this.ListFileUnstage = new ObservableCollection<FileModel>();*//*
+            this.ListFileUnstage = this.UnStageFiles(Pot);/*
             this.ListFileStage = this.StageFiles(Pot);
-        }
+        }*/
 
-        public ObservableCollection<CommitModel> CommitHistory()
+        public void CommitHistory()
         {
-            ObservableCollection<CommitModel> newList = new ObservableCollection<CommitModel>();
+            ListCommitHistory = new ObservableCollection<CommitModel>();
+
             Repository repo = new Repository(Pot);
 
             foreach (LibGit2Sharp.Commit commit in repo.Commits)
@@ -285,9 +386,9 @@ namespace WpfApp1.ViewModel
                 c.Description = commit.MessageShort;
                 c.Hash = commit.Sha;
 
-                newList.Add(c);
+                ListCommitHistory.Add(c);
             };
-            return newList;
+
         }
 
         public void FileDiff()

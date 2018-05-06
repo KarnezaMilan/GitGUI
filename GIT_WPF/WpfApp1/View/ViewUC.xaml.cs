@@ -23,14 +23,26 @@ namespace WpfApp1.View
     /// </summary>
     public partial class ViewUC : Window
     {
-        public string Pot = "C:/Users/Mili/Desktop/Novamapa";
+        //public string Pot = "C:/Users/Mili/Desktop/Novamapa";
 
         public ViewUC()
         {
             InitializeComponent();
-            DataContext = new RepositoryViewModel(Pot);
+            //DataContext = new RepositoryViewModel(Pot);
         }
 
-        
+        public ViewUC(string filePath)
+        {
+            InitializeComponent();
+            DataContext = new RepositoryViewModel(filePath);
+        }
+
+        public ViewUC(string filePath, bool needToInti)
+        {
+            InitializeComponent();
+            DataContext = new RepositoryViewModel(filePath, needToInti);
+        }
+
+
     }
 }
