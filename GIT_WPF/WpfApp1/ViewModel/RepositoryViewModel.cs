@@ -115,6 +115,8 @@ namespace WpfApp1.ViewModel
 
         public DelegateCommand ResetStageCommand { get; set; }
 
+        public DelegateCommand RescanCommand { get; set; }
+
         //Comand method
 
         public void Commit(object action)
@@ -137,6 +139,11 @@ namespace WpfApp1.ViewModel
                 Commit currentCommit = repo.Head.Tip;
                 repo.Reset(ResetMode.Mixed, currentCommit);
             }
+            StageOrUnstageFileToList();
+        }
+
+        public void Rescan(object action)
+        {
             StageOrUnstageFileToList();
         }
 
@@ -166,6 +173,7 @@ namespace WpfApp1.ViewModel
             CommitCommand = new DelegateCommand(Commit);
             AddToStageCommand = new DelegateCommand(AddToStage);
             ResetStageCommand = new DelegateCommand(ResetStage);
+            RescanCommand = new DelegateCommand(Rescan);
         }
         public RepositoryViewModel()
         {

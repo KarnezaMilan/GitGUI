@@ -48,7 +48,7 @@
                         <TextBlock>Push</TextBlock>
                     </StackPanel>
                 </Button>
-                <Button Name="RescanBtn">
+                <Button Name="RescanBtn" Command="{Binding Path=RescanCommand}">
                     <StackPanel>
                         <TextBlock>Rescan</TextBlock>
                     </StackPanel>
