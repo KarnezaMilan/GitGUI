@@ -57,4 +57,5 @@ C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\WpfApp1.Prope
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\WpfApp1.csproj.GenerateResource.Cache
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\WpfApp1.exe
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\WpfApp1.pdb
-C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\WpfApp1.csprojResolveAssemblyReference.cache
+C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\View\UserContactView.g.cs
+C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\View\UserContactView.baml

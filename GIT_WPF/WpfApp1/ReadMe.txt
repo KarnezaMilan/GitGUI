@@ -1,19 +1,11 @@
-﻿
+﻿TO DO:
 
+-  user Name and pass View(pop up)
 
-TO DO:
+- push
 
-
-- Commit
-
-- Stage - UnStage - Rescan
-
-- open repo
-
-- clone repo
-
-- create repo
+- pull
 
 
 
-DONE:
+

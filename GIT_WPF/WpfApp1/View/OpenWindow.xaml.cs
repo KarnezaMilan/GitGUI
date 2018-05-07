@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.IO;
 using System.Windows.Forms;
 using WpfApp1.ViewModel;
+using WpfApp1.Model;
 
 namespace WpfApp1.View
 {
@@ -43,7 +44,7 @@ namespace WpfApp1.View
             {
                 selectedFolder = dialog.SelectedPath;
 
-                ViewUC view = new ViewUC(selectedFolder, true);
+                ViewUC view = new ViewUC(selectedFolder);
                 view.Show();
                 this.Close();
 
@@ -64,7 +65,7 @@ namespace WpfApp1.View
             {
                 selectedFolder = dialog.SelectedPath;
 
-                ViewUC view = new ViewUC(selectedFolder);
+                ViewUC view = new ViewUC(selectedFolder, true);
                 view.Show();
                 this.Close();
 
@@ -97,27 +98,32 @@ namespace WpfApp1.View
             };
 
             DialogResult result = dialog.ShowDialog();
-            /*string selectedFolder = null;
             if (result == System.Windows.Forms.DialogResult.OK)
-            {
-                
-                selectedFolder = dialog.SelectedPath;
-
-                ViewUC view = new ViewUC(selectedFolder);
-                view.Show();
-                this.Close();
-                
-            }*/
+            { 
+                LocalTextbox.Text = dialog.SelectedPath; 
+            }
         }
 
         private void CloneRepoClone_Click(object sender, RoutedEventArgs e)
         {
-            if(UrlTextbox.Text!=null && LocalTextbox.Text!=null)
+            UserContactView dialog = new UserContactView();
+            dialog.ShowDialog();
+            RepositoryViewModel repo = new RepositoryViewModel();
+
+            if (repo.CloneRepo(UrlTextbox.Text, LocalTextbox.Text, dialog.returnUN(), dialog.returnPass())==true)
             {
+                dialog.Close();
                 ViewUC view = new ViewUC(LocalTextbox.Text);
                 view.Show();
                 this.Close();
+
             }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("Ups..something went wrong!!");
+            }
+
+
         }
     }
 }
