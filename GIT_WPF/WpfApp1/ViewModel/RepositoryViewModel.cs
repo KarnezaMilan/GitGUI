@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WpfApp1.Model;
 using WpfApp1.Other;
+using WpfApp1.View;
 
 namespace WpfApp1.ViewModel
 {
@@ -117,9 +118,35 @@ namespace WpfApp1.ViewModel
 
         public DelegateCommand RescanCommand { get; set; }
 
+        public DelegateCommand PushCommand { get; set; }
+
         //Comand method
 
-        public void Commit(object action)
+        private void Push(object action)
+        {
+            using (var repo = new Repository(this.Pot))
+            {
+                UserContactView logInForm = new UserContactView();
+                logInForm.ShowDialog();
+                string userName = logInForm.returnUN();
+                string pass = logInForm.returnPass();
+
+
+                Remote remote = repo.Network.Remotes["origin"];
+                var options = new PushOptions();
+                options.CredentialsProvider = (_url, _user, _cred) =>
+                    new UsernamePasswordCredentials { Username = userName, Password = pass };
+
+
+                var pushRefSpec = @"refs/heads/master";
+                repo.Network.Push(remote, pushRefSpec, options);
+
+            }
+
+           // MessageBox.Show("YEA-PUSH");
+        }
+
+        private void Commit(object action)
         {
 
             using (var repo = new Repository(Pot))
@@ -138,7 +165,7 @@ namespace WpfApp1.ViewModel
             CommitHistory();
         }
 
-        public void AddToStage(object action)
+        private void AddToStage(object action)
         {
             using (var repo = new Repository(this.Pot))
             {
@@ -151,7 +178,7 @@ namespace WpfApp1.ViewModel
             //}
         }
 
-        public void ResetStage(object action)
+        private void ResetStage(object action)
         {
             using (var repo = new Repository(this.Pot))
             {
@@ -161,7 +188,7 @@ namespace WpfApp1.ViewModel
             StageOrUnstageFileToList();
         }
 
-        public void Rescan(object action)
+        private void Rescan(object action)
         {
             StageOrUnstageFileToList();
         }
@@ -189,6 +216,7 @@ namespace WpfApp1.ViewModel
             AddToStageCommand = new DelegateCommand(AddToStage);
             ResetStageCommand = new DelegateCommand(ResetStage);
             RescanCommand = new DelegateCommand(Rescan);
+            PushCommand = new DelegateCommand(Push);
 
         }
 
@@ -210,6 +238,7 @@ namespace WpfApp1.ViewModel
             AddToStageCommand = new DelegateCommand(AddToStage);
             ResetStageCommand = new DelegateCommand(ResetStage);
             RescanCommand = new DelegateCommand(Rescan);
+            PushCommand = new DelegateCommand(Push);
         }
         public RepositoryViewModel()
         {

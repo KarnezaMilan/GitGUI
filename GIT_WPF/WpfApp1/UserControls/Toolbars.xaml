@@ -43,7 +43,7 @@
                         <TextBlock>Pull</TextBlock>
                     </StackPanel>
                 </Button>
-                <Button Name="PushBtn">
+                <Button Name="PushBtn" Command="{Binding Path=PushCommand}">
                     <StackPanel>
                         <TextBlock>Push</TextBlock>
                     </StackPanel>
