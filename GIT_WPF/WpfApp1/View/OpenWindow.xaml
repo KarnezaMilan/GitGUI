@@ -38,10 +38,10 @@
                     <Button Content="Search" Width="150px"  Margin="10,0,0,0" Name="CloneRepoSerch" Click="CloneRepoSerch_Click"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5">
-                    <Label Content="Local: " Width="50px" />
+                    <!--<Label Content="Local: " Width="50px" />
                     <TextBox Width="170" Name="UserNameTextbox"/>
                     <Label Content="Local: " Width="50px" Margin="10,0,0,0"/>
-                    <PasswordBox Width="170" Name="PassTextbox"  />
+                    <PasswordBox Width="170" Name="PassTextbox"  />-->
                     <Button Content="Clone" Width="150px" Height="25px" Margin="10,0" Name="CloneRepoClone" Click="CloneRepoClone_Click"/>
                 </StackPanel>
             </StackPanel>

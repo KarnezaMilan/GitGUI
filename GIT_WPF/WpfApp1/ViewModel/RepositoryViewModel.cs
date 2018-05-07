@@ -192,35 +192,9 @@ namespace WpfApp1.ViewModel
 
         }
 
-        public RepositoryViewModel(string pot, string remoteUrl, string Username, string pass)
-        {
-            this.Pot = pot;
-            CloneRepo(remoteUrl, Username, pass);
-            ListFileStage = new ObservableCollection<FileModel>();
-            ListFileUnstage = new ObservableCollection<FileModel>();
-            ListCommitHistory = new ObservableCollection<CommitModel>();
-            StageOrUnstageFileToList();
-            CommitHistory();
-
-
-            StatusItemDiff = "";
-
-            //Commands
-            CommitCommand = new DelegateCommand(Commit);
-            AddToStageCommand = new DelegateCommand(AddToStage);
-            ResetStageCommand = new DelegateCommand(ResetStage);
-            RescanCommand = new DelegateCommand(Rescan);
-        }
-
 
         public RepositoryViewModel(string pot)
-        {/*
-            this.Pot = pot;
-            ListFileStage = StageFiles(this.Pot);
-            ListFileUnstage = UnStageFiles(this.Pot);
-            ListCommitHistory = CommitHistory();
-            */
-
+        {
             this.Pot = pot;
             ListFileStage = new ObservableCollection<FileModel>();
             ListFileUnstage = new ObservableCollection<FileModel>();
@@ -244,48 +218,6 @@ namespace WpfApp1.ViewModel
 
         #region Method
         //**** Method ****
-
-
-        //Get the List of Stage Files
-        /*
-        private ObservableCollection<FileModel> StageFiles(string fileFullPath)
-        {
-            
-            ObservableCollection<FileModel> listOfStageFiles = new ObservableCollection<FileModel>();
-
-            using (var repo = new Repository(fileFullPath))
-            {
-                foreach (var item in repo.RetrieveStatus(new LibGit2Sharp.StatusOptions()))
-                {
-
-                    FileModel fm = new FileModel();
-                    fm.FileName = item.FilePath;
-                    fm.Status = item.State.ToString();
-                    fm.Size = GetFormattedFileSize(fileFullPath + "/" + fm.FileName);
-                    if (item.State == FileStatus.DeletedFromIndex || item.State == FileStatus.ModifiedInIndex || item.State == FileStatus.NewInIndex || item.State == FileStatus.RenamedInIndex || item.State == FileStatus.TypeChangeInIndex)
-                    {
-                        listOfStageFiles.Add(fm);
-                    }/*
-                    if (fm.Status.Contains("ModifiedInIndex") == true)
-                    {
-
-                        listOfStageFiles.Add(fm);
-
-                    }*//*
-                }
-            }
-
-            return listOfStageFiles;
-        }
-
-    */
-        private void CloneRepo(string remote, string userName, string pass)
-        {
-            var co = new CloneOptions();
-            co.CredentialsProvider = (_url, _user, _cred) => new UsernamePasswordCredentials { Username = userName, Password = pass};
-            Repository.Clone(remote, this.Pot, co);
-        }
-
 
 
         private void InitRepo()
@@ -393,7 +325,7 @@ namespace WpfApp1.ViewModel
             this.ListFileStage = this.StageFiles(Pot);
         }*/
 
-        public void CommitHistory()
+        private void CommitHistory()
         {
             ListCommitHistory = new ObservableCollection<CommitModel>();
 
@@ -415,7 +347,7 @@ namespace WpfApp1.ViewModel
 
         }
 
-        public void FileDiff()
+        private void FileDiff()
         {
 
             var repo = new Repository(this.Pot);
@@ -427,10 +359,25 @@ namespace WpfApp1.ViewModel
 
         #endregion
 
+        #region Public Method
 
-        
+        public bool CloneRepo(string remote, string path, string userName, string pass)
+        {
+            try
+            {
+                var co = new CloneOptions();
+                co.CredentialsProvider = (_url, _user, _cred) => new UsernamePasswordCredentials { Username = userName, Password = pass };
+                Repository.Clone(remote, path, co);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
 
+        #endregion
 
 
 

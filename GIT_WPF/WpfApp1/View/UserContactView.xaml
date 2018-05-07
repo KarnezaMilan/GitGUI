@@ -1,0 +1,30 @@
+﻿<Window x:Class="WpfApp1.View.UserContactView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.View"
+        mc:Ignorable="d"
+        Title="UserContactView" Height="300" Width="300" WindowStartupLocation="CenterScreen" >
+    <Grid>
+        <StackPanel>
+            <Label Content="Log in to: " HorizontalContentAlignment="Center" FontSize="20" FontWeight="Bold" />
+            <StackPanel Height="50px">
+                <Image Name="LogoImg"/>
+            </StackPanel>
+            <StackPanel Margin="25,0,25,15">
+                <Label Content="User name: " Padding="0"/>
+                <TextBox Name="UserNameTextbox"/>
+                <Label Content="Password: " Padding="0"/>
+                <PasswordBox Name="PasswordTextbox" />
+
+            </StackPanel>
+            <StackPanel Margin="25,0">
+                <Button Content="Conform" Margin="0,5" Name="ConformBtn" Click="ConformBtn_Click"/>
+                <Button Content="Cancel" Name="CancleBtn" Click="CancleBtn_Click"/>
+            </StackPanel>
+
+        </StackPanel>
+        
+    </Grid>
+</Window>

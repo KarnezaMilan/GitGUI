@@ -45,6 +45,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -92,6 +93,9 @@
     <Compile Include="View\OpenWindow.xaml.cs">
       <DependentUpon>OpenWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\UserContactView.xaml.cs">
+      <DependentUpon>UserContactView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewUC.xaml.cs">
       <DependentUpon>ViewUC.xaml</DependentUpon>
     </Compile>
@@ -130,6 +134,10 @@
     <Compile Include="Model\CommitModel.cs" />
     <Compile Include="ViewModel\CommitHistory.cs" />
     <Page Include="View\OpenWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserContactView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
