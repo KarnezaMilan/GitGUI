@@ -192,10 +192,10 @@ namespace WpfApp1.ViewModel
 
         }
 
-        public RepositoryViewModel(string pot, string remoteUrl)
+        public RepositoryViewModel(string pot, string remoteUrl, string Username, string pass)
         {
             this.Pot = pot;
-            CloneRepo(remoteUrl);
+            CloneRepo(remoteUrl, Username, pass);
             ListFileStage = new ObservableCollection<FileModel>();
             ListFileUnstage = new ObservableCollection<FileModel>();
             ListCommitHistory = new ObservableCollection<CommitModel>();
@@ -279,9 +279,11 @@ namespace WpfApp1.ViewModel
         }
 
     */
-        private void CloneRepo(string remote)
+        private void CloneRepo(string remote, string userName, string pass)
         {
-            Repository.Clone(remote, this.Pot);
+            var co = new CloneOptions();
+            co.CredentialsProvider = (_url, _user, _cred) => new UsernamePasswordCredentials { Username = userName, Password = pass};
+            Repository.Clone(remote, this.Pot, co);
         }
 
 

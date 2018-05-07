@@ -27,24 +27,27 @@
 
         <StackPanel Grid.Column="1" Grid.Row="2" >
             <StackPanel Name="CloneRepoPanel" Background="PaleGoldenrod" >
-                <StackPanel  Orientation="Horizontal" Margin="10">
+                <StackPanel  Orientation="Horizontal" Margin="5">
                     <Label Content="URL : " Width="50px" />
                     <TextBox Width="400px" Name="UrlTextbox"/>
                     <Button Content="Paste" Width="150px" Margin="10,0,0,0" Name="CloneRepoPaste" Click="CloneRepoPaste_Click"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="10" >
+                <StackPanel Orientation="Horizontal" Margin="5" >
                     <Label Content="Local: " Width="50px" />
                     <TextBox Width="400px" Name="LocalTextbox"/>
                     <Button Content="Search" Width="150px"  Margin="10,0,0,0" Name="CloneRepoSerch" Click="CloneRepoSerch_Click"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Width="460px"/>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Label Content="Local: " Width="50px" />
+                    <TextBox Width="170" Name="UserNameTextbox"/>
+                    <Label Content="Local: " Width="50px" Margin="10,0,0,0"/>
+                    <PasswordBox Width="170" Name="PassTextbox"  />
                     <Button Content="Clone" Width="150px" Height="25px" Margin="10,0" Name="CloneRepoClone" Click="CloneRepoClone_Click"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
-        
-        
+
+
 
     </Grid>
 </Window>

@@ -43,10 +43,10 @@ namespace WpfApp1.View
             DataContext = new RepositoryViewModel(filePath, needToInti);
         }
 
-        public ViewUC(string filePath, string remoteUrl)
+        public ViewUC(string filePath, string remoteUrl, string userName, string pass)
         {
             InitializeComponent();
-            DataContext = new RepositoryViewModel(filePath, remoteUrl);
+            DataContext = new RepositoryViewModel(filePath, remoteUrl, userName, pass);
         }
 
 

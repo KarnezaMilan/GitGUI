@@ -43,7 +43,7 @@ namespace WpfApp1.View
             {
                 selectedFolder = dialog.SelectedPath;
 
-                ViewUC view = new ViewUC(selectedFolder, true);
+                ViewUC view = new ViewUC(selectedFolder);
                 view.Show();
                 this.Close();
 
@@ -64,7 +64,7 @@ namespace WpfApp1.View
             {
                 selectedFolder = dialog.SelectedPath;
 
-                ViewUC view = new ViewUC(selectedFolder);
+                ViewUC view = new ViewUC(selectedFolder, true);
                 view.Show();
                 this.Close();
 
@@ -97,24 +97,21 @@ namespace WpfApp1.View
             };
 
             DialogResult result = dialog.ShowDialog();
-            /*string selectedFolder = null;
             if (result == System.Windows.Forms.DialogResult.OK)
             {
                 
-                selectedFolder = dialog.SelectedPath;
+                LocalTextbox.Text = dialog.SelectedPath;
 
-                ViewUC view = new ViewUC(selectedFolder);
-                view.Show();
-                this.Close();
+
                 
-            }*/
+            }
         }
 
         private void CloneRepoClone_Click(object sender, RoutedEventArgs e)
         {
-            if(UrlTextbox.Text!=null && LocalTextbox.Text!=null)
+            if(UrlTextbox.Text!=null && LocalTextbox.Text!=null && UserNameTextbox.Text!=null&&PassTextbox.Password!=null)
             {
-                ViewUC view = new ViewUC(LocalTextbox.Text);
+                ViewUC view = new ViewUC(LocalTextbox.Text,UrlTextbox.Text, UserNameTextbox.Text, PassTextbox.Password);
                 view.Show();
                 this.Close();
             }
