@@ -66,6 +66,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\FileModel.cs" />
+    <Compile Include="Model\PersonModel.cs" />
     <Compile Include="Other\DelegateCommand.cs" />
     <Compile Include="UserControls\CenterArea.xaml.cs">
       <DependentUpon>CenterArea.xaml</DependentUpon>
@@ -177,9 +178,15 @@
     <Resource Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resource\Git-GUI.ico" />
-    <Resource Include="Resource\Git-GUI.png" />
-    <Resource Include="Resource\TabCloseButton.png" />
+    <Resource Include="Resource\setting_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\add_icon.png" />
+    <Resource Include="Resource\branch_icon.png" />
+    <Resource Include="Resource\pull_icon.png" />
+    <Resource Include="Resource\push_icon.png" />
+    <Resource Include="Resource\remove_icon.png" />
+    <Resource Include="Resource\rescan_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

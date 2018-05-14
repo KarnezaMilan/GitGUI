@@ -1,4 +1,5 @@
 ﻿using LibGit2Sharp;
+using LibGit2Sharp.Handlers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -120,7 +121,32 @@ namespace WpfApp1.ViewModel
 
         public DelegateCommand PushCommand { get; set; }
 
+        public DelegateCommand PullCommand { get; set; }
+
         //Comand method
+        private void Pull(object action)
+        {
+            UserContactView logInForm = new UserContactView();
+            logInForm.ShowDialog();
+            string userName = logInForm.returnUN();
+            string pass = logInForm.returnPass();
+
+            using (var repo = new Repository(Pot))
+            {
+                LibGit2Sharp.PullOptions options = new LibGit2Sharp.PullOptions();
+                options.FetchOptions = new FetchOptions();
+                options.FetchOptions.CredentialsProvider = new CredentialsHandler(
+                    (url, usernameFromUrl, types) =>
+                        new UsernamePasswordCredentials()
+                        {
+                            Username = userName,
+                            Password = pass
+                        });
+
+                Commands.Pull(repo, new Signature(userName, "@jugglingnutcase", new DateTimeOffset(DateTime.Now)), options);
+            }
+        }
+
 
         private void Push(object action)
         {
@@ -217,6 +243,7 @@ namespace WpfApp1.ViewModel
             ResetStageCommand = new DelegateCommand(ResetStage);
             RescanCommand = new DelegateCommand(Rescan);
             PushCommand = new DelegateCommand(Push);
+            PullCommand = new DelegateCommand(Pull);
 
         }
 
@@ -239,6 +266,7 @@ namespace WpfApp1.ViewModel
             ResetStageCommand = new DelegateCommand(ResetStage);
             RescanCommand = new DelegateCommand(Rescan);
             PushCommand = new DelegateCommand(Push);
+            PullCommand = new DelegateCommand(Pull);
         }
         public RepositoryViewModel()
         {
