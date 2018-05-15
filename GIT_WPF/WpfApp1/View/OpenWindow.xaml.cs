@@ -16,6 +16,7 @@ using System.IO;
 using System.Windows.Forms;
 using WpfApp1.ViewModel;
 using WpfApp1.Model;
+using WpfApp1.View.Dialogs;
 
 namespace WpfApp1.View
 {
@@ -106,7 +107,7 @@ namespace WpfApp1.View
 
         private void CloneRepoClone_Click(object sender, RoutedEventArgs e)
         {
-            UserContactView dialog = new UserContactView();
+            UserContactDialog dialog = new UserContactDialog();
             dialog.ShowDialog();
             RepositoryViewModel repo = new RepositoryViewModel();
 

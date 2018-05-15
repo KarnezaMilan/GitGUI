@@ -95,11 +95,14 @@
     </Compile>
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\RepositoryViewModel.cs" />
+    <Compile Include="View\Dialogs\BranchDialog.xaml.cs">
+      <DependentUpon>BranchDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\UserContactDialog.xaml.cs">
+      <DependentUpon>UserContactDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\OpenWindow.xaml.cs">
       <DependentUpon>OpenWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\UserContactView.xaml.cs">
-      <DependentUpon>UserContactView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewUC.xaml.cs">
       <DependentUpon>ViewUC.xaml</DependentUpon>
@@ -142,11 +145,15 @@
     </Compile>
     <Compile Include="Model\CommitModel.cs" />
     <Compile Include="ViewModel\CommitHistory.cs" />
-    <Page Include="View\OpenWindow.xaml">
+    <Page Include="View\Dialogs\BranchDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\UserContactView.xaml">
+    <Page Include="View\Dialogs\UserContactDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OpenWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

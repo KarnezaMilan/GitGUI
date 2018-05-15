@@ -12,15 +12,28 @@
         <StackPanel Background="WhiteSmoke" Grid.Row="1" >
             <TreeView>
                 <TreeViewItem Header='Branches' ItemsSource="{Binding ListBranches}">
-                    <TreeViewItem.ItemTemplate>
+                <TreeViewItem.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header ="Add" Name="AddNewBranch" Click="AddNewBranch_Click" />
+                    </ContextMenu>
+                </TreeViewItem.ContextMenu>
+                <TreeViewItem.ItemTemplate>
                         <DataTemplate>
                             <!-- Breanch name -->
-                            <TextBlock Text="{Binding NameWithHead}" />
-                        </DataTemplate>
+                        <TextBlock Text="{Binding NameWithHead}" >
+                            <TextBlock.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header ="Checkout" Name="CheckoutBranch" Click="CheckoutBranch_Click"/>
+                                    <MenuItem Header ="Delete" Name="DeleteBranch" Click="DeleteBranch_Click"/>
+                                </ContextMenu>
+                            </TextBlock.ContextMenu>
+                        </TextBlock>
+                    </DataTemplate>
                     </TreeViewItem.ItemTemplate>
                 </TreeViewItem>
+                
 
-                <!-- New tree item -->
+            <!-- New tree item -->
                 <TreeViewItem Header='Tags'>
                     <TreeViewItem.ItemTemplate>
                         <DataTemplate>

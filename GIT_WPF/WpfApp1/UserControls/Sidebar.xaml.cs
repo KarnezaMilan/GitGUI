@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfApp1.View.Dialogs;
+using WpfApp1.ViewModel;
 
 namespace WpfApp1.UserControls
 {
@@ -23,6 +25,29 @@ namespace WpfApp1.UserControls
         public Sidebar()
         {
             InitializeComponent();
+        }
+
+        private void AddNewBranch_Click(object sender, RoutedEventArgs e)
+        {
+            BranchDialog dialog = new BranchDialog();
+            dialog.ShowDialog();
+            string nameOfNewBranch = dialog.ReturnName();
+            if(nameOfNewBranch!=null)
+            {
+                RepositoryViewModel repo = new RepositoryViewModel();
+                //repo.AddNewBranch();
+            }
+
+        }
+
+        private void CheckoutBranch_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteBranch_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

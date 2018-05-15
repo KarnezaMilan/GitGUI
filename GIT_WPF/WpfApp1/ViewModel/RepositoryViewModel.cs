@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using WpfApp1.Model;
 using WpfApp1.Other;
 using WpfApp1.View;
+using WpfApp1.View.Dialogs;
 
 namespace WpfApp1.ViewModel
 {
@@ -137,7 +138,8 @@ namespace WpfApp1.ViewModel
         //Comand method
         private void Pull(object action)
         {
-            UserContactView logInForm = new UserContactView();
+            //UserContactView logInForm = new UserContactView();
+            UserContactDialog logInForm = new UserContactDialog();
             logInForm.ShowDialog();
             string userName = logInForm.returnUN();
             string pass = logInForm.returnPass();
@@ -163,7 +165,7 @@ namespace WpfApp1.ViewModel
         {
             using (var repo = new Repository(this.Pot))
             {
-                UserContactView logInForm = new UserContactView();
+                UserContactDialog logInForm = new UserContactDialog();
                 logInForm.ShowDialog();
                 string userName = logInForm.returnUN();
                 string pass = logInForm.returnPass();

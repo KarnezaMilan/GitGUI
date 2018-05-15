@@ -12,16 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace WpfApp1.View
+namespace WpfApp1.View.Dialogs
 {
     /// <summary>
-    /// Interaction logic for UserContactView.xaml
+    /// Interaction logic for UserContactDialog.xaml
     /// </summary>
-    public partial class UserContactView : Window
+    public partial class UserContactDialog : Window
     {
-
-
-        public UserContactView()
+        public UserContactDialog()
         {
             InitializeComponent();
         }
@@ -51,7 +49,6 @@ namespace WpfApp1.View
         {
             return PasswordTextbox.Password;
         }
-
 
     }
 }
