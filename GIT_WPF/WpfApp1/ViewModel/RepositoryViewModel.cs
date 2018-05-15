@@ -1,4 +1,5 @@
 ﻿using LibGit2Sharp;
+using LibGit2Sharp.Handlers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WpfApp1.Model;
 using WpfApp1.Other;
+using WpfApp1.View;
 
 namespace WpfApp1.ViewModel
 {
@@ -23,12 +25,23 @@ namespace WpfApp1.ViewModel
         private FileModel _selectedFileForDiff;
         private string _commitMessage;
         private string _statusItemDiff;
+        private ObservableCollection<BranchModel> _listBranches;
 
         #endregion
-      
+
 
         #region Property
         //**** Property ****
+        public ObservableCollection<BranchModel> ListBranches
+        {
+            get { return _listBranches; }
+            set
+            {
+                _listBranches = value;
+                NotifyPropertyChanged("ListBranches");
+            }
+        }
+
         public ObservableCollection<FileModel> ListFileUnstage
         {
             get { return _listFileUnstage; }
@@ -117,9 +130,60 @@ namespace WpfApp1.ViewModel
 
         public DelegateCommand RescanCommand { get; set; }
 
-        //Comand method
+        public DelegateCommand PushCommand { get; set; }
 
-        public void Commit(object action)
+        public DelegateCommand PullCommand { get; set; }
+
+        //Comand method
+        private void Pull(object action)
+        {
+            UserContactView logInForm = new UserContactView();
+            logInForm.ShowDialog();
+            string userName = logInForm.returnUN();
+            string pass = logInForm.returnPass();
+
+            using (var repo = new Repository(Pot))
+            {
+                LibGit2Sharp.PullOptions options = new LibGit2Sharp.PullOptions();
+                options.FetchOptions = new FetchOptions();
+                options.FetchOptions.CredentialsProvider = new CredentialsHandler(
+                    (url, usernameFromUrl, types) =>
+                        new UsernamePasswordCredentials()
+                        {
+                            Username = userName,
+                            Password = pass
+                        });
+
+                Commands.Pull(repo, new Signature(userName, "@jugglingnutcase", new DateTimeOffset(DateTime.Now)), options);
+            }
+        }
+
+
+        private void Push(object action)
+        {
+            using (var repo = new Repository(this.Pot))
+            {
+                UserContactView logInForm = new UserContactView();
+                logInForm.ShowDialog();
+                string userName = logInForm.returnUN();
+                string pass = logInForm.returnPass();
+
+
+                Remote remote = repo.Network.Remotes["origin"];
+                var options = new PushOptions();
+                options.CredentialsProvider = (_url, _user, _cred) =>
+                    new UsernamePasswordCredentials { Username = userName, Password = pass };
+
+
+                var pushRefSpec = @"refs/heads/master";
+                repo.Network.Push(remote, pushRefSpec, options);
+
+            }
+
+           // MessageBox.Show("YEA-PUSH");
+        }
+
+        private void Commit(object action)
         {
 
             using (var repo = new Repository(Pot))
@@ -138,7 +202,7 @@ namespace WpfApp1.ViewModel
             CommitHistory();
         }
 
-        public void AddToStage(object action)
+        private void AddToStage(object action)
         {
             using (var repo = new Repository(this.Pot))
             {
@@ -151,7 +215,7 @@ namespace WpfApp1.ViewModel
             //}
         }
 
-        public void ResetStage(object action)
+        private void ResetStage(object action)
         {
             using (var repo = new Repository(this.Pot))
             {
@@ -161,7 +225,7 @@ namespace WpfApp1.ViewModel
             StageOrUnstageFileToList();
         }
 
-        public void Rescan(object action)
+        private void Rescan(object action)
         {
             StageOrUnstageFileToList();
         }
@@ -189,6 +253,8 @@ namespace WpfApp1.ViewModel
             AddToStageCommand = new DelegateCommand(AddToStage);
             ResetStageCommand = new DelegateCommand(ResetStage);
             RescanCommand = new DelegateCommand(Rescan);
+            PushCommand = new DelegateCommand(Push);
+            PullCommand = new DelegateCommand(Pull);
 
         }
 
@@ -199,8 +265,10 @@ namespace WpfApp1.ViewModel
             ListFileStage = new ObservableCollection<FileModel>();
             ListFileUnstage = new ObservableCollection<FileModel>();
             ListCommitHistory = new ObservableCollection<CommitModel>();
+            ListBranches = new ObservableCollection<BranchModel>();
             StageOrUnstageFileToList();
             CommitHistory();
+            GetBranch();
 
 
             StatusItemDiff = "";
@@ -210,6 +278,8 @@ namespace WpfApp1.ViewModel
             AddToStageCommand = new DelegateCommand(AddToStage);
             ResetStageCommand = new DelegateCommand(ResetStage);
             RescanCommand = new DelegateCommand(Rescan);
+            PushCommand = new DelegateCommand(Push);
+            PullCommand = new DelegateCommand(Pull);
         }
         public RepositoryViewModel()
         {
@@ -357,6 +427,20 @@ namespace WpfApp1.ViewModel
             this.StatusItemDiff =patch;
         }
 
+        private void GetBranch()
+        { 
+            using (var repo = new Repository(this.Pot))
+            {
+                foreach (Branch b in repo.Branches.Where(b => !b.IsRemote))
+                {
+                    BranchModel cnd = new BranchModel();
+                    cnd.Name = b.FriendlyName;
+                    cnd.IsHead = b.IsCurrentRepositoryHead;
+                    ListBranches.Add(cnd);
+                }
+            }
+        }
+
         #endregion
 
         #region Public Method
@@ -375,6 +459,8 @@ namespace WpfApp1.ViewModel
                 return false;
             }
         }
+
+       
 
 
         #endregion

@@ -7,49 +7,47 @@
              mc:Ignorable="d" 
              d:DesignHeight="80" d:DesignWidth="605">
 
+
     <StackPanel>
         <WrapPanel>
             <WrapPanel Margin="4,0,0,0">
-                <Button IsEnabled="False">
+
+                <Button >
                     <StackPanel>
-                        <Image Stretch="None" />
-                        <TextBlock>Settings</TextBlock>
+                        <Image Source="/Resource/setting_icon.png" Stretch="None" />
+                        <TextBlock>Setting</TextBlock>
                     </StackPanel>
                 </Button>
-
-                <Separator Width="30" Height="1"/>
-
-                <Button>
-                    <StackPanel>
-                        <TextBlock>Branch</TextBlock>
-                    </StackPanel>
-                </Button>
-
 
                 <Separator Width="30" Height="1" />
 
                 <Button Name="AddBtn" Command="{Binding Path=AddToStageCommand}">
                     <StackPanel>
+                        <Image Source="/Resource/add_icon.png" Stretch="None" />
                         <TextBlock>Add</TextBlock>
                     </StackPanel>
                 </Button>
                 <Button Name="ResetBtn" Command="{Binding Path=ResetStageCommand}">
                     <StackPanel>
-                        <TextBlock>Reset</TextBlock>
+                        <Image Source="/Resource/remove_icon.png" Stretch="None" ></Image>
+                            <TextBlock>Reset</TextBlock>
                     </StackPanel>
                 </Button>
-                <Button Name="PullBtn">
+                <Button Name="PullBtn" Command="{Binding Path=PullCommand}">
                     <StackPanel>
+                        <Image Source="/Resource/pull_icon.png" Stretch="None" />
                         <TextBlock>Pull</TextBlock>
                     </StackPanel>
                 </Button>
-                <Button Name="PushBtn">
+                <Button Name="PushBtn" Command="{Binding Path=PushCommand}">
                     <StackPanel>
+                        <Image Source="/Resource/push_icon.png" Stretch="None" />
                         <TextBlock>Push</TextBlock>
                     </StackPanel>
                 </Button>
                 <Button Name="RescanBtn" Command="{Binding Path=RescanCommand}">
                     <StackPanel>
+                        <Image Source="/Resource/rescan_icon.png" Stretch="None" />
                         <TextBlock>Rescan</TextBlock>
                     </StackPanel>
                 </Button>

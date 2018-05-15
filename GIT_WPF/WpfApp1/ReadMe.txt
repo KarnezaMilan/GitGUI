@@ -1,11 +1,16 @@
 ﻿TO DO:
 
--  user Name and pass View(pop up)
+branch
 
-- push
+remote
 
-- pull
+check if repo is init
 
+help ?
 
+drop menu fix
 
+suck it
+
+// stage unstage property change
 

@@ -13,9 +13,18 @@
             <RowDefinition Height="6" />
             <RowDefinition />
         </Grid.RowDefinitions>
-
-        <controls:ChangesetHistory Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="ChangesetHistoryElement" />
-
+        <Grid Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="6*"/>
+                <ColumnDefinition Width="6" />
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            
+            <controls:ChangesetHistory Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="ChangesetHistoryElement" />
+            <controls:Sidebar Grid.Column="2"/>
+        </Grid>
+        
+        <!---->
         <!--<GridSplitter Grid.Row="1" DragCompleted="GridSplitterDragCompleted" />-->
 
         <Grid Grid.Row="2">

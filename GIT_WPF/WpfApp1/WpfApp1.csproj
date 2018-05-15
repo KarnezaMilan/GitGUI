@@ -65,7 +65,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\BranchModel.cs" />
     <Compile Include="Model\FileModel.cs" />
+    <Compile Include="Model\PersonModel.cs" />
     <Compile Include="Other\DelegateCommand.cs" />
     <Compile Include="UserControls\CenterArea.xaml.cs">
       <DependentUpon>CenterArea.xaml</DependentUpon>
@@ -81,6 +83,9 @@
     </Compile>
     <Compile Include="UserControls\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Sidebar.xaml.cs">
+      <DependentUpon>Sidebar.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\StatusGrid.xaml.cs">
       <DependentUpon>StatusGrid.xaml</DependentUpon>
@@ -116,6 +121,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\MainMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Sidebar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -177,9 +186,15 @@
     <Resource Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resource\Git-GUI.ico" />
-    <Resource Include="Resource\Git-GUI.png" />
-    <Resource Include="Resource\TabCloseButton.png" />
+    <Resource Include="Resource\setting_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\add_icon.png" />
+    <Resource Include="Resource\branch_icon.png" />
+    <Resource Include="Resource\pull_icon.png" />
+    <Resource Include="Resource\push_icon.png" />
+    <Resource Include="Resource\remove_icon.png" />
+    <Resource Include="Resource\rescan_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -10,23 +10,15 @@
     <StackPanel>
         <Menu VerticalAlignment="Top" Background="{x:Null}">
             <MenuItem Header="_File">
-                <MenuItem Header="_Create repository"  />
-                <MenuItem Header="_Open repository" />
+                <MenuItem Header="_New project"  />
                 <Separator />
                 <MenuItem Header="_Exit" />
             </MenuItem>
-            <MenuItem Header="_Edit">
-                <MenuItem Header="_Preferences" />
-            </MenuItem>
-            <MenuItem Header="_Tools">
-                <MenuItem Header="_Statistics" />
-                <MenuItem Header="Search" />
-                <MenuItem Header="File removal from _history" />
-                <MenuItem Header="File _browser" />
-            </MenuItem>
-            <MenuItem Header="_Help">
-                <MenuItem Header="_Back" Click="MenuItem_Click" />
-            </MenuItem>
+            
+            <MenuItem Header="_Branch" Name="BanchMenuBtn" Click="BanchMenuBtn_Click" />
+            <MenuItem Header="_Remote" />
+            <MenuItem Header="_Help"/>
+
         </Menu>
     </StackPanel>
 
