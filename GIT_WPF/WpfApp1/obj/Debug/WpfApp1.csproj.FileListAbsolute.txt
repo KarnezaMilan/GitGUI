@@ -58,5 +58,7 @@ C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\WpfApp1.exe
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\WpfApp1.pdb
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\View\UserContactView.g.cs
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\View\UserContactView.baml
-C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\WpfApp1.csprojResolveAssemblyReference.cache
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\UserControls\Toolbars.g.cs
+C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\UserControls\Sidebar.g.cs
+C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\UserControls\Sidebar.baml
+C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\obj\Debug\WpfApp1.csprojResolveAssemblyReference.cache

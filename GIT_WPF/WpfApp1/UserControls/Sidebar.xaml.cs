@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace WpfApp1.UserControls
 {
     /// <summary>
-    /// Interaction logic for MainMenu.xaml
+    /// Interaction logic for Sidebar.xaml
     /// </summary>
-    public partial class MainMenu : UserControl
+    public partial class Sidebar : UserControl
     {
-        public MainMenu()
+        public Sidebar()
         {
             InitializeComponent();
-        }
-
-        private void BanchMenuBtn_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

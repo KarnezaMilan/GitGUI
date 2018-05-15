@@ -65,6 +65,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\BranchModel.cs" />
     <Compile Include="Model\FileModel.cs" />
     <Compile Include="Model\PersonModel.cs" />
     <Compile Include="Other\DelegateCommand.cs" />
@@ -82,6 +83,9 @@
     </Compile>
     <Compile Include="UserControls\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Sidebar.xaml.cs">
+      <DependentUpon>Sidebar.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\StatusGrid.xaml.cs">
       <DependentUpon>StatusGrid.xaml</DependentUpon>
@@ -117,6 +121,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\MainMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Sidebar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

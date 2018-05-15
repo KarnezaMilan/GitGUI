@@ -25,12 +25,23 @@ namespace WpfApp1.ViewModel
         private FileModel _selectedFileForDiff;
         private string _commitMessage;
         private string _statusItemDiff;
+        private ObservableCollection<BranchModel> _listBranches;
 
         #endregion
-      
+
 
         #region Property
         //**** Property ****
+        public ObservableCollection<BranchModel> ListBranches
+        {
+            get { return _listBranches; }
+            set
+            {
+                _listBranches = value;
+                NotifyPropertyChanged("ListBranches");
+            }
+        }
+
         public ObservableCollection<FileModel> ListFileUnstage
         {
             get { return _listFileUnstage; }
@@ -254,8 +265,10 @@ namespace WpfApp1.ViewModel
             ListFileStage = new ObservableCollection<FileModel>();
             ListFileUnstage = new ObservableCollection<FileModel>();
             ListCommitHistory = new ObservableCollection<CommitModel>();
+            ListBranches = new ObservableCollection<BranchModel>();
             StageOrUnstageFileToList();
             CommitHistory();
+            GetBranch();
 
 
             StatusItemDiff = "";
@@ -414,6 +427,20 @@ namespace WpfApp1.ViewModel
             this.StatusItemDiff =patch;
         }
 
+        private void GetBranch()
+        { 
+            using (var repo = new Repository(this.Pot))
+            {
+                foreach (Branch b in repo.Branches.Where(b => !b.IsRemote))
+                {
+                    BranchModel cnd = new BranchModel();
+                    cnd.Name = b.FriendlyName;
+                    cnd.IsHead = b.IsCurrentRepositoryHead;
+                    ListBranches.Add(cnd);
+                }
+            }
+        }
+
         #endregion
 
         #region Public Method
@@ -432,6 +459,8 @@ namespace WpfApp1.ViewModel
                 return false;
             }
         }
+
+       
 
 
         #endregion
