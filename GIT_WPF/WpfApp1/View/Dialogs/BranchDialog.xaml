@@ -9,7 +9,7 @@
 
     <StackPanel Orientation="Horizontal" Height="30">
         <TextBox Width="150" Margin="10,5" Name="NameTextbox"/>
-        <Button Content="OK" Margin="5,0" Width="50" Name="OkBtn" Click="OkBtn_Click" />
+        <Button Content="OK" Margin="5,0" Width="50" Name="OkBtn" Click="OkBtn_Click"/>
         <Button Content="Cancel" Margin="5,0" Width="50" Name="CancleBtn" Click="CancleBtn_Click"/>
     </StackPanel>
 

@@ -68,6 +68,7 @@
     <Compile Include="Model\BranchModel.cs" />
     <Compile Include="Model\FileModel.cs" />
     <Compile Include="Model\PersonModel.cs" />
+    <Compile Include="Model\TagModel.cs" />
     <Compile Include="Other\DelegateCommand.cs" />
     <Compile Include="UserControls\CenterArea.xaml.cs">
       <DependentUpon>CenterArea.xaml</DependentUpon>
