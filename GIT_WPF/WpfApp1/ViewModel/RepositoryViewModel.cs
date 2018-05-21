@@ -8,15 +8,23 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Threading;
 using WpfApp1.Model;
 using WpfApp1.Other;
 using WpfApp1.View;
 using WpfApp1.View.Dialogs;
 
+
 namespace WpfApp1.ViewModel
 {
     public class RepositoryViewModel : BaseViewModel
     {
+
+
+        
+
+
         #region Atribute
         //**** Atribute ****
         private string _pot;
@@ -295,6 +303,7 @@ namespace WpfApp1.ViewModel
 
 
             StatusItemDiff = "";
+            FileSystemWatcher();
 
             //Commands
             CommitCommand = new DelegateCommand(Commit);
@@ -323,7 +332,7 @@ namespace WpfApp1.ViewModel
             GetBranch();
             GetTags();
 
-
+            FileSystemWatcher();
             StatusItemDiff = "";
 
             //Commands
@@ -339,6 +348,7 @@ namespace WpfApp1.ViewModel
         }
         public RepositoryViewModel()
         {
+            FileSystemWatcher();
         }
         #endregion
 
@@ -548,6 +558,33 @@ namespace WpfApp1.ViewModel
 
 
 
+        #endregion
+
+        #region Watcher
+        delegate void ReloadStatusDelegate(object sender, FileSystemEventArgs e);
+
+        private void FileSystemWatcher()
+        {
+
+            var watcher = new FileSystemWatcher();
+
+            ReloadStatusDelegate reloadStatusDelegate = delegate (object sender, FileSystemEventArgs e)
+            {
+                Application.Current.Dispatcher.BeginInvoke(
+                    DispatcherPriority.Normal,
+                    (Action)(() => StageOrUnstageFileToList())
+                );
+            };
+
+            watcher.Changed += new FileSystemEventHandler(reloadStatusDelegate);
+            watcher.Deleted += new FileSystemEventHandler(reloadStatusDelegate);
+            watcher.Renamed += new RenamedEventHandler(reloadStatusDelegate);
+            watcher.Created += new FileSystemEventHandler(reloadStatusDelegate);
+            watcher.Path = Pot;
+            watcher.EnableRaisingEvents = true;
+
+
+        }
         #endregion
 
 
