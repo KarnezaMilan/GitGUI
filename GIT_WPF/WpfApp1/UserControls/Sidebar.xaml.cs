@@ -43,5 +43,6 @@ namespace WpfApp1.UserControls
             var vm = (RepositoryViewModel)this.DataContext;
             vm.DeleteBranch(br);
         }
+
     }
 }

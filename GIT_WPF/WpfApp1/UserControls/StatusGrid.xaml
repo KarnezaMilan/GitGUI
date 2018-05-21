@@ -18,7 +18,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <WrapPanel Grid.Row="0" Background="LightBlue">
+            <WrapPanel Grid.Row="0">
                 <Label DockPanel.Dock="Left" Width="50">Stage</Label>
             </WrapPanel>
 
@@ -35,7 +35,7 @@
                 </Grid>
             </DockPanel>
 
-            <WrapPanel Grid.Row="2" Background="LightBlue">
+            <WrapPanel Grid.Row="2">
                 <Label DockPanel.Dock="Left" Width="50">Unstage</Label>
 
             </WrapPanel>

@@ -36,6 +36,8 @@ namespace WpfApp1.ViewModel
         private string _statusItemDiff;
         private ObservableCollection<BranchModel> _listBranches;
         private ObservableCollection<TagModel> _listTags;
+        private CommitModel _selectedCommit;
+
 
 
 
@@ -45,6 +47,13 @@ namespace WpfApp1.ViewModel
 
         #region Property
         //**** Property ****
+
+        public CommitModel SelectedCommit
+        {
+            get { return _selectedCommit; }
+            set { _selectedCommit = value; }
+        }
+
         public ObservableCollection<TagModel> ListTags
         {
             get { return _listTags; }
@@ -155,12 +164,26 @@ namespace WpfApp1.ViewModel
 
         public DelegateCommand AddNewBranchCommand { get; set; }
 
-        //public DelegateCommand CheckoutBranchCommand { get; set; }
+        public DelegateCommand AddTagCommand { get; set; }
 
         //public DelegateCommand DeleteNewBranchCommand { get; set; }
 
         //Comand method
-       
+
+
+        private void AddTag(object action)
+        {
+            BranchDialog dialog = new BranchDialog();
+            dialog.ShowDialog();
+            TagModel mod = new TagModel();
+            mod.Name = dialog.ReturnName();
+
+            using (var repo = new Repository(Pot))
+            {
+                Tag t = repo.ApplyTag(mod.Name);
+            }
+            ListTags.Add(mod);
+        }
 
 
         private void AddBranch(object action)
@@ -300,8 +323,6 @@ namespace WpfApp1.ViewModel
             ListCommitHistory = new ObservableCollection<CommitModel>();
             ListTags = new ObservableCollection<TagModel>();
 
-
-
             StatusItemDiff = "";
             FileSystemWatcher();
 
@@ -313,9 +334,7 @@ namespace WpfApp1.ViewModel
             PushCommand = new DelegateCommand(Push);
             PullCommand = new DelegateCommand(Pull);
             AddNewBranchCommand = new DelegateCommand(AddBranch);
-            //CheckoutBranchCommand = new DelegateCommand(CheckoutBranch);
-            //DeleteNewBranchCommand = new DelegateCommand(DeleteNewBranch);
-
+            AddTagCommand = new DelegateCommand(AddTag);
         }
 
 
@@ -343,8 +362,7 @@ namespace WpfApp1.ViewModel
             PushCommand = new DelegateCommand(Push);
             PullCommand = new DelegateCommand(Pull);
             AddNewBranchCommand = new DelegateCommand(AddBranch);
-            //CheckoutBranchCommand = new DelegateCommand(CheckoutBranch);
-            //DeleteNewBranchCommand = new DelegateCommand(DeleteNewBranch);
+            AddTagCommand = new DelegateCommand(AddTag);
         }
         public RepositoryViewModel()
         {
@@ -354,8 +372,21 @@ namespace WpfApp1.ViewModel
 
         #region Method
         //**** Method ****
+
+        // Load all the content to refres repo data.
+        private void Load()
+        {
+
+            StageOrUnstageFileToList();
+            GetBranch();
+            GetTags();
+
+        }
+
+
         private void GetTags()
         {
+            ListTags = new ObservableCollection<TagModel>();
             using (var repo = new Repository(Pot))
             {
                 TagModel tag;
@@ -422,57 +453,6 @@ namespace WpfApp1.ViewModel
 
             return string.Format("{0:0.##} {1}", bytes, suffixes[order]);
         }
-        /*
-        //get the List of Unstagefiles
-        private ObservableCollection<FileModel> UnStageFiles(string fileFullPath)
-        {
-            ObservableCollection<FileModel> listOfUnStageFiles = new ObservableCollection<FileModel>();
-            using (var repo = new Repository(fileFullPath))
-            {
-                foreach (var item in repo.RetrieveStatus(new LibGit2Sharp.StatusOptions()))
-                {
-
-                    FileModel fm = new FileModel();
-                    fm.FileName = item.FilePath;
-                    fm.Status = item.State.ToString();
-                    fm.Size = GetFormattedFileSize(fileFullPath + "/" + fm.FileName);
-                    if (fm.Status.Contains("ModifiedInIndex") == true)
-                    {
-                    }
-                    else
-                    {
-                        listOfUnStageFiles.Add(fm);
-                    }
-                }
-            }
-            return listOfUnStageFiles;
-        }*/
-        /*
-        // Add to stage
-        public void AddToStage()
-        {
-            using (var repo = new Repository(Pot))
-            {
-                Commands.Stage(repo, "*");
-                /*this.ListFileStage = new ObservableCollection<FileModel>();
-                this.ListFileUnstage = new ObservableCollection<FileModel>();*//*
-                this.ListFileUnstage = this.UnStageFiles(Pot);
-                this.ListFileStage = this.StageFiles(Pot);
-            }
-        }
-
-        public void ResetStage()
-        {
-            using (var repo = new Repository(this.Pot))
-            {
-                Commit currentCommit = repo.Head.Tip;
-                repo.Reset(ResetMode.Mixed, currentCommit);
-            }
-            /*this.ListFileStage = new ObservableCollection<FileModel>();
-            this.ListFileUnstage = new ObservableCollection<FileModel>();*//*
-            this.ListFileUnstage = this.UnStageFiles(Pot);/*
-            this.ListFileStage = this.StageFiles(Pot);
-        }*/
 
         private void CommitHistory()
         {
@@ -507,7 +487,8 @@ namespace WpfApp1.ViewModel
         }
 
         private void GetBranch()
-        { 
+        {
+            ListBranches = new ObservableCollection<BranchModel>();
             using (var repo = new Repository(this.Pot))
             {
                 foreach (Branch b in repo.Branches.Where(b => !b.IsRemote))
@@ -541,26 +522,30 @@ namespace WpfApp1.ViewModel
 
         public void CheckoutBranch(BranchModel br)
         {
-            
             using (var repo = new Repository(Pot))
             {
                 var branch = repo.Branches[br.Name];
+
                 Branch currentBranch = Commands.Checkout(repo, branch);
             }
         }
+
         public void DeleteBranch(BranchModel br)
         {
             using (var repo = new Repository(Pot))
             {
                 repo.Branches.Remove(br.Name);
+                ListBranches.Remove(br);
             }
         }
+
 
 
 
         #endregion
 
         #region Watcher
+        // watching if some content in repo is changed
         delegate void ReloadStatusDelegate(object sender, FileSystemEventArgs e);
 
         private void FileSystemWatcher()
@@ -572,7 +557,7 @@ namespace WpfApp1.ViewModel
             {
                 Application.Current.Dispatcher.BeginInvoke(
                     DispatcherPriority.Normal,
-                    (Action)(() => StageOrUnstageFileToList())
+                    (Action)(() => Load())
                 );
             };
 

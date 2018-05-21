@@ -10,7 +10,7 @@
     <StackPanel>
         <Menu VerticalAlignment="Top" Background="{x:Null}">
             <MenuItem Header="_File">
-                <MenuItem Header="_New project"  />
+                <MenuItem Header="_New project" Name="NewP" Click="NewP_Click"/>
                 <Separator />
                 <MenuItem Header="_Exit" />
             </MenuItem>

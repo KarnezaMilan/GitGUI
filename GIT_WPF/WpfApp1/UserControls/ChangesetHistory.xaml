@@ -8,7 +8,7 @@
              d:DesignHeight="300" d:DesignWidth="600" >
 
     <Grid>
-        <DataGrid SelectionUnit="FullRow" CanUserAddRows="False" HeadersVisibility="Column" AutoGenerateColumns="False" HorizontalAlignment="Stretch"  Name="CommitHistory" ItemsSource="{Binding ListCommitHistory}"   VerticalAlignment="Stretch">
+        <DataGrid  IsReadOnly="True" SelectionMode="Single" CanUserAddRows="False" HeadersVisibility="Column" AutoGenerateColumns="False" HorizontalAlignment="Stretch"  Name="CommitHistory" ItemsSource="{Binding ListCommitHistory}"  SelectedItem="{Binding SelectedCommit}"  VerticalAlignment="Stretch">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Graph"></DataGridTextColumn>
                 <DataGridTextColumn Header="Hash" Binding="{Binding Path=Hash}"></DataGridTextColumn>
@@ -17,6 +17,11 @@
                 <DataGridTextColumn Header="Author Name" Binding="{Binding Path=AuthorName}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Author Email" Binding="{Binding Path=AuthorEmail}"></DataGridTextColumn>
             </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu >
+                    <MenuItem Header="Add tag" Command="{Binding Path=AddTagCommand}" />
+                </ContextMenu>
+            </DataGrid.ContextMenu>
         </DataGrid>
 
         <ScrollViewer Margin="0,24,0,0"

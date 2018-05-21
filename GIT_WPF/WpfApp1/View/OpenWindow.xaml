@@ -6,6 +6,11 @@
         xmlns:local="clr-namespace:WpfApp1.View"
         mc:Ignorable="d"
         Title="OpenWindow" Width="1152" Height="546" WindowStartupLocation="CenterScreen" >
+    
+    
+    
+    
+    
     <Grid Background="LemonChiffon">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
@@ -20,7 +25,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" Background="Khaki" Orientation="Vertical">
-            <Button Content="Open repository" Margin="5" Name="OpenRepo" Click="OpenRepo_Click" />
+            <Button  Content="Open repository" Margin="5" Name="OpenRepo" Click="OpenRepo_Click" />
             <Button Content="Create repository" Margin="5" Name="CreateRepo" Click="CreateRepo_Click" />
             <Button Content="Clone repository" Margin="5" Name="CloneRepo" Click="CloneRepo_Click" />
         </StackPanel>
