@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfApp1.View;
 
 namespace WpfApp1.UserControls
 {
@@ -28,6 +29,12 @@ namespace WpfApp1.UserControls
         private void BanchMenuBtn_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void NewP_Click(object sender, RoutedEventArgs e)
+        {
+            OpenWindow win = new OpenWindow();
+            win.Show();
         }
     }
 }

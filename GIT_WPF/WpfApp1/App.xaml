@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:WpfApp1"
              StartupUri="View/OpenWindow.xaml">
     <Application.Resources>
-         
+
+        <ResourceDictionary Source="/ReuxablesLegacy;component/mercury.xaml" /> 
+
     </Application.Resources>
 </Application>

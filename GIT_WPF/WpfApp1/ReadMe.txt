@@ -1,16 +1,22 @@
 ﻿TO DO:
 
-branch
 
 remote
 
-check if repo is init
+
 
 help ?
 
+
+
+
+
+
+
+FIX :
+
+tag
+
 drop menu fix
 
-suck it
-
-// stage unstage property change
-
+check if repo is init
