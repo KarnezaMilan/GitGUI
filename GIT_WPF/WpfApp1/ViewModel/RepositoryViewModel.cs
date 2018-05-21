@@ -8,14 +8,23 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Threading;
 using WpfApp1.Model;
 using WpfApp1.Other;
 using WpfApp1.View;
+using WpfApp1.View.Dialogs;
+
 
 namespace WpfApp1.ViewModel
 {
     public class RepositoryViewModel : BaseViewModel
     {
+
+
+        
+
+
         #region Atribute
         //**** Atribute ****
         private string _pot;
@@ -26,12 +35,22 @@ namespace WpfApp1.ViewModel
         private string _commitMessage;
         private string _statusItemDiff;
         private ObservableCollection<BranchModel> _listBranches;
+        private ObservableCollection<TagModel> _listTags;
+
+
+
 
         #endregion
 
 
         #region Property
         //**** Property ****
+        public ObservableCollection<TagModel> ListTags
+        {
+            get { return _listTags; }
+            set { _listTags = value; }
+        }
+
         public ObservableCollection<BranchModel> ListBranches
         {
             get { return _listBranches; }
@@ -134,10 +153,42 @@ namespace WpfApp1.ViewModel
 
         public DelegateCommand PullCommand { get; set; }
 
+        public DelegateCommand AddNewBranchCommand { get; set; }
+
+        //public DelegateCommand CheckoutBranchCommand { get; set; }
+
+        //public DelegateCommand DeleteNewBranchCommand { get; set; }
+
         //Comand method
+       
+
+
+        private void AddBranch(object action)
+        {
+            BranchDialog dialog = new BranchDialog();
+            dialog.ShowDialog();
+            BranchModel mod = new BranchModel();
+            mod.Name = dialog.ReturnName();
+
+
+            using (var repo = new Repository(Pot))
+            {
+                repo.CreateBranch(mod.Name);   // Or repo.Branches.Add("develop", "HEAD");
+
+                var branch = repo.Branches[mod.Name];
+
+                mod.IsHead = false;
+            }
+            ListBranches.Add(mod);
+
+        }
+
+
+
         private void Pull(object action)
         {
-            UserContactView logInForm = new UserContactView();
+            //UserContactView logInForm = new UserContactView();
+            UserContactDialog logInForm = new UserContactDialog();
             logInForm.ShowDialog();
             string userName = logInForm.returnUN();
             string pass = logInForm.returnPass();
@@ -163,7 +214,7 @@ namespace WpfApp1.ViewModel
         {
             using (var repo = new Repository(this.Pot))
             {
-                UserContactView logInForm = new UserContactView();
+                UserContactDialog logInForm = new UserContactDialog();
                 logInForm.ShowDialog();
                 string userName = logInForm.returnUN();
                 string pass = logInForm.returnPass();
@@ -235,7 +286,11 @@ namespace WpfApp1.ViewModel
 
         #region Constructor
         //**** Constructor ****
-
+        /*
+        public RepositoryViewModel(BranchModel model)
+        {
+            
+        }*/
         public RepositoryViewModel(string pot, bool needToInit)
         {
             this.Pot = pot;
@@ -243,10 +298,12 @@ namespace WpfApp1.ViewModel
             ListFileStage = new ObservableCollection<FileModel>();
             ListFileUnstage = new ObservableCollection<FileModel>();
             ListCommitHistory = new ObservableCollection<CommitModel>();
+            ListTags = new ObservableCollection<TagModel>();
 
 
 
             StatusItemDiff = "";
+            FileSystemWatcher();
 
             //Commands
             CommitCommand = new DelegateCommand(Commit);
@@ -255,6 +312,9 @@ namespace WpfApp1.ViewModel
             RescanCommand = new DelegateCommand(Rescan);
             PushCommand = new DelegateCommand(Push);
             PullCommand = new DelegateCommand(Pull);
+            AddNewBranchCommand = new DelegateCommand(AddBranch);
+            //CheckoutBranchCommand = new DelegateCommand(CheckoutBranch);
+            //DeleteNewBranchCommand = new DelegateCommand(DeleteNewBranch);
 
         }
 
@@ -266,11 +326,13 @@ namespace WpfApp1.ViewModel
             ListFileUnstage = new ObservableCollection<FileModel>();
             ListCommitHistory = new ObservableCollection<CommitModel>();
             ListBranches = new ObservableCollection<BranchModel>();
+            ListTags = new ObservableCollection<TagModel>();
             StageOrUnstageFileToList();
             CommitHistory();
             GetBranch();
+            GetTags();
 
-
+            FileSystemWatcher();
             StatusItemDiff = "";
 
             //Commands
@@ -280,14 +342,31 @@ namespace WpfApp1.ViewModel
             RescanCommand = new DelegateCommand(Rescan);
             PushCommand = new DelegateCommand(Push);
             PullCommand = new DelegateCommand(Pull);
+            AddNewBranchCommand = new DelegateCommand(AddBranch);
+            //CheckoutBranchCommand = new DelegateCommand(CheckoutBranch);
+            //DeleteNewBranchCommand = new DelegateCommand(DeleteNewBranch);
         }
         public RepositoryViewModel()
         {
+            FileSystemWatcher();
         }
         #endregion
 
         #region Method
         //**** Method ****
+        private void GetTags()
+        {
+            using (var repo = new Repository(Pot))
+            {
+                TagModel tag;
+                foreach (Tag t in repo.Tags)
+                {
+                    tag = new TagModel();
+                    tag.Name = t.FriendlyName;
+                    ListTags.Add(tag);
+                }
+            }
+        }
 
 
         private void InitRepo()
@@ -460,9 +539,52 @@ namespace WpfApp1.ViewModel
             }
         }
 
-       
+        public void CheckoutBranch(BranchModel br)
+        {
+            
+            using (var repo = new Repository(Pot))
+            {
+                var branch = repo.Branches[br.Name];
+                Branch currentBranch = Commands.Checkout(repo, branch);
+            }
+        }
+        public void DeleteBranch(BranchModel br)
+        {
+            using (var repo = new Repository(Pot))
+            {
+                repo.Branches.Remove(br.Name);
+            }
+        }
 
 
+
+        #endregion
+
+        #region Watcher
+        delegate void ReloadStatusDelegate(object sender, FileSystemEventArgs e);
+
+        private void FileSystemWatcher()
+        {
+
+            var watcher = new FileSystemWatcher();
+
+            ReloadStatusDelegate reloadStatusDelegate = delegate (object sender, FileSystemEventArgs e)
+            {
+                Application.Current.Dispatcher.BeginInvoke(
+                    DispatcherPriority.Normal,
+                    (Action)(() => StageOrUnstageFileToList())
+                );
+            };
+
+            watcher.Changed += new FileSystemEventHandler(reloadStatusDelegate);
+            watcher.Deleted += new FileSystemEventHandler(reloadStatusDelegate);
+            watcher.Renamed += new RenamedEventHandler(reloadStatusDelegate);
+            watcher.Created += new FileSystemEventHandler(reloadStatusDelegate);
+            watcher.Path = Pot;
+            watcher.EnableRaisingEvents = true;
+
+
+        }
         #endregion
 
 

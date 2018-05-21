@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\App.xaml
-111764175095
+12592243210
 
-272116001552
+291462941387
 171910426989
-UserControls\CenterArea.xaml;UserControls\ChangesetHistory.xaml;UserControls\CommitPanel.xaml;UserControls\DiffPanel.xaml;UserControls\MainMenu.xaml;UserControls\Sidebar.xaml;UserControls\StatusGrid.xaml;UserControls\Toolbars.xaml;View\OpenWindow.xaml;View\UserContactView.xaml;View\ViewUC.xaml;
+UserControls\CenterArea.xaml;UserControls\ChangesetHistory.xaml;UserControls\CommitPanel.xaml;UserControls\DiffPanel.xaml;UserControls\MainMenu.xaml;UserControls\Sidebar.xaml;UserControls\StatusGrid.xaml;UserControls\Toolbars.xaml;View\Dialogs\BranchDialog.xaml;View\Dialogs\UserContactDialog.xaml;View\OpenWindow.xaml;View\ViewUC.xaml;
 
-False
+True
 

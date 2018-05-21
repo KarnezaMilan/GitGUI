@@ -10,23 +10,43 @@
 
 
         <StackPanel Background="WhiteSmoke" Grid.Row="1" >
-            <TreeView>
-                <TreeViewItem Header='Branches' ItemsSource="{Binding ListBranches}">
-                    <TreeViewItem.ItemTemplate>
+            <TreeView Name="TreeViewTest">
+                <TreeViewItem Header='Branches' ItemsSource="{Binding ListBranches}" Name="BranchesName">
+                <TreeViewItem.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header ="Add" Name="AddNewBranch" Command="{Binding Path=AddNewBranchCommand}"/>
+                    </ContextMenu>
+                </TreeViewItem.ContextMenu>
+                <TreeViewItem.ItemTemplate>
                         <DataTemplate>
                             <!-- Breanch name -->
-                            <TextBlock Text="{Binding NameWithHead}" />
-                        </DataTemplate>
+                        <TextBlock Text="{Binding NameWithHead}" >
+                            <TextBlock.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header ="Checkout" Name="CheckoutBranch" Click="CheckoutBranch_Click"/>
+                                    <MenuItem Header ="Delete" Name="DeleteBranch" Click="DeleteBranch_Click"/>
+                                </ContextMenu>
+                            </TextBlock.ContextMenu>
+                        </TextBlock>
+                    </DataTemplate>
                     </TreeViewItem.ItemTemplate>
                 </TreeViewItem>
+                
 
-                <!-- New tree item -->
-                <TreeViewItem Header='Tags'>
+            <!-- New tree item -->
+            <TreeViewItem Header='Tags' ItemsSource="{Binding ListTags}">
                     <TreeViewItem.ItemTemplate>
                         <DataTemplate>
-                            <!-- Team name -->
-                            <TextBlock />
-                        </DataTemplate>
+                            <!-- tage name-->
+                        <TextBlock Text="{Binding Name}" >
+                            <!--<TextBlock.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header ="Checkout" Name="CheckoutBranch" Click="CheckoutBranch_Click"/>
+                                    <MenuItem Header ="Delete" Name="DeleteBranch" Click="DeleteBranch_Click"/>
+                                </ContextMenu>
+                            </TextBlock.ContextMenu>-->
+                        </TextBlock>
+                    </DataTemplate>
                     </TreeViewItem.ItemTemplate>
                 </TreeViewItem>
                 

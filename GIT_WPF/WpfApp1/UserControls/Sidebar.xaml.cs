@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfApp1.Model;
+using WpfApp1.View.Dialogs;
+using WpfApp1.ViewModel;
 
 namespace WpfApp1.UserControls
 {
@@ -23,6 +26,22 @@ namespace WpfApp1.UserControls
         public Sidebar()
         {
             InitializeComponent();
+        }
+
+        private void CheckoutBranch_Click(object sender, RoutedEventArgs e)
+        {
+            BranchModel br = new BranchModel();
+            br = (BranchModel)TreeViewTest.SelectedItem;
+            var vm = (RepositoryViewModel)this.DataContext;
+            vm.CheckoutBranch(br);
+        }
+
+        private void DeleteBranch_Click(object sender, RoutedEventArgs e)
+        {
+            BranchModel br = new BranchModel();
+            br = (BranchModel)TreeViewTest.SelectedItem;
+            var vm = (RepositoryViewModel)this.DataContext;
+            vm.DeleteBranch(br);
         }
     }
 }
