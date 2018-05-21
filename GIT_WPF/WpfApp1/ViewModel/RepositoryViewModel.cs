@@ -36,6 +36,8 @@ namespace WpfApp1.ViewModel
         private string _statusItemDiff;
         private ObservableCollection<BranchModel> _listBranches;
         private ObservableCollection<TagModel> _listTags;
+        private CommitModel _selectedCommit;
+
 
 
 
@@ -45,6 +47,13 @@ namespace WpfApp1.ViewModel
 
         #region Property
         //**** Property ****
+
+        public CommitModel SelectedCommit
+        {
+            get { return _selectedCommit; }
+            set { _selectedCommit = value; }
+        }
+
         public ObservableCollection<TagModel> ListTags
         {
             get { return _listTags; }
@@ -155,12 +164,26 @@ namespace WpfApp1.ViewModel
 
         public DelegateCommand AddNewBranchCommand { get; set; }
 
-        //public DelegateCommand CheckoutBranchCommand { get; set; }
+        public DelegateCommand AddTagCommand { get; set; }
 
         //public DelegateCommand DeleteNewBranchCommand { get; set; }
 
         //Comand method
-       
+
+
+        private void AddTag(object action)
+        {
+            BranchDialog dialog = new BranchDialog();
+            dialog.ShowDialog();
+            TagModel mod = new TagModel();
+            mod.Name = dialog.ReturnName();
+
+            using (var repo = new Repository(Pot))
+            {
+                Tag t = repo.ApplyTag(mod.Name);
+            }
+            ListTags.Add(mod);
+        }
 
 
         private void AddBranch(object action)
@@ -311,6 +334,7 @@ namespace WpfApp1.ViewModel
             PushCommand = new DelegateCommand(Push);
             PullCommand = new DelegateCommand(Pull);
             AddNewBranchCommand = new DelegateCommand(AddBranch);
+            AddTagCommand = new DelegateCommand(AddTag);
         }
 
 
@@ -338,6 +362,7 @@ namespace WpfApp1.ViewModel
             PushCommand = new DelegateCommand(Push);
             PullCommand = new DelegateCommand(Pull);
             AddNewBranchCommand = new DelegateCommand(AddBranch);
+            AddTagCommand = new DelegateCommand(AddTag);
         }
         public RepositoryViewModel()
         {
@@ -504,6 +529,7 @@ namespace WpfApp1.ViewModel
                 Branch currentBranch = Commands.Checkout(repo, branch);
             }
         }
+
         public void DeleteBranch(BranchModel br)
         {
             using (var repo = new Repository(Pot))
@@ -512,6 +538,7 @@ namespace WpfApp1.ViewModel
                 ListBranches.Remove(br);
             }
         }
+
 
 
 
