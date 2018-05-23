@@ -21,7 +21,7 @@
             </Grid.ColumnDefinitions>
             
             <controls:ChangesetHistory Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="ChangesetHistoryElement" />
-            <controls:Sidebar Grid.Column="2"/>
+            <controls:Sidebar Grid.Column="2" />
         </Grid>
         
         <!---->

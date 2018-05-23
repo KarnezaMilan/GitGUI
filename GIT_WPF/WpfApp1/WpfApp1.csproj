@@ -111,6 +111,26 @@
     <Compile Include="View\ViewUC.xaml.cs">
       <DependentUpon>ViewUC.xaml</DependentUpon>
     </Compile>
+    <Page Include="Styles\Button.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Head.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Separator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Sidebar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Toolbar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\CenterArea.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -148,7 +168,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Model\CommitModel.cs" />
-    <Compile Include="ViewModel\CommitHistory.cs" />
     <Page Include="View\Dialogs\BranchDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -206,6 +225,22 @@
     <Resource Include="Resource\push_icon.png" />
     <Resource Include="Resource\remove_icon.png" />
     <Resource Include="Resource\rescan_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\tag_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\remote_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\clone_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\open_background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\create_icon.png" />
+    <Resource Include="Resource\open_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

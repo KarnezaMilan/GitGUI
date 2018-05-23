@@ -9,7 +9,7 @@
 
 
     <StackPanel>
-        <WrapPanel>
+        <WrapPanel Style="{StaticResource TopToolbarStyle}">
             <WrapPanel Margin="4,0,0,0">
 
                 <Button Name="RescanBtn" Command="{Binding Path=RescanCommand}">

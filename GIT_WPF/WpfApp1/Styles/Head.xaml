@@ -3,7 +3,7 @@
                     xmlns:local="clr-namespace:WpfApp1.Styles">
 
 
-    <Style x:Key="PanelHeaderStyle" TargetType="{x:Type WrapPanel}">
+    <Style x:Key="PanelHeaderStyle" TargetType="{x:Type Panel}">
         <Setter Property="Background">
             <Setter.Value>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -15,6 +15,7 @@
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
+
     </Style>
 
     

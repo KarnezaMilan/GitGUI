@@ -6,10 +6,25 @@
              xmlns:local="clr-namespace:WpfApp1.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="160">
-    
+
+    <UserControl.Resources>
+        <Style x:Key="LeftToolbarStyle" TargetType="{x:Type Panel}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="#fff" Offset="0"></GradientStop>
+                        <GradientStop Color="#f0f0f0" Offset="0.1"></GradientStop>
+                        <GradientStop Color="#f0f0f0" Offset="0.9"></GradientStop>
+                        <GradientStop Color="#e0e0e0" Offset="1"></GradientStop>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
 
 
-        <StackPanel Background="WhiteSmoke" Grid.Row="1" >
+
+    <StackPanel Style="{StaticResource LeftToolbarStyle}" Grid.Row="1"  >
         <TreeView Name="TreeViewTest">
             <TreeViewItem ItemsSource="{Binding ListBranches}">
                 <TreeViewItem.Header>

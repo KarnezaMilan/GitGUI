@@ -8,16 +8,30 @@
         mc:Ignorable="d"
         Title="ViewUC" Width="1152" Height="600" WindowStartupLocation="CenterScreen">
 
+    <Window.Resources>
+        <Style x:Key="BackgroundStyle" TargetType="{x:Type Border}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#fff" Offset="0" />
+                        <GradientStop Color="#f9f9f9" Offset="0.05" />
+                        <GradientStop Color="#e9e9e9" Offset="0.95" />
+                        <GradientStop Color="#f0f0f0" Offset="1" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    
 
-
-    <Grid Margin="0,-1,0,0">
+    <Grid Margin="0,-1,0,0" Background="#303030"  >
+        <Border  Margin="5" Style="{StaticResource BackgroundStyle}">
+            
         <DockPanel>
             <controls:MainMenu DockPanel.Dock="Top" Margin="4,4,0,0" />
-            <controls:Toolbars DockPanel.Dock="Top" />
-
-            <!--<controls:LeftToolbar DockPanel.Dock="Left" VerticalAlignment="Stretch" />-->
-            <controls:CenterArea DockPanel.Dock="Right" />
+                <controls:Toolbars DockPanel.Dock="Top" />
+                <controls:CenterArea DockPanel.Dock="Right" />
         </DockPanel>
-
+        </Border>
     </Grid>
 </Window>
