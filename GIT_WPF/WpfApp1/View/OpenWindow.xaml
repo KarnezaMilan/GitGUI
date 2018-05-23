@@ -4,53 +4,77 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.View"
+        xmlns:controls="clr-namespace:WpfApp1.UserControls"
         mc:Ignorable="d"
         Title="OpenWindow" Width="1152" Height="546" WindowStartupLocation="CenterScreen" >
     
+   
     
-    
-    
-    
-    <Grid Background="LemonChiffon">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="../Resource/open_background.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="3*" />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*" />
             <RowDefinition Height="1*" />
+            <RowDefinition Height="0.1*" />
             <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" Background="Khaki" Orientation="Vertical">
-            <Button  Content="Open repository" Margin="5" Name="OpenRepo" Click="OpenRepo_Click" />
-            <Button Content="Create repository" Margin="5" Name="CreateRepo" Click="CreateRepo_Click" />
-            <Button Content="Clone repository" Margin="5" Name="CloneRepo" Click="CloneRepo_Click" />
-        </StackPanel>
 
-        <StackPanel Grid.Column="1" Grid.Row="2" >
-            <StackPanel Name="CloneRepoPanel" Background="PaleGoldenrod" >
-                <StackPanel  Orientation="Horizontal" Margin="5">
-                    <Label Content="URL : " Width="50px" />
-                    <TextBox Width="400px" Name="UrlTextbox"/>
-                    <Button Content="Paste" Width="150px" Margin="10,0,0,0" Name="CloneRepoPaste" Click="CloneRepoPaste_Click"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="5" >
-                    <Label Content="Local: " Width="50px" />
-                    <TextBox Width="400px" Name="LocalTextbox"/>
-                    <Button Content="Search" Width="150px"  Margin="10,0,0,0" Name="CloneRepoSerch" Click="CloneRepoSerch_Click"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="5">
-                    <!--<Label Content="Local: " Width="50px" />
-                    <TextBox Width="170" Name="UserNameTextbox"/>
-                    <Label Content="Local: " Width="50px" Margin="10,0,0,0"/>
-                    <PasswordBox Width="170" Name="PassTextbox"  />-->
-                    <Button Content="Clone" Width="150px" Height="25px" Margin="10,0" Name="CloneRepoClone" Click="CloneRepoClone_Click"/>
-                </StackPanel>
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Border Background="#727272" Margin="10" Width="160">
+            <StackPanel HorizontalAlignment="Center" Width="Auto" Background="#FFF" Margin="5">
+                <Button  Margin="5" Name="OpenRepo" Click="OpenRepo_Click" Width="150">
+                    <WrapPanel>
+                        <Image Source="../Resource/open_icon.png" Stretch="None" Margin="0,0,4,0" />
+                        <TextBlock VerticalAlignment="Center">Open repository</TextBlock>
+                    </WrapPanel>
+                </Button>
+
+                <Button Margin="5" Name="CreateRepo" Click="CreateRepo_Click">
+                    <WrapPanel>
+                        <Image Source="../Resource/create_icon.png" Stretch="None" Margin="0,0,4,0" />
+                        <TextBlock VerticalAlignment="Center">Create repository</TextBlock>
+                    </WrapPanel>
+                </Button>
+                <Button Margin="5" Name="CloneRepo" Click="CloneRepo_Click">
+                    <WrapPanel>
+                        <Image Source="../Resource/clone_icon.png" Stretch="None" Margin="0,0,4,0" />
+                        <TextBlock VerticalAlignment="Center">Clone repository</TextBlock>
+                    </WrapPanel>
+                </Button>
             </StackPanel>
-        </StackPanel>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center">
+            <Border Background="#727272" Name="CloneRepoPanel">
+            <StackPanel  Background="White" Margin="5">
+                    <StackPanel  Orientation="Horizontal" Margin="5">
+                        <Label Content="URL : " Width="50px" VerticalAlignment="Bottom" />
+                        <TextBox Width="400px" Name="UrlTextbox" VerticalContentAlignment="Stretch" VerticalAlignment="Bottom"/>
+                        <Button Content="Paste" Width="100px" Margin="10,0,0,0" Name="CloneRepoPaste" Click="CloneRepoPaste_Click" VerticalAlignment="Bottom"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5" >
+                        <Label Content="Local: " Width="50px" VerticalAlignment="Bottom" />
+                        <TextBox Width="400px" Name="LocalTextbox" VerticalAlignment="Bottom"/>
+                        <Button Content="Search" Width="100px"  Margin="10,0,0,0" Name="CloneRepoSerch" Click="CloneRepoSerch_Click" VerticalAlignment="Bottom"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right" >
+                        <Button Content="Clone" Width="100px" Height="25px" Name="CloneRepoClone" Click="CloneRepoClone_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+        </Grid>
+
 
 
 
