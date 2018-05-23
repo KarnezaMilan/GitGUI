@@ -18,8 +18,12 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <WrapPanel Grid.Row="0">
-                <Label DockPanel.Dock="Left" Width="50">Stage</Label>
+            <WrapPanel Grid.Row="0" Style="{StaticResource PanelHeaderStyle}">
+                <Label DockPanel.Dock="Left" Width="50" Style="{StaticResource PanelHeaderTitleStyle}">
+                    <TextBlock >
+                        Stage
+                    </TextBlock>
+                </Label>
             </WrapPanel>
 
             <DockPanel Grid.Row="1">
@@ -35,8 +39,12 @@
                 </Grid>
             </DockPanel>
 
-            <WrapPanel Grid.Row="2">
-                <Label DockPanel.Dock="Left" Width="50">Unstage</Label>
+            <WrapPanel Grid.Row="2" Style="{StaticResource PanelHeaderStyle}">
+                <Label DockPanel.Dock="Left" Width="100" Style="{StaticResource PanelHeaderTitleStyle}">
+                    <TextBlock>
+                        Unstage 
+                    </TextBlock>
+                </Label>
 
             </WrapPanel>
 

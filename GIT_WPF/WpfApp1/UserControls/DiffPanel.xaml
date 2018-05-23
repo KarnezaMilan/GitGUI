@@ -14,7 +14,7 @@
              BorderThickness="0"
              BorderBrush="#bbb"
              Text="{Binding StatusItemDiff}"
-             IsReadOnly="False"
+             IsReadOnly="True"
              FontFamily="Courier New" 
              Height="150"/>
 </UserControl>
