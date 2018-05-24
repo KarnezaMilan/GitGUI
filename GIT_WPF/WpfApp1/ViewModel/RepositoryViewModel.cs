@@ -420,15 +420,17 @@ namespace WpfApp1.ViewModel
                     fm.FileName = item.FilePath;
                     fm.Status = item.State.ToString();
                     fm.Size = GetFormattedFileSize(Pot + "/" + fm.FileName);
-                    if (item.State == FileStatus.DeletedFromIndex || item.State == FileStatus.ModifiedInIndex || item.State == FileStatus.NewInIndex || item.State == FileStatus.RenamedInIndex || item.State == FileStatus.TypeChangeInIndex)
+                    if(item.State!=FileStatus.Ignored)
                     {
-                        ListFileStage.Add(fm);
+                        if (item.State == FileStatus.DeletedFromIndex || item.State == FileStatus.ModifiedInIndex || item.State == FileStatus.NewInIndex || item.State == FileStatus.RenamedInIndex || item.State == FileStatus.TypeChangeInIndex)
+                        {
+                            ListFileStage.Add(fm);
+                        }
+                        else
+                        {
+                            ListFileUnstage.Add(fm);
+                        }
                     }
-                    else
-                    {
-                        ListFileUnstage.Add(fm);
-                    }
-
                 }
             }
   
@@ -539,7 +541,16 @@ namespace WpfApp1.ViewModel
             }
         }
 
+        public bool IsInit(string pat)
+        {
 
+            bool isOrNot = Repository.IsValid(pat);
+            if (isOrNot == true)
+            {
+                return true;
+            }
+            return false;
+        }
 
 
         #endregion

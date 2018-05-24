@@ -14,9 +14,10 @@
                 <Separator />
                 <MenuItem Header="_Exit" />
             </MenuItem>
-            
-            <MenuItem Header="_Branch" Name="BanchMenuBtn" Click="BanchMenuBtn_Click" />
-            <MenuItem Header="_Remote" />
+
+            <MenuItem Header="_Branch" Name="BanchMenuBtn" Click="BanchMenuBtn_Click" >
+                <MenuItem Header="_Add branch" Command="{Binding Path=AddNewBranchCommand}"/>
+            </MenuItem>
             <MenuItem Header="_Help"/>
 
         </Menu>
