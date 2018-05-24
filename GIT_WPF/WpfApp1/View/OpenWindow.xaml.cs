@@ -75,7 +75,7 @@ namespace WpfApp1.View
 
         private void CloneRepo_Click(object sender, RoutedEventArgs e)
         {
-            if(CloneRepoPanel.Visibility==Visibility.Visible)
+            if (CloneRepoPanel.Visibility == Visibility.Visible)
             {
                 CloneRepoPanel.Visibility = Visibility.Hidden;
             }
@@ -83,7 +83,7 @@ namespace WpfApp1.View
             {
                 CloneRepoPanel.Visibility = Visibility.Visible;
             }
-            
+
         }
 
         private void CloneRepoPaste_Click(object sender, RoutedEventArgs e)
@@ -100,8 +100,8 @@ namespace WpfApp1.View
 
             DialogResult result = dialog.ShowDialog();
             if (result == System.Windows.Forms.DialogResult.OK)
-            { 
-                LocalTextbox.Text = dialog.SelectedPath; 
+            {
+                LocalTextbox.Text = dialog.SelectedPath;
             }
         }
 
@@ -111,7 +111,7 @@ namespace WpfApp1.View
             dialog.ShowDialog();
             RepositoryViewModel repo = new RepositoryViewModel();
 
-            if (repo.CloneRepo(UrlTextbox.Text, LocalTextbox.Text, dialog.returnUN(), dialog.returnPass())==true)
+            if (repo.CloneRepo(UrlTextbox.Text, LocalTextbox.Text, dialog.returnUN(), dialog.returnPass()) == true)
             {
                 dialog.Close();
                 ViewUC view = new ViewUC(LocalTextbox.Text);

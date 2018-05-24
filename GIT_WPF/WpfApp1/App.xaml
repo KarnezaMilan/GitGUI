@@ -4,8 +4,16 @@
              xmlns:local="clr-namespace:WpfApp1"
              StartupUri="View/OpenWindow.xaml">
     <Application.Resources>
-
-        <ResourceDictionary Source="/ReuxablesLegacy;component/mercury.xaml" /> 
-
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/ReuxablesLegacy;component/mercury.xaml" />
+                <ResourceDictionary Source="Styles/Separator.xaml" />
+                <ResourceDictionary Source="Styles/Head.xaml" />
+                <ResourceDictionary Source="Styles/Sidebar.xaml" />
+                <ResourceDictionary Source="Styles/Toolbar.xaml" />
+                <!--<ResourceDictionary Source="Styles/Button.xaml" />-->
+                
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

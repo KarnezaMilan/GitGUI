@@ -6,18 +6,16 @@
         xmlns:local="clr-namespace:WpfApp1.View"
         xmlns:controls="clr-namespace:WpfApp1.UserControls"
         mc:Ignorable="d"
-        Title="ViewUC" Width="1152" Height="600" WindowStartupLocation="CenterScreen">
+        Title="ViewUC" Width="1152" Height="650" WindowStartupLocation="CenterScreen">
 
-
-
-    <Grid Margin="0,-1,0,0">
+    <Grid Margin="0,-1,0,0" Background="#303030"  >
+        <StackPanel  Margin="5" Style="{StaticResource BackGroundStyle}">
+            
         <DockPanel>
             <controls:MainMenu DockPanel.Dock="Top" Margin="4,4,0,0" />
-            <controls:Toolbars DockPanel.Dock="Top" />
-
-            <!--<controls:LeftToolbar DockPanel.Dock="Left" VerticalAlignment="Stretch" />-->
-            <controls:CenterArea DockPanel.Dock="Right" />
+                <controls:Toolbars DockPanel.Dock="Top" />
+                <controls:CenterArea DockPanel.Dock="Right" />
         </DockPanel>
-
+        </StackPanel>
     </Grid>
 </Window>

@@ -6,21 +6,42 @@
              xmlns:local="clr-namespace:WpfApp1.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="160">
-    
+
+    <UserControl.Resources>
+        <Style x:Key="LeftToolbarStyle" TargetType="{x:Type Panel}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="#fff" Offset="0"></GradientStop>
+                        <GradientStop Color="#f0f0f0" Offset="0.1"></GradientStop>
+                        <GradientStop Color="#f0f0f0" Offset="0.9"></GradientStop>
+                        <GradientStop Color="#e0e0e0" Offset="1"></GradientStop>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
 
 
-        <StackPanel Background="WhiteSmoke" Grid.Row="1" >
-            <TreeView Name="TreeViewTest">
-                <TreeViewItem Header='Branches' ItemsSource="{Binding ListBranches}" Name="BranchesName">
+
+    <StackPanel Style="{StaticResource LeftToolbarStyle}" Grid.Row="1"  >
+        <TreeView Name="TreeViewTest">
+            <TreeViewItem ItemsSource="{Binding ListBranches}">
+                <TreeViewItem.Header>
+                    <WrapPanel>
+                        <Image Source="../Resource/branch_icon.png" Stretch="None" />
+                        <TextBlock Style="{StaticResource SidebarTitleStyle}">BRANCHES</TextBlock>
+                        </WrapPanel>
+                    </TreeViewItem.Header>
                 <TreeViewItem.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header ="Add" Name="AddNewBranch" Command="{Binding Path=AddNewBranchCommand}"/>
                     </ContextMenu>
                 </TreeViewItem.ContextMenu>
+
                 <TreeViewItem.ItemTemplate>
                         <DataTemplate>
-                            <!-- Breanch name -->
-                        <TextBlock Text="{Binding NameWithHead}" >
+                        <TextBlock Text="{Binding NameWithHead}" Style="{StaticResource SidebarTitleStyle}" >
                             <TextBlock.ContextMenu>
                                 <ContextMenu>
                                     <MenuItem Header ="Checkout" Name="CheckoutBranch" Click="CheckoutBranch_Click"/>
@@ -31,27 +52,41 @@
                     </DataTemplate>
                     </TreeViewItem.ItemTemplate>
                 </TreeViewItem>
-                
 
-            <!-- New tree item -->
-            <TreeViewItem Header='Tags' ItemsSource="{Binding ListTags}">
-                    <TreeViewItem.ItemTemplate>
-                        <DataTemplate>
-                            <!-- tage name-->
-                        <TextBlock Text="{Binding Name}" >
+            
+            
+            <TreeViewItem ItemsSource="{Binding ListTags}">
+                <TreeViewItem.Header>
+                    <WrapPanel>
+                        <Image Source="../Resource/tag_icon.png" Stretch="None" />
+                        <TextBlock Style="{StaticResource SidebarTitleStyle}">TAGS</TextBlock>
+                    </WrapPanel>
+                </TreeViewItem.Header>
+
+                <TreeViewItem.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" Style="{StaticResource SidebarTitleStyle}" >
                         </TextBlock>
                     </DataTemplate>
-                    </TreeViewItem.ItemTemplate>
-                </TreeViewItem>
-                
-                <TreeViewItem Header='Remotes'>
-                    <TreeViewItem.ItemTemplate>
-                        <DataTemplate>
-                            <!-- Team name -->
-                            <TextBlock />
-                        </DataTemplate>
-                    </TreeViewItem.ItemTemplate>
-                </TreeViewItem>
+                </TreeViewItem.ItemTemplate>
+            </TreeViewItem>
+
+            <TreeViewItem>
+                <TreeViewItem.Header>
+                    <WrapPanel>
+                        <Image Source="../Resource/remote_icon.png" Stretch="None"  />
+                        <TextBlock Style="{StaticResource SidebarTitleStyle}">REMOTE</TextBlock>
+                    </WrapPanel>
+                </TreeViewItem.Header>
+
+                <TreeViewItem.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Style="{StaticResource SidebarTitleStyle}" >
+                        </TextBlock>
+                    </DataTemplate>
+                </TreeViewItem.ItemTemplate>
+            </TreeViewItem>
+
 
             </TreeView>
         </StackPanel>
