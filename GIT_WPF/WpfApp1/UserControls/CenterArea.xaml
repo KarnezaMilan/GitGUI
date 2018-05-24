@@ -7,7 +7,7 @@
              xmlns:controls="clr-namespace:WpfApp1.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="412" d:DesignWidth="859">
-    <Grid>
+    <Grid Margin="0,0,0,-111">
         <Grid.RowDefinitions>
             <RowDefinition Name="ChangesetHistoryRowDefinition" Height="264" />
             <RowDefinition Height="6" />
@@ -19,9 +19,13 @@
                 <ColumnDefinition Width="6" />
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            
-            <controls:ChangesetHistory Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="ChangesetHistoryElement" />
-            <controls:Sidebar Grid.Column="2" />
+            <Border Grid.Column="0" BorderBrush="Gainsboro" BorderThickness="2,2,2,0" >
+                <controls:ChangesetHistory Margin="5,5,5,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="ChangesetHistoryElement" />
+            </Border>
+            <Border Grid.Column="2" BorderBrush="Gainsboro" BorderThickness="2" >
+                <controls:Sidebar Margin="5"/>
+            </Border>
+
         </Grid>
         
         <!---->
@@ -33,10 +37,14 @@
                 <ColumnDefinition Width="6" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-
-            <controls:StatusGrid Grid.Column="0" HorizontalAlignment="Stretch" />
+            <Border Grid.Column="0" BorderBrush="Gainsboro" BorderThickness="2" >
+                <controls:StatusGrid Grid.Column="0" HorizontalAlignment="Stretch" Margin="5,5" />
+            </Border>
             <!--<GridSplitter Grid.Column="1" />-->
-            <controls:CommitPanel Grid.Column="2" HorizontalAlignment="Stretch" />
+            <Border Grid.Column="2" BorderBrush="Gainsboro" BorderThickness="2" >
+                <controls:CommitPanel HorizontalAlignment="Stretch"  Margin="0,5" />
+            </Border>
+            
         </Grid>
     </Grid>
 </UserControl>

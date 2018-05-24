@@ -20,15 +20,16 @@
 
             <WrapPanel Grid.Row="0" Style="{StaticResource PanelHeaderStyle}">
                 <Label DockPanel.Dock="Left" Width="50" Style="{StaticResource PanelHeaderTitleStyle}">
-                    <TextBlock >
-                        Stage
-                    </TextBlock>
+                    <TextBlock Text="Stage:"  />
+                </Label>
+                <Label DockPanel.Dock="Left" Width="50" Style="{StaticResource PanelHeaderTitleStyle}" >
+                    <TextBlock Text="{Binding ListFileStage.Count}" Margin="-15,0" />
                 </Label>
             </WrapPanel>
 
             <DockPanel Grid.Row="1">
                 <Grid>
-                    <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" BorderThickness="0" Name="StageFilesDataGrid" ItemsSource="{Binding ListFileStage}" >
+                    <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" BorderThickness="2" Name="StageFilesDataGrid" ItemsSource="{Binding ListFileStage}" >
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Path=Status, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Header="St" />
                             <DataGridTextColumn Binding="{Binding Path=FileName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Header="Filename" Width="*"  />
@@ -40,17 +41,18 @@
             </DockPanel>
 
             <WrapPanel Grid.Row="2" Style="{StaticResource PanelHeaderStyle}">
-                <Label DockPanel.Dock="Left" Width="100" Style="{StaticResource PanelHeaderTitleStyle}">
-                    <TextBlock>
-                        Unstage 
-                    </TextBlock>
+                <Label DockPanel.Dock="Left" Width="60" Style="{StaticResource PanelHeaderTitleStyle}">
+                    <TextBlock Text="Unstage: " />
+                </Label>
+                <Label DockPanel.Dock="Left" Width="50" Style="{StaticResource PanelHeaderTitleStyle}" >
+                    <TextBlock Text="{Binding ListFileUnstage.Count}" Margin="-10,0" />
                 </Label>
 
             </WrapPanel>
 
             <DockPanel Grid.Row="3">
                 <Grid>
-                    <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" BorderThickness="0" Name="UnStageFilesDataGrid" ItemsSource="{Binding ListFileUnstage}" SelectedItem="{Binding SelectedFileForDiff, Mode=TwoWay}">
+                    <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" BorderThickness="2" Name="UnStageFilesDataGrid" ItemsSource="{Binding ListFileUnstage}" SelectedItem="{Binding SelectedFileForDiff, Mode=TwoWay}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Path=Status}" Header="St" />
                             <DataGridTextColumn Binding="{Binding Path=FileName}" Header="Filename" Width="*"  />

@@ -5,12 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.View.Dialogs"
         mc:Ignorable="d"
-        Title="BranchDialog" Height="150" Width="300">
-
-    <StackPanel Orientation="Horizontal" Height="30">
-        <TextBox Width="150" Margin="10,5" Name="NameTextbox"/>
-        <Button Content="OK" Margin="5,0" Width="50" Name="OkBtn" Click="OkBtn_Click"/>
-        <Button Content="Cancel" Margin="5,0" Width="50" Name="CancleBtn" Click="CancleBtn_Click"/>
-    </StackPanel>
-
+        Title="BranchDialog" Height="150" Width="300" WindowStartupLocation="CenterScreen">
+    
+    <Grid Background="Black">
+        <StackPanel Width="290" Height="116" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource BackGroundStyle}" >
+            <Label Content="Please, enter the name: " Margin="15,10,0,0"/>
+            <TextBox Width="250" Margin="10,5" Name="NameTextbox" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10,10,5,10" >
+                <Button Content="OK" Margin="5,0" Width="50" Name="OkBtn" Click="OkBtn_Click"/>
+                <Button Content="Cancel" Margin="15,0" Width="50" Name="CancleBtn" Click="CancleBtn_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
 </Window>

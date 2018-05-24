@@ -6,8 +6,12 @@
         xmlns:local="clr-namespace:WpfApp1.View.Dialogs"
         mc:Ignorable="d"
         Title="UserContactDialog" Height="300" Width="300" WindowStartupLocation="CenterScreen" >
-    <Grid>
-        <StackPanel>
+
+
+
+
+    <Grid Background="Black" >
+        <StackPanel Style="{StaticResource BackGroundStyle}" Margin="2">
             <Label Content="Log in to: " HorizontalContentAlignment="Center" FontSize="20" FontWeight="Bold" />
             <StackPanel Height="50px">
                 <Image Name="LogoImg"/>
