@@ -22,9 +22,6 @@ namespace WpfApp1.ViewModel
     {
 
 
-        
-
-
         #region Atribute
         //**** Atribute ****
         private string _pot;
@@ -37,9 +34,6 @@ namespace WpfApp1.ViewModel
         private ObservableCollection<BranchModel> _listBranches;
         private ObservableCollection<TagModel> _listTags;
         private CommitModel _selectedCommit;
-
-
-
 
 
         #endregion
@@ -309,32 +303,36 @@ namespace WpfApp1.ViewModel
 
         #region Constructor
         //**** Constructor ****
-        /*
-        public RepositoryViewModel(BranchModel model)
-        {
-            
-        }*/
+
         public RepositoryViewModel(string pot, bool needToInit)
         {
             this.Pot = pot;
-            InitRepo();
-            ListFileStage = new ObservableCollection<FileModel>();
-            ListFileUnstage = new ObservableCollection<FileModel>();
-            ListCommitHistory = new ObservableCollection<CommitModel>();
-            ListTags = new ObservableCollection<TagModel>();
+            if(needToInit==true)
+            {
+                InitRepo();
+                ListFileStage = new ObservableCollection<FileModel>();
+                ListFileUnstage = new ObservableCollection<FileModel>();
+                ListCommitHistory = new ObservableCollection<CommitModel>();
+                ListTags = new ObservableCollection<TagModel>();
 
-            StatusItemDiff = "";
-            FileSystemWatcher();
+                StatusItemDiff = "";
+                FileSystemWatcher();
 
-            //Commands
-            CommitCommand = new DelegateCommand(Commit);
-            AddToStageCommand = new DelegateCommand(AddToStage);
-            ResetStageCommand = new DelegateCommand(ResetStage);
-            RescanCommand = new DelegateCommand(Rescan);
-            PushCommand = new DelegateCommand(Push);
-            PullCommand = new DelegateCommand(Pull);
-            AddNewBranchCommand = new DelegateCommand(AddBranch);
-            AddTagCommand = new DelegateCommand(AddTag);
+                //Commands
+                CommitCommand = new DelegateCommand(Commit);
+                AddToStageCommand = new DelegateCommand(AddToStage);
+                ResetStageCommand = new DelegateCommand(ResetStage);
+                RescanCommand = new DelegateCommand(Rescan);
+                PushCommand = new DelegateCommand(Push);
+                PullCommand = new DelegateCommand(Pull);
+                AddNewBranchCommand = new DelegateCommand(AddBranch);
+                AddTagCommand = new DelegateCommand(AddTag);
+            }
+            else
+            {
+                FileSystemWatcher();
+            }
+            
         }
 
 
@@ -366,7 +364,7 @@ namespace WpfApp1.ViewModel
         }
         public RepositoryViewModel()
         {
-            FileSystemWatcher();
+            //FileSystemWatcher();
         }
         #endregion
 
@@ -420,17 +418,20 @@ namespace WpfApp1.ViewModel
                     fm.FileName = item.FilePath;
                     fm.Status = item.State.ToString();
                     fm.Size = GetFormattedFileSize(Pot + "/" + fm.FileName);
-                    if (item.State == FileStatus.DeletedFromIndex || item.State == FileStatus.ModifiedInIndex || item.State == FileStatus.NewInIndex || item.State == FileStatus.RenamedInIndex || item.State == FileStatus.TypeChangeInIndex)
+                    if (item.State != FileStatus.Ignored)
                     {
-                        ListFileStage.Add(fm);
+                        if (item.State == FileStatus.DeletedFromIndex || item.State == FileStatus.ModifiedInIndex || item.State == FileStatus.NewInIndex || item.State == FileStatus.RenamedInIndex || item.State == FileStatus.TypeChangeInIndex)
+                        {
+                            ListFileStage.Add(fm);
+                        }
+                        else
+                        {
+                            ListFileUnstage.Add(fm);
+                        }
                     }
-                    else
-                    {
-                        ListFileUnstage.Add(fm);
-                    }
-
                 }
             }
+           
   
         }
 
@@ -539,7 +540,16 @@ namespace WpfApp1.ViewModel
             }
         }
 
+        public bool IsInit(string pat)
+        {
 
+            bool isOrNot = Repository.IsValid(pat);
+            if (isOrNot == true)
+            {
+                return true;
+            }
+            return false;
+        }
 
 
         #endregion

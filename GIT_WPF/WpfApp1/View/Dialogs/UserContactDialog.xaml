@@ -24,7 +24,21 @@
 
             </StackPanel>
             <StackPanel Margin="25,0">
-                <Button Content="Conform" Margin="0,5" Name="ConformBtn" Click="ConformBtn_Click"/>
+                <Button Content="Conform" Margin="0,5" Name="ConformBtn" Click="ConformBtn_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="IsEnabled" Value="True" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text, ElementName=UserNameTextbox}" Value="">
+                                    <Setter Property="IsEnabled" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Text, ElementName=PasswordTextbox}" Value="">
+                                    <Setter Property="IsEnabled" Value="False" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
                 <Button Content="Cancel" Name="CancleBtn" Click="CancleBtn_Click"/>
             </StackPanel>
 

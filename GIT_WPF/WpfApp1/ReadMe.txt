@@ -5,12 +5,10 @@ remote
 
 help ?
 
-MainMenu
-
 graph
 
 
-
+change history content menu
 
 
 
@@ -19,15 +17,12 @@ graph
 -----------------------------------------------------------------------
 FIX :
 
-tag
+Name of forms
 
-drop menu fix
+USER control dialog--- provider ?
+
+tag
 
 right click on list
 
 right click on datagrid
-
-check if repo is init
-
-if unstage file are ignor ... ignor..
-

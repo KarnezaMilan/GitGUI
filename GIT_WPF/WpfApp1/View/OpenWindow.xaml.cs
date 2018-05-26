@@ -17,6 +17,7 @@ using System.Windows.Forms;
 using WpfApp1.ViewModel;
 using WpfApp1.Model;
 using WpfApp1.View.Dialogs;
+using LibGit2Sharp;
 
 namespace WpfApp1.View
 {
@@ -31,23 +32,34 @@ namespace WpfApp1.View
             CloneRepoPanel.Visibility = Visibility.Hidden;
         }
 
+
         private void OpenRepo_Click(object sender, RoutedEventArgs e)
         {
             CloneRepoPanel.Visibility = Visibility.Hidden;
+
             var dialog = new FolderBrowserDialog
             {
                 ShowNewFolderButton = false
             };
 
             DialogResult result = dialog.ShowDialog();
+
             string selectedFolder = null;
             if (result == System.Windows.Forms.DialogResult.OK)
             {
-                selectedFolder = dialog.SelectedPath;
+                RepositoryViewModel repo = new RepositoryViewModel();
+                if(repo.IsInit(dialog.SelectedPath)==true)
+                {
+                    selectedFolder = dialog.SelectedPath;
 
-                ViewUC view = new ViewUC(selectedFolder);
-                view.Show();
-                this.Close();
+                    ViewUC view = new ViewUC(selectedFolder);
+                    view.Show();
+                    this.Close();
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("Selected folder is not git folder!");
+                }
 
             }
         }
@@ -107,10 +119,10 @@ namespace WpfApp1.View
 
         private void CloneRepoClone_Click(object sender, RoutedEventArgs e)
         {
+            
             UserContactDialog dialog = new UserContactDialog();
             dialog.ShowDialog();
-            RepositoryViewModel repo = new RepositoryViewModel();
-
+            RepositoryViewModel repo = new RepositoryViewModel(LocalTextbox.Text,false);
             if (repo.CloneRepo(UrlTextbox.Text, LocalTextbox.Text, dialog.returnUN(), dialog.returnPass()) == true)
             {
                 dialog.Close();
