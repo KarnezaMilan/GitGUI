@@ -11,7 +11,7 @@
                 <ResourceDictionary Source="Styles/Head.xaml" />
                 <ResourceDictionary Source="Styles/Sidebar.xaml" />
                 <ResourceDictionary Source="Styles/Toolbar.xaml" />
-                <!--<ResourceDictionary Source="Styles/Button.xaml" />-->
+                <ResourceDictionary Source="Styles/Background.xaml" />
                 
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

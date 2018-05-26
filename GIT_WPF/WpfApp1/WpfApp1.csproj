@@ -111,7 +111,7 @@
     <Compile Include="View\ViewUC.xaml.cs">
       <DependentUpon>ViewUC.xaml</DependentUpon>
     </Compile>
-    <Page Include="Styles\Button.xaml">
+    <Page Include="Styles\Background.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

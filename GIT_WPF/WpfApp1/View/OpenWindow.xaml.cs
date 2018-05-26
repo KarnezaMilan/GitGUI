@@ -36,6 +36,7 @@ namespace WpfApp1.View
         private void OpenRepo_Click(object sender, RoutedEventArgs e)
         {
             CloneRepoPanel.Visibility = Visibility.Hidden;
+
             var dialog = new FolderBrowserDialog
             {
                 ShowNewFolderButton = false
@@ -118,10 +119,10 @@ namespace WpfApp1.View
 
         private void CloneRepoClone_Click(object sender, RoutedEventArgs e)
         {
+            
             UserContactDialog dialog = new UserContactDialog();
             dialog.ShowDialog();
-            RepositoryViewModel repo = new RepositoryViewModel();
-
+            RepositoryViewModel repo = new RepositoryViewModel(LocalTextbox.Text,false);
             if (repo.CloneRepo(UrlTextbox.Text, LocalTextbox.Text, dialog.returnUN(), dialog.returnPass()) == true)
             {
                 dialog.Close();

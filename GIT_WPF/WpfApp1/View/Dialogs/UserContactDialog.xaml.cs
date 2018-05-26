@@ -31,14 +31,7 @@ namespace WpfApp1.View.Dialogs
 
         private void ConformBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (UserNameTextbox.Text != "" && PasswordTextbox.Password != "")
-            {
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("You need to fill the form !");
-            }
+            this.Close();
         }
 
         public string returnUN()
