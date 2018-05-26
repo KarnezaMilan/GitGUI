@@ -26,3 +26,5 @@ tag
 right click on list
 
 right click on datagrid
+
+Stage-unstage ( ne dela vredi kaj naj bi blo spremenjeno)....idi skozi vse scenarije skozi

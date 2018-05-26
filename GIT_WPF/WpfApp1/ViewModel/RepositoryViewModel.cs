@@ -38,6 +38,22 @@ namespace WpfApp1.ViewModel
 
         #endregion
 
+        private bool _stageFiles;
+
+        public bool StageFiles
+        {
+            get { return _stageFiles; }
+            set
+            {
+                _stageFiles = value;
+                NotifyPropertyChanged("StageFiles");
+            }
+        }
+
+
+
+
+
 
         #region Property
         //**** Property ****
@@ -253,21 +269,25 @@ namespace WpfApp1.ViewModel
 
         private void Commit(object action)
         {
-
-            using (var repo = new Repository(Pot))
+            if (ListFileStage.Count < 0)
             {
+                using (var repo = new Repository(Pot))
+                {
 
-                Signature author = new Signature("James", "@jugglingnutcase", DateTime.Now);
-                Signature committer = author;
+                    Signature author = new Signature("James", "@jugglingnutcase", DateTime.Now);
+                    Signature committer = author;
 
-                // Commit to the repository
-                Commit commit = repo.Commit(CommitMessage, author, committer);
+                    // Commit to the repository
+                    Commit commit = repo.Commit(CommitMessage, author, committer);
 
+                }
+                // Vizual efekt
+                CommitMessage = "";
+                StageOrUnstageFileToList();
+                CommitHistory();
             }
-            // Vizual efekt
-            CommitMessage = "";
-            StageOrUnstageFileToList();
-            CommitHistory();
+            else
+                MessageBox.Show("Ther is no stage files");
         }
 
         private void AddToStage(object action)
@@ -309,6 +329,7 @@ namespace WpfApp1.ViewModel
             this.Pot = pot;
             if(needToInit==true)
             {
+                StageFiles = false;
                 InitRepo();
                 ListFileStage = new ObservableCollection<FileModel>();
                 ListFileUnstage = new ObservableCollection<FileModel>();
@@ -330,6 +351,7 @@ namespace WpfApp1.ViewModel
             }
             else
             {
+                StageFiles = false;
                 FileSystemWatcher();
             }
             
@@ -348,7 +370,7 @@ namespace WpfApp1.ViewModel
             CommitHistory();
             GetBranch();
             GetTags();
-
+            StageFiles = IsFileStage();
             FileSystemWatcher();
             StatusItemDiff = "";
 
@@ -374,8 +396,10 @@ namespace WpfApp1.ViewModel
         // Load all the content to refres repo data.
         private void Load()
         {
+            
 
             StageOrUnstageFileToList();
+            StageFiles = IsFileStage();
             GetBranch();
             GetTags();
 
@@ -397,6 +421,13 @@ namespace WpfApp1.ViewModel
             }
         }
 
+        private bool IsFileStage()
+        {
+            if (ListFileStage.Count > 0)
+                return true;
+            else
+                return false;
+        }
 
         private void InitRepo()
         {
