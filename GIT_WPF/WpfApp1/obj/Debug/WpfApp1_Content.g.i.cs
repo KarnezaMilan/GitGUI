@@ -8,7 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/create_icon.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/open_icon.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/commit_icon.png")]
 
 

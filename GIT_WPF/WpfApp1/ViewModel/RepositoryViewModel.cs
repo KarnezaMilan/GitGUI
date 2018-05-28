@@ -40,13 +40,26 @@ namespace WpfApp1.ViewModel
 
         private bool _stageFiles;
 
-        public bool StageFiles
+        private bool _unstageFiles;
+
+        public bool IsUnStageFiles
+        {
+            get { return _unstageFiles; }
+            set
+            {
+                _unstageFiles = value;
+                NotifyPropertyChanged("IsUnStageFiles");
+            }
+        }
+
+
+        public bool IsStageFiles
         {
             get { return _stageFiles; }
             set
             {
                 _stageFiles = value;
-                NotifyPropertyChanged("StageFiles");
+                NotifyPropertyChanged("IsStageFiles");
             }
         }
 
@@ -242,26 +255,52 @@ namespace WpfApp1.ViewModel
             }
         }
 
+        private bool NotPushedCommits()
+        {
+
+            //ListCommitHistory;
+
+            using (var repo = new Repository(this.Pot))
+            {
+                
+            }
+
+
+                return true;
+        }
+
 
         private void Push(object action)
         {
-            using (var repo = new Repository(this.Pot))
+            try
             {
-                UserContactDialog logInForm = new UserContactDialog();
-                logInForm.ShowDialog();
-                string userName = logInForm.returnUN();
-                string pass = logInForm.returnPass();
+
+                using (var repo = new Repository(this.Pot))
+                {
+                    UserContactDialog logInForm = new UserContactDialog();
+                    logInForm.ShowDialog();
+                    string userName = logInForm.returnUN();
+                    string pass = logInForm.returnPass();
 
 
-                Remote remote = repo.Network.Remotes["origin"];
-                var options = new PushOptions();
-                options.CredentialsProvider = (_url, _user, _cred) =>
-                    new UsernamePasswordCredentials { Username = userName, Password = pass };
+                    Remote remote = repo.Network.Remotes["origin"];
+                    var options = new PushOptions();
+                    options.CredentialsProvider = (_url, _user, _cred) =>
+                        new UsernamePasswordCredentials { Username = userName, Password = pass };
 
 
-                var pushRefSpec = @"refs/heads/master";
-                repo.Network.Push(remote, pushRefSpec, options);
+                    var pushRefSpec = @"refs/heads/master";
 
+                    repo.Network.Push(remote, pushRefSpec, options);
+
+                    MessageBox.Show("OK");
+
+                }
+            }
+            
+            catch(Exception e)
+            {
+                MessageBox.Show("Ups, something went wrong! ");
             }
 
            // MessageBox.Show("YEA-PUSH");
@@ -269,7 +308,7 @@ namespace WpfApp1.ViewModel
 
         private void Commit(object action)
         {
-            if (ListFileStage.Count < 0)
+            if (IsStageFiles==true)
             {
                 using (var repo = new Repository(Pot))
                 {
@@ -292,25 +331,36 @@ namespace WpfApp1.ViewModel
 
         private void AddToStage(object action)
         {
-            using (var repo = new Repository(this.Pot))
+            if (IsUnStageFiles == true)
             {
-                Commands.Stage(repo, "*");
-            }
-            StageOrUnstageFileToList();
-            /*if(ListFileUnstage.Count==0)
-            {*/
+                using (var repo = new Repository(this.Pot))
+                {
+                    Commands.Stage(repo, "*");
+                }
+                StageOrUnstageFileToList();
+                /*if(ListFileUnstage.Count==0)
+                {*/
                 StatusItemDiff = "";
-            //}
+                //}
+            }
+            else
+                MessageBox.Show("There isn't files to stage!");
         }
 
         private void ResetStage(object action)
         {
-            using (var repo = new Repository(this.Pot))
+            if (IsStageFiles == true)
             {
-                Commit currentCommit = repo.Head.Tip;
-                repo.Reset(ResetMode.Mixed, currentCommit);
+                using (var repo = new Repository(this.Pot))
+                {
+                    Commit currentCommit = repo.Head.Tip;
+                    repo.Reset(ResetMode.Mixed, currentCommit);
+                }
+                StageOrUnstageFileToList();
             }
-            StageOrUnstageFileToList();
+            else
+                MessageBox.Show("There isn't stage files! ");
+            
         }
 
         private void Rescan(object action)
@@ -329,7 +379,8 @@ namespace WpfApp1.ViewModel
             this.Pot = pot;
             if(needToInit==true)
             {
-                StageFiles = false;
+                IsStageFiles = false;
+                IsUnStageFiles = false;
                 InitRepo();
                 ListFileStage = new ObservableCollection<FileModel>();
                 ListFileUnstage = new ObservableCollection<FileModel>();
@@ -351,7 +402,8 @@ namespace WpfApp1.ViewModel
             }
             else
             {
-                StageFiles = false;
+                IsStageFiles = false;
+                IsUnStageFiles = false;
                 FileSystemWatcher();
             }
             
@@ -370,7 +422,8 @@ namespace WpfApp1.ViewModel
             CommitHistory();
             GetBranch();
             GetTags();
-            StageFiles = IsFileStage();
+            IsStageFiles = IsFileStage();
+            IsUnStageFiles = IsFileUnstage();
             FileSystemWatcher();
             StatusItemDiff = "";
 
@@ -399,7 +452,8 @@ namespace WpfApp1.ViewModel
             
 
             StageOrUnstageFileToList();
-            StageFiles = IsFileStage();
+            IsStageFiles = IsFileStage();
+            IsUnStageFiles = IsFileUnstage();
             GetBranch();
             GetTags();
 
@@ -424,6 +478,14 @@ namespace WpfApp1.ViewModel
         private bool IsFileStage()
         {
             if (ListFileStage.Count > 0)
+                return true;
+            else
+                return false;
+        }
+
+        private bool IsFileUnstage()
+        {
+            if (ListFileUnstage.Count > 0)
                 return true;
             else
                 return false;

@@ -20,21 +20,8 @@
                     <TextBlock Text="Commite message: " /> 
 
                 </Label>
-                <Button DockPanel.Dock="Right" Width="50" Margin="0,2,5,2" Command="{Binding CommitCommand}" Content="Commit" >
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="IsEnabled" Value="True" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Text, ElementName=CommitMsg}" Value="">
-                                    <Setter Property="IsEnabled" Value="False" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Path=StageFiles}" Value="false">
-                                    <Setter Property="IsEnabled" Value="False" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
+                <Button DockPanel.Dock="Right" Width="50" Margin="0,2,5,2" Command="{Binding CommitCommand}" Content="Commit" />
+
             </DockPanel>
 
                 <DockPanel Grid.Row="1">
