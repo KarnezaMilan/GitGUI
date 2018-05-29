@@ -200,11 +200,14 @@ namespace WpfApp1.ViewModel
             dialog.ShowDialog();
             TagModel mod = new TagModel();
             mod.Name = dialog.ReturnName();
+            mod.TargetCommit = SelectedCommit;
+            mod.Sha = SelectedCommit.Hash;
 
             using (var repo = new Repository(Pot))
             {
-                Tag t = repo.ApplyTag(mod.Name);
+                Tag t = repo.ApplyTag(mod.Name, mod.Sha);
             }
+
             ListTags.Add(mod);
         }
 
@@ -254,7 +257,7 @@ namespace WpfApp1.ViewModel
                 Commands.Pull(repo, new Signature(userName, "@jugglingnutcase", new DateTimeOffset(DateTime.Now)), options);
             }
         }
-
+        /*
         private bool NotPushedCommits()
         {
 
@@ -267,7 +270,7 @@ namespace WpfApp1.ViewModel
 
 
                 return true;
-        }
+        }*/
 
 
         private void Push(object action)

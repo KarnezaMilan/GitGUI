@@ -20,6 +20,7 @@
             <DataGrid.ContextMenu>
                 <ContextMenu >
                     <MenuItem Header="Add tag" Command="{Binding Path=AddTagCommand}" />
+                    <MenuItem Header="Checkout" Command="{Binding Path=CheckoutCommand}" />
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>
