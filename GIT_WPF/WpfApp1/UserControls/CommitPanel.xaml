@@ -21,6 +21,7 @@
 
                 </Label>
                 <Button DockPanel.Dock="Right" Width="50" Margin="0,2,5,2" Command="{Binding CommitCommand}" Content="Commit" />
+
             </DockPanel>
 
                 <DockPanel Grid.Row="1">
@@ -31,7 +32,8 @@
                              FontFamily="Courier New"
                              DockPanel.Dock="Top"
                              Height="51" 
-                             Text="{Binding Path=CommitMessage}"/>
+                             Text="{Binding Path=CommitMessage}"
+                             Name="CommitMsg" />
             </DockPanel>
             <DockPanel Grid.Row="2">
                 <local:DiffPanel DockPanel.Dock="Top" Margin="5"/>
