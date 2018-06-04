@@ -34,13 +34,16 @@ namespace WpfApp1.ViewModel
         private ObservableCollection<BranchModel> _listBranches;
         private ObservableCollection<TagModel> _listTags;
         private CommitModel _selectedCommit;
+        private bool _stageFiles;
+        private bool _unstageFiles;
+
 
 
         #endregion
 
-        private bool _stageFiles;
 
-        private bool _unstageFiles;
+        #region Property
+        //**** Property ****
 
         public bool IsUnStageFiles
         {
@@ -52,7 +55,6 @@ namespace WpfApp1.ViewModel
             }
         }
 
-
         public bool IsStageFiles
         {
             get { return _stageFiles; }
@@ -62,14 +64,6 @@ namespace WpfApp1.ViewModel
                 NotifyPropertyChanged("IsStageFiles");
             }
         }
-
-
-
-
-
-
-        #region Property
-        //**** Property ****
 
         public CommitModel SelectedCommit
         {
@@ -189,10 +183,31 @@ namespace WpfApp1.ViewModel
 
         public DelegateCommand AddTagCommand { get; set; }
 
-        //public DelegateCommand DeleteNewBranchCommand { get; set; }
+        public DelegateCommand ResetSoftCommand { get; set; }
+
+        public DelegateCommand RresetHardCommand { get; set; }
+
 
         //Comand method
 
+
+        private void ResetHard(object action)
+        {
+            using (var repo = new Repository(Pot))
+            {
+                repo.Reset(ResetMode.Hard, SelectedCommit.Hash);
+            }
+        }
+
+        
+        private void ResetSoft(object action)
+        {
+            using (var repo = new Repository(Pot))
+            {
+                repo.Reset(ResetMode.Soft, SelectedCommit.Hash);
+            }
+
+        }
 
         private void AddTag(object action)
         {
@@ -402,6 +417,8 @@ namespace WpfApp1.ViewModel
                 PullCommand = new DelegateCommand(Pull);
                 AddNewBranchCommand = new DelegateCommand(AddBranch);
                 AddTagCommand = new DelegateCommand(AddTag);
+                ResetSoftCommand = new DelegateCommand(ResetSoft);
+                ResetHardCommand = new DelegateCommand(ResetHard);
             }
             else
             {
@@ -439,6 +456,8 @@ namespace WpfApp1.ViewModel
             PullCommand = new DelegateCommand(Pull);
             AddNewBranchCommand = new DelegateCommand(AddBranch);
             AddTagCommand = new DelegateCommand(AddTag);
+            ResetSoftCommand = new DelegateCommand(ResetSoft);
+            ResetHardCommand = new DelegateCommand(ResetHard);
         }
         public RepositoryViewModel()
         {

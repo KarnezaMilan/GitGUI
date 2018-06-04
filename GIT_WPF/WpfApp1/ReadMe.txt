@@ -17,6 +17,8 @@ checkout commit
 -----------------------------------------------------------------------
 FIX :
 
+RESET HARD_SOFT STAGE UNSTAGE;
+
 Name of forms
 
 USER control dialog--- provider ?
