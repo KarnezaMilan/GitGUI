@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:WpfApp1.View"
         xmlns:controls="clr-namespace:WpfApp1.UserControls"
         mc:Ignorable="d"
+        Icon="../Resource/Logo.ico"
         Title="OpenWindow" Width="1152" Height="546" WindowStartupLocation="CenterScreen" >
     
    

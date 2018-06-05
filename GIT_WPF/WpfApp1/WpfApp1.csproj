@@ -242,6 +242,20 @@
     <Resource Include="Resource\create_icon.png" />
     <Resource Include="Resource\open_icon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\add_side_icon.png" />
+    <Resource Include="Resource\checkout_icon.png" />
+    <Resource Include="Resource\delete_icon.png" />
+    <Resource Include="Resource\logo.ico" />
+    <Resource Include="Resource\logo.png" />
+    <Resource Include="Resource\reset_hard_icon.png" />
+    <Resource Include="Resource\reset_icon.png" />
+    <Resource Include="Resource\reset_soft_icon.png" />
+    <Resource Include="Resource\tag_add_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\commit_icon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

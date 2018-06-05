@@ -10,7 +10,6 @@
     <Grid>
         <DataGrid  IsReadOnly="True" SelectionMode="Single" CanUserAddRows="False" HeadersVisibility="Column" AutoGenerateColumns="False" HorizontalAlignment="Stretch"  Name="CommitHistory" ItemsSource="{Binding ListCommitHistory}"  SelectedItem="{Binding SelectedCommit}"  VerticalAlignment="Stretch">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Graph"></DataGridTextColumn>
                 <DataGridTextColumn Header="Hash" Binding="{Binding Path=Hash}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Description" Binding="{Binding Path=Description}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Date" Binding="{Binding Path=Date}"></DataGridTextColumn>
@@ -19,8 +18,32 @@
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu >
-                    <MenuItem Header="Add tag" Command="{Binding Path=AddTagCommand}" />
-                    <MenuItem Header="Checkout" Command="{Binding Path=CheckoutCommand}" />
+                    <MenuItem Header="Add tag" Command="{Binding Path=AddTagCommand}">
+                        <MenuItem.Icon>
+                            <Image Source="../Resource/tag_add_icon.png" Stretch="None" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Checkout" Command="{Binding Path=CheckoutCommand}" >
+                        <MenuItem.Icon>
+                            <Image Source="../Resource/checkout_icon.png" Stretch="None" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator />
+                    <MenuItem Header="Reset" >
+                        <MenuItem.Icon>
+                            <Image Source="../Resource/reset_icon.png" Stretch="None" />
+                        </MenuItem.Icon>
+                        <MenuItem Header="Soft" Command="{Binding Path=ResetSoftCommand}" >
+                            <MenuItem.Icon>
+                                <Image Source="../Resource/reset_soft_icon.png" Stretch="None" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Hard" Command="{Binding Path=ResetHardCommand}" >
+                            <MenuItem.Icon>
+                                <Image Source="../Resource/reset_hard_icon.png" Stretch="None" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </MenuItem>
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>

@@ -1,23 +1,23 @@
 ﻿-----------------------------------------------------------------------
 TO DO:
 
+reset soft - hard ---???
+
 Commi - config- who i am
 
-remote
+remote -- 
 
 help ?
 
 graph
-
-
-change history content menu
-
 
 checkout commit
 
 
 -----------------------------------------------------------------------
 FIX :
+
+RESET HARD_SOFT STAGE UNSTAGE;
 
 Name of forms
 

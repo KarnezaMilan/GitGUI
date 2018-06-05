@@ -24,6 +24,12 @@ namespace WpfApp1.View.Dialogs
             InitializeComponent();
         }
 
+        public BranchDialog(string rm)
+        {
+            InitializeComponent();
+            NameTextbox.Text = rm;
+        }
+
         private void OkBtn_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
