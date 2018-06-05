@@ -12,8 +12,8 @@
             <Label Content="Please, enter the name: " Margin="15,10,0,0"/>
             <TextBox Width="250" Margin="10,5" Name="NameTextbox" />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10,10,5,10" >
-                <Button Content="OK" Margin="5,0" Width="50" Name="OkBtn" Click="OkBtn_Click"/>
-                <Button Content="Cancel" Margin="15,0" Width="50" Name="CancleBtn" Click="CancleBtn_Click"/>
+                <Button Content="OK" Margin="15,0" Width="50" Name="OkBtn" Click="OkBtn_Click"/>
+                <!--<Button Content="Cancel" Margin="15,0" Width="50" Name="CancleBtn" Click="CancleBtn_Click"/>-->
             </StackPanel>
         </StackPanel>
     </Grid>

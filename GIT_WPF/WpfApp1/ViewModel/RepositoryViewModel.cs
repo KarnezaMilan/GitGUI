@@ -41,6 +41,27 @@ namespace WpfApp1.ViewModel
 
         #endregion
 
+        private RemoteModel _remote;
+
+        public RemoteModel Remote
+        {
+            get { return _remote; }
+            set
+            {
+                _remote = value;
+                NotifyPropertyChanged("Remote");
+            }
+        }
+
+        private ObservableCollection<RemoteModel> _listRemote;
+
+        public ObservableCollection<RemoteModel> ListRemote
+        {
+            get { return _listRemote; }
+            set { _listRemote = value; }
+        }
+
+
 
         #region Property
         //**** Property ****
@@ -162,7 +183,6 @@ namespace WpfApp1.ViewModel
         }
         #endregion
 
-
         #region Command
         //**** Command ****
 
@@ -187,26 +207,50 @@ namespace WpfApp1.ViewModel
 
         public DelegateCommand RresetHardCommand { get; set; }
 
+        public DelegateCommand AddRemoteCommand { get; set; }
 
+        #endregion
+
+        #region Commmand method
         //Comand method
+        private void AddRemote(object action)
+        {
+            ListRemote = new ObservableCollection<RemoteModel>();
+            //RemoteModel rm = new RemoteModel();
+            BranchDialog br = new BranchDialog(Remote.Path);
+            br.ShowDialog();
+            Remote.Path = br.ReturnName();
 
+            using (var repo = new Repository(Pot))
+            {
+                repo.Network.Remotes.Update(Remote.Name, r => { r.Url = Remote.Path; });
+                ListRemote.Add(Remote);
+                MessageBox.Show("ok");
+            }
+        }
 
         private void ResetHard(object action)
         {
+            ListFileUnstage = new ObservableCollection<FileModel>();
+            ListFileStage = new ObservableCollection<FileModel>();
             using (var repo = new Repository(Pot))
             {
                 repo.Reset(ResetMode.Hard, SelectedCommit.Hash);
             }
+            Load();
         }
 
         
         private void ResetSoft(object action)
         {
+            ListFileUnstage = new ObservableCollection<FileModel>();
+            ListFileStage = new ObservableCollection<FileModel>();
             using (var repo = new Repository(Pot))
             {
                 repo.Reset(ResetMode.Soft, SelectedCommit.Hash);
             }
-
+            
+            Load();
         }
 
         private void AddTag(object action)
@@ -272,21 +316,6 @@ namespace WpfApp1.ViewModel
                 Commands.Pull(repo, new Signature(userName, "@jugglingnutcase", new DateTimeOffset(DateTime.Now)), options);
             }
         }
-        /*
-        private bool NotPushedCommits()
-        {
-
-            //ListCommitHistory;
-
-            using (var repo = new Repository(this.Pot))
-            {
-                
-            }
-
-
-                return true;
-        }*/
-
 
         private void Push(object action)
         {
@@ -388,7 +417,6 @@ namespace WpfApp1.ViewModel
 
         #endregion
 
-
         #region Constructor
         //**** Constructor ****
 
@@ -404,6 +432,7 @@ namespace WpfApp1.ViewModel
                 ListFileUnstage = new ObservableCollection<FileModel>();
                 ListCommitHistory = new ObservableCollection<CommitModel>();
                 ListTags = new ObservableCollection<TagModel>();
+                ListRemote = new ObservableCollection<RemoteModel>();
 
                 StatusItemDiff = "";
                 FileSystemWatcher();
@@ -418,7 +447,8 @@ namespace WpfApp1.ViewModel
                 AddNewBranchCommand = new DelegateCommand(AddBranch);
                 AddTagCommand = new DelegateCommand(AddTag);
                 ResetSoftCommand = new DelegateCommand(ResetSoft);
-                ResetHardCommand = new DelegateCommand(ResetHard);
+                RresetHardCommand = new DelegateCommand(ResetHard);
+                AddRemoteCommand = new DelegateCommand(AddRemote);
             }
             else
             {
@@ -438,6 +468,7 @@ namespace WpfApp1.ViewModel
             ListCommitHistory = new ObservableCollection<CommitModel>();
             ListBranches = new ObservableCollection<BranchModel>();
             ListTags = new ObservableCollection<TagModel>();
+            ListRemote = new ObservableCollection<RemoteModel>();
             StageOrUnstageFileToList();
             CommitHistory();
             GetBranch();
@@ -445,6 +476,7 @@ namespace WpfApp1.ViewModel
             IsStageFiles = IsFileStage();
             IsUnStageFiles = IsFileUnstage();
             FileSystemWatcher();
+            GetrRemote();
             StatusItemDiff = "";
 
             //Commands
@@ -457,7 +489,8 @@ namespace WpfApp1.ViewModel
             AddNewBranchCommand = new DelegateCommand(AddBranch);
             AddTagCommand = new DelegateCommand(AddTag);
             ResetSoftCommand = new DelegateCommand(ResetSoft);
-            ResetHardCommand = new DelegateCommand(ResetHard);
+            RresetHardCommand = new DelegateCommand(ResetHard);
+            AddRemoteCommand = new DelegateCommand(AddRemote);
         }
         public RepositoryViewModel()
         {
@@ -478,9 +511,27 @@ namespace WpfApp1.ViewModel
             IsUnStageFiles = IsFileUnstage();
             GetBranch();
             GetTags();
+            CommitHistory();
+            GetrRemote();
 
         }
 
+
+        private void GetrRemote()
+        {
+            using (var repo = new Repository(Pot))
+            {
+                foreach (Remote a in repo.Network.Remotes)
+                {
+                    RemoteModel rm = new RemoteModel();
+                    rm.Name = a.Name;
+                    rm.Path = a.Url;
+                    Remote = rm;
+                    ListRemote.Add(rm);
+                }
+
+            }
+        }
 
         private void GetTags()
         {

@@ -1,11 +1,11 @@
 ﻿-----------------------------------------------------------------------
 TO DO:
 
-reset soft - hard
+reset soft - hard ---???
 
 Commi - config- who i am
 
-remote
+remote -- 
 
 help ?
 

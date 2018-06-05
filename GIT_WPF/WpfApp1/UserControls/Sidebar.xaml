@@ -83,8 +83,8 @@
                 </TreeViewItem.ItemTemplate>
             </TreeViewItem>
 
-            
-            <TreeViewItem ItemsSource="{Binding ListRemotes}">
+
+            <TreeViewItem ItemsSource="{Binding ListRemote}">
                 <TreeViewItem.Header>
                     <WrapPanel>
                         <Image Source="../Resource/remote_icon.png" Stretch="None" />
@@ -93,7 +93,7 @@
                 </TreeViewItem.Header>
                 <TreeViewItem.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Header ="Add" Command="{Binding Path=AddNewRemoteCommand}">
+                        <MenuItem Header ="Add / Upadate" Command="{Binding Path=AddRemoteCommand}">
                             <MenuItem.Icon>
                                 <Image Source="../Resource/add_side_icon.png" Stretch="None" />
                             </MenuItem.Icon>
