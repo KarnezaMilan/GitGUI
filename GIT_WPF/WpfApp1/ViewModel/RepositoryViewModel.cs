@@ -41,6 +41,15 @@ namespace WpfApp1.ViewModel
 
         #endregion
 
+        private UserModel _user;
+
+        public UserModel User
+        {
+            get { return _user; }
+            set { _user = value; }
+        }
+
+
         private RemoteModel _remote;
 
         public RemoteModel Remote
@@ -205,7 +214,7 @@ namespace WpfApp1.ViewModel
 
         public DelegateCommand ResetSoftCommand { get; set; }
 
-        public DelegateCommand RresetHardCommand { get; set; }
+        public DelegateCommand ResetHardCommand { get; set; }
 
         public DelegateCommand AddRemoteCommand { get; set; }
 
@@ -400,20 +409,31 @@ namespace WpfApp1.ViewModel
         {/*
             if (IsStageFiles==true)
             {*/
-                using (var repo = new Repository(Pot))
+            using (var repo = new Repository(Pot))
+            {
+                CommitDialog cd;
+                if(User.Name!=null && User.Email!=null)
                 {
-
-                    Signature author = new Signature("James", "@jugglingnutcase", DateTime.Now);
-                    Signature committer = author;
-
-                    // Commit to the repository
-                    Commit commit = repo.Commit(CommitMessage, author, committer);
-
+                    cd = new CommitDialog(User);
+                }else
+                {
+                    cd = new CommitDialog();
                 }
-                // Vizual efekt
-                CommitMessage = "";
-                StageOrUnstageFileToList();
-                CommitHistory();
+                cd.ShowDialog();
+                User = cd.returnData();
+
+
+                Signature author = new Signature(User.Name, User.Email, DateTime.Now);
+                Signature committer = author;
+
+                // Commit to the repository
+                Commit commit = repo.Commit(CommitMessage, author, committer);
+
+            }
+            // Vizual efekt
+            CommitMessage = "";
+            StageOrUnstageFileToList();
+            CommitHistory();
            /* }
             else
                 MessageBox.Show("Ther is no stage files");*/
@@ -472,6 +492,7 @@ namespace WpfApp1.ViewModel
                 IsUnStageFiles = false;
                 InitRepo();
                 Remote = new RemoteModel();
+                User = new UserModel();
                 ListFileStage = new ObservableCollection<FileModel>();
                 ListFileUnstage = new ObservableCollection<FileModel>();
                 ListCommitHistory = new ObservableCollection<CommitModel>();
@@ -491,7 +512,7 @@ namespace WpfApp1.ViewModel
                 AddNewBranchCommand = new DelegateCommand(AddBranch);
                 AddTagCommand = new DelegateCommand(AddTag);
                 ResetSoftCommand = new DelegateCommand(ResetSoft);
-                RresetHardCommand = new DelegateCommand(ResetHard);
+                ResetHardCommand = new DelegateCommand(ResetHard);
                 AddRemoteCommand = new DelegateCommand(AddRemote);
                 CheckoutCommand = new DelegateCommand(Checkout);
             }
@@ -515,6 +536,7 @@ namespace WpfApp1.ViewModel
             ListTags = new ObservableCollection<TagModel>();
             ListRemote = new ObservableCollection<RemoteModel>();
             Remote = new RemoteModel();
+            User = new UserModel();
             StageOrUnstageFileToList();
             CommitHistory();
             GetBranch();
@@ -535,7 +557,7 @@ namespace WpfApp1.ViewModel
             AddNewBranchCommand = new DelegateCommand(AddBranch);
             AddTagCommand = new DelegateCommand(AddTag);
             ResetSoftCommand = new DelegateCommand(ResetSoft);
-            RresetHardCommand = new DelegateCommand(ResetHard);
+            ResetHardCommand = new DelegateCommand(ResetHard);
             AddRemoteCommand = new DelegateCommand(AddRemote);
             CheckoutCommand = new DelegateCommand(Checkout);
         }

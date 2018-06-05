@@ -10,11 +10,10 @@
     <Grid>
         <DataGrid  IsReadOnly="True" SelectionMode="Single" CanUserAddRows="False" HeadersVisibility="Column" AutoGenerateColumns="False" HorizontalAlignment="Stretch"  Name="CommitHistory" ItemsSource="{Binding ListCommitHistory}"  SelectedItem="{Binding SelectedCommit}"  VerticalAlignment="Stretch">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Hash" Binding="{Binding Path=Hash}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Description" Binding="{Binding Path=Description}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Date" Binding="{Binding Path=Date}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Author Name" Binding="{Binding Path=AuthorName}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Author Email" Binding="{Binding Path=AuthorEmail}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Date" Binding="{Binding Path=Date}"/>
+                <DataGridTextColumn Header="Description" Binding="{Binding Path=Description}" Width="*"/>
+                <DataGridTextColumn Header="Author" Binding="{Binding Path=Author}" />
+                <DataGridTextColumn Header="Hash" Binding="{Binding Path=Hash}"/>
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu >
