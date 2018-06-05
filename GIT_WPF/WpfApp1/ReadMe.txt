@@ -1,18 +1,18 @@
 ﻿-----------------------------------------------------------------------
 TO DO:
 
-
-Commi - config- who i am
-
 help ?
+
+log in to internet orivuder (userContatckDialog) pisave in slike);
+
+
+remove minemenu
+
+
 
 
 -----------------------------------------------------------------------
 FIX :
-
-Name of forms
-
-USER control dialog--- provider ?
 
 right click on list
 
