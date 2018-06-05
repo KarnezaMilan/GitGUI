@@ -209,17 +209,60 @@ namespace WpfApp1.ViewModel
 
         public DelegateCommand AddRemoteCommand { get; set; }
 
+        public DelegateCommand CheckoutCommand { get; set; }
+
         #endregion
 
         #region Commmand method
         //Comand method
+
+
+
+        private void Checkout(object action)
+        {
+            ListFileStage = new ObservableCollection<FileModel>();
+            ListFileUnstage = new ObservableCollection<FileModel>();
+
+            var repo = new LibGit2Sharp.Repository(Pot);
+            foreach (Commit commit in repo.Commits)
+            {
+                if (commit.Sha == SelectedCommit.Hash)
+                {
+                    foreach (var parent in commit.Parents)
+                    {
+                        //Console.WriteLine("{0} | {1}", commit.Sha, commit.MessageShort);
+                        foreach (TreeEntryChanges change in repo.Diff.Compare<TreeChanges>(parent.Tree, commit.Tree))
+                        {
+                            FileModel fm = new FileModel();
+                            fm.FileName = change.Path;
+                            fm.Status = change.Status.ToString();
+                            fm.Size = GetFormattedFileSize(change.Path);
+                            ListFileStage.Add(fm);
+                           // Console.WriteLine("{0} : {1}", change.Status, change.Path);
+                        }
+                    }
+                }
+            }
+        }
+
+
         private void AddRemote(object action)
         {
             ListRemote = new ObservableCollection<RemoteModel>();
             //RemoteModel rm = new RemoteModel();
-            BranchDialog br = new BranchDialog(Remote.Path);
-            br.ShowDialog();
-            Remote.Path = br.ReturnName();
+            if (Remote.Path != null)
+            {
+                BranchDialog br = new BranchDialog(Remote.Path);
+                br.ShowDialog();
+                Remote.Path = br.ReturnName();
+            }
+            else
+            {
+                BranchDialog br = new BranchDialog();
+                br.ShowDialog();
+                Remote.Name = "Origin";
+                Remote.Path = br.ReturnName();
+            }
 
             using (var repo = new Repository(Pot))
             {
@@ -354,9 +397,9 @@ namespace WpfApp1.ViewModel
         }
 
         private void Commit(object action)
-        {
+        {/*
             if (IsStageFiles==true)
-            {
+            {*/
                 using (var repo = new Repository(Pot))
                 {
 
@@ -371,15 +414,15 @@ namespace WpfApp1.ViewModel
                 CommitMessage = "";
                 StageOrUnstageFileToList();
                 CommitHistory();
-            }
+           /* }
             else
-                MessageBox.Show("Ther is no stage files");
+                MessageBox.Show("Ther is no stage files");*/
         }
 
         private void AddToStage(object action)
-        {
+        {/*
             if (IsUnStageFiles == true)
-            {
+            {*/
                 using (var repo = new Repository(this.Pot))
                 {
                     Commands.Stage(repo, "*");
@@ -389,24 +432,24 @@ namespace WpfApp1.ViewModel
                 {*/
                 StatusItemDiff = "";
                 //}
-            }
+           /* }
             else
-                MessageBox.Show("There isn't files to stage!");
+                MessageBox.Show("There isn't files to stage!");*/
         }
 
         private void ResetStage(object action)
-        {
+        {/*
             if (IsStageFiles == true)
-            {
+            {*/
                 using (var repo = new Repository(this.Pot))
                 {
                     Commit currentCommit = repo.Head.Tip;
                     repo.Reset(ResetMode.Mixed, currentCommit);
                 }
                 StageOrUnstageFileToList();
-            }
+           /* }
             else
-                MessageBox.Show("There isn't stage files! ");
+                MessageBox.Show("There isn't stage files! ");*/
             
         }
 
@@ -428,6 +471,7 @@ namespace WpfApp1.ViewModel
                 IsStageFiles = false;
                 IsUnStageFiles = false;
                 InitRepo();
+                Remote = new RemoteModel();
                 ListFileStage = new ObservableCollection<FileModel>();
                 ListFileUnstage = new ObservableCollection<FileModel>();
                 ListCommitHistory = new ObservableCollection<CommitModel>();
@@ -449,6 +493,7 @@ namespace WpfApp1.ViewModel
                 ResetSoftCommand = new DelegateCommand(ResetSoft);
                 RresetHardCommand = new DelegateCommand(ResetHard);
                 AddRemoteCommand = new DelegateCommand(AddRemote);
+                CheckoutCommand = new DelegateCommand(Checkout);
             }
             else
             {
@@ -469,6 +514,7 @@ namespace WpfApp1.ViewModel
             ListBranches = new ObservableCollection<BranchModel>();
             ListTags = new ObservableCollection<TagModel>();
             ListRemote = new ObservableCollection<RemoteModel>();
+            Remote = new RemoteModel();
             StageOrUnstageFileToList();
             CommitHistory();
             GetBranch();
@@ -491,6 +537,7 @@ namespace WpfApp1.ViewModel
             ResetSoftCommand = new DelegateCommand(ResetSoft);
             RresetHardCommand = new DelegateCommand(ResetHard);
             AddRemoteCommand = new DelegateCommand(AddRemote);
+            CheckoutCommand = new DelegateCommand(Checkout);
         }
         public RepositoryViewModel()
         {
@@ -526,6 +573,7 @@ namespace WpfApp1.ViewModel
                     RemoteModel rm = new RemoteModel();
                     rm.Name = a.Name;
                     rm.Path = a.Url;
+                    Remote = new RemoteModel();
                     Remote = rm;
                     ListRemote.Add(rm);
                 }
