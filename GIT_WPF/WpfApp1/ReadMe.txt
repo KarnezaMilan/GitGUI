@@ -21,3 +21,5 @@ Stage-unstage ( ne dela vredi kaj naj bi blo spremenjeno)....idi skozi vse scena
 Prazna Vnosna polja
 
 Če prekličeš prazno okno
+
+Premakni metode iz VM v Model

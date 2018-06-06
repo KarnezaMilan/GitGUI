@@ -25,15 +25,15 @@
 
                 <Button Name="AddBtn" Command="{Binding Path=AddToStageCommand}" Margin="2,0">
                     <StackPanel>
-                        <Image Source="/Resource/add_icon.png" Stretch="None" />
+                        <Image Source="/Resource/add1.png"  Width="24" Height="24"/>
                         <TextBlock>Add</TextBlock>
                     </StackPanel>
                     
                 </Button>
                 <Button Name="ResetBtn" Command="{Binding Path=ResetStageCommand}" Margin="2,0" IsEnabled="{Binding Path=UnStageFiles}">
                     <StackPanel>
-                        <Image Source="/Resource/remove_icon.png" Stretch="None" ></Image>
-                            <TextBlock>Reset</TextBlock>
+                        <Image Source="/Resource/add2.png"  Width="24" Height="24" />
+                        <TextBlock>Reset</TextBlock>
                     </StackPanel>
                 </Button>
                 

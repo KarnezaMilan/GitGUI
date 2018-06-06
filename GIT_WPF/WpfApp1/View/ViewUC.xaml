@@ -13,8 +13,8 @@
         <StackPanel  Margin="5" Style="{StaticResource BackGroundStyle}">
             
         <DockPanel>
-            <controls:MainMenu DockPanel.Dock="Top" Margin="4,4,0,0" />
-                <controls:Toolbars DockPanel.Dock="Top" />
+                <!--<controls:MainMenu DockPanel.Dock="Top" Margin="4,4,0,0" />-->
+                <controls:Toolbars DockPanel.Dock="Top" Margin="0,20,0,0"/>
                 <controls:CenterArea DockPanel.Dock="Right" />
         </DockPanel>
         </StackPanel>

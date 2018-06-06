@@ -649,26 +649,25 @@ namespace WpfApp1.ViewModel
             {
                 foreach (var item in repo.RetrieveStatus(new LibGit2Sharp.StatusOptions()))
                 {
-
+                    
                     FileModel fm = new FileModel();
                     fm.FileName = item.FilePath;
                     fm.Status = item.State.ToString();
                     fm.Size = GetFormattedFileSize(Pot + "/" + fm.FileName);
                     if (item.State != FileStatus.Ignored)
                     {
-                        if (item.State == FileStatus.DeletedFromIndex || item.State == FileStatus.ModifiedInIndex || item.State == FileStatus.NewInIndex || item.State == FileStatus.RenamedInIndex || item.State == FileStatus.TypeChangeInIndex)
+                        if(fm.Status.Contains("Workdir")== true)
                         {
-                            ListFileStage.Add(fm);
+                            ListFileUnstage.Add(fm);
                         }
                         else
                         {
-                            ListFileUnstage.Add(fm);
+                            ListFileStage.Add(fm);
                         }
                     }
                 }
             }
-           
-  
+
         }
 
         //Get the size of file

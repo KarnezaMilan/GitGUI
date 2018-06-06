@@ -29,7 +29,7 @@
             <TreeViewItem ItemsSource="{Binding ListBranches}">
                 <TreeViewItem.Header>
                     <WrapPanel>
-                        <Image Source="../Resource/branch_icon.png" Stretch="None" />
+                        <Image Source="../Resource/branch.png" Width="24" Height="24" />
                         <TextBlock Style="{StaticResource SidebarTitleStyle}" Margin="5">BRANCHES</TextBlock>
                         </WrapPanel>
                     </TreeViewItem.Header>
