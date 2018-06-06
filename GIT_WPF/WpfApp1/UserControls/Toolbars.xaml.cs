@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfApp1.View;
 using WpfApp1.ViewModel;
 
 namespace WpfApp1.UserControls
@@ -24,6 +25,12 @@ namespace WpfApp1.UserControls
         public Toolbars()
         {
             InitializeComponent();
+        }
+
+        private void OpenNewProjectBtn_Click(object sender, RoutedEventArgs e)
+        {
+            OpenWindow win = new OpenWindow();
+            win.Show();
         }
     }
 }
