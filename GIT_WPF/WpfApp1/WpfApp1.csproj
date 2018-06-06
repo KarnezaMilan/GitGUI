@@ -68,6 +68,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converter\StatusToCharacterConverter.cs" />
+    <Compile Include="Converter\StatusToColorConverter.cs" />
     <Compile Include="Model\BranchModel.cs" />
     <Compile Include="Model\FileModel.cs" />
     <Compile Include="Model\RemoteModel.cs" />

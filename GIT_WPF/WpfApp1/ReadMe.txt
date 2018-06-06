@@ -1,7 +1,6 @@
 ﻿-----------------------------------------------------------------------
 TO DO:
 
-remove minemenu
 
 Converts za statuse in tag, branch, head ..probati
 
