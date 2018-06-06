@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.View.Dialogs"
         mc:Ignorable="d"
-        Title="BranchDialog" Height="150" Width="300" WindowStartupLocation="CenterScreen">
+        Height="150" Width="300" WindowStartupLocation="CenterScreen">
     
     <Grid Background="Black">
         <StackPanel Width="290" Height="116" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource BackGroundStyle}" >

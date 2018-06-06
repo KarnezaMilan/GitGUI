@@ -7,14 +7,17 @@
         xmlns:controls="clr-namespace:WpfApp1.UserControls"
         mc:Ignorable="d"
         Icon="../Resource/Logo.ico"
-        Title="ViewUC" Width="1152" Height="650" WindowStartupLocation="CenterScreen">
+        Title="M-Git" Width="1152" Height="650" WindowStartupLocation="CenterScreen" WindowStyle="None">
 
     <Grid Margin="0,-1,0,0" Background="#303030"  >
         <StackPanel  Margin="5" Style="{StaticResource BackGroundStyle}">
             
         <DockPanel>
-            <controls:MainMenu DockPanel.Dock="Top" Margin="4,4,0,0" />
-                <controls:Toolbars DockPanel.Dock="Top" />
+                <DockPanel DockPanel.Dock="Top" Margin="5">
+                    <controls:Toolbars DockPanel.Dock="Left" Margin="0,0,0,0" />
+                    <controls:MainMenu DockPanel.Dock="Right" Margin="0,0,5,0" />
+                </DockPanel>
+                
                 <controls:CenterArea DockPanel.Dock="Right" />
         </DockPanel>
         </StackPanel>

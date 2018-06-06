@@ -1,18 +1,21 @@
 ﻿-----------------------------------------------------------------------
 TO DO:
 
+remove minemenu
 
-Commi - config- who i am
+Converts za statuse in tag, branch, head ..probati
 
 help ?
+
+log in to internet orivuder (userContatckDialog) pisave in slike);
+
+
+
+
 
 
 -----------------------------------------------------------------------
 FIX :
-
-Name of forms
-
-USER control dialog--- provider ?
 
 right click on list
 
@@ -21,3 +24,5 @@ Stage-unstage ( ne dela vredi kaj naj bi blo spremenjeno)....idi skozi vse scena
 Prazna Vnosna polja
 
 Če prekličeš prazno okno
+
+Premakni metode iz VM v Model
