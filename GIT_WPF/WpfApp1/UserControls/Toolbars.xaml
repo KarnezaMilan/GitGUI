@@ -5,14 +5,23 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp1.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="80" d:DesignWidth="605">
+             d:DesignHeight="80" d:DesignWidth="400">
 
 
     <StackPanel>
         <WrapPanel Style="{StaticResource TopToolbarStyle}">
             <WrapPanel Margin="4,0,0,0">
-
                 
+                <Button Name="OpenNewProjectBtn" >
+                    <StackPanel>
+                        <Image Source="/Resource/add_side_icon.png" Stretch="None" />
+                        <TextBlock>New Project</TextBlock>
+                    </StackPanel>
+                </Button>
+
+
+                <Separator Width="30" Height="1"  Style="{StaticResource VerticalSeparatorStyle}"  />
+
                 <Button Name="RescanBtn" Command="{Binding Path=RescanCommand}">
                     <StackPanel>
                         <Image Source="/Resource/rescan_icon.png" Stretch="None" />

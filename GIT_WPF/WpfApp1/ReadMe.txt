@@ -1,12 +1,15 @@
 ﻿-----------------------------------------------------------------------
 TO DO:
 
+remove minemenu
+
+Converts za statuse in tag, branch, head ..probati
+
 help ?
 
 log in to internet orivuder (userContatckDialog) pisave in slike);
 
 
-remove minemenu
 
 
 

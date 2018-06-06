@@ -5,9 +5,28 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp1.UserControls"
              mc:Ignorable="d" 
-                             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="50" d:DesignWidth="150">
 
+
+
+    <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,-1,0">
+        <Border>
+            <WrapPanel>
+                <Button Margin="5" Name="MiniBtn" Click="MiniBtn_Click">
+                    <Image Source="../Resource/MinimizeWindow.png" Stretch="None" />
+                </Button>
+                <Button  Name="CloseBtn" Margin="5" Click="CloseBtn_Click">
+                    <Image Source="../Resource/CloseWindow.png" Stretch="None" />
+                </Button>
+            </WrapPanel>
+        </Border>
+    </WrapPanel>
+
+
+
+    <!--
     <StackPanel>
+        
         <Menu VerticalAlignment="Top" Background="{x:Null}">
             <MenuItem Header="_File">
                 <MenuItem Header="_New project" Name="NewP" Click="NewP_Click"/>
@@ -21,6 +40,10 @@
             <MenuItem Header="_Help"/>
 
         </Menu>
-    </StackPanel>
+        
+       
+        
+        
+    </StackPanel> -->
 
 </UserControl>

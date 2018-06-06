@@ -70,8 +70,9 @@
     </ApplicationDefinition>
     <Compile Include="Model\BranchModel.cs" />
     <Compile Include="Model\FileModel.cs" />
-    <Compile Include="Model\PersonModel.cs" />
+    <Compile Include="Model\RemoteModel.cs" />
     <Compile Include="Model\TagModel.cs" />
+    <Compile Include="Model\UserModel.cs" />
     <Compile Include="Other\DelegateCommand.cs" />
     <Compile Include="UserControls\CenterArea.xaml.cs">
       <DependentUpon>CenterArea.xaml</DependentUpon>
@@ -101,6 +102,9 @@
     <Compile Include="ViewModel\RepositoryViewModel.cs" />
     <Compile Include="View\Dialogs\BranchDialog.xaml.cs">
       <DependentUpon>BranchDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\CommitDialog.xaml.cs">
+      <DependentUpon>CommitDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Dialogs\UserContactDialog.xaml.cs">
       <DependentUpon>UserContactDialog.xaml</DependentUpon>
@@ -169,6 +173,10 @@
     </Compile>
     <Compile Include="Model\CommitModel.cs" />
     <Page Include="View\Dialogs\BranchDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialogs\CommitDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -247,7 +255,6 @@
     <Resource Include="Resource\checkout_icon.png" />
     <Resource Include="Resource\delete_icon.png" />
     <Resource Include="Resource\logo.ico" />
-    <Resource Include="Resource\logo.png" />
     <Resource Include="Resource\reset_hard_icon.png" />
     <Resource Include="Resource\reset_icon.png" />
     <Resource Include="Resource\reset_soft_icon.png" />
@@ -255,6 +262,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\commit_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\add1.png" />
+    <Resource Include="Resource\add2.png" />
+    <Resource Include="Resource\branch.png" />
+    <Resource Include="Resource\remove.png" />
+    <Resource Include="Resource\remove2.png" />
+    <Resource Include="Resource\remove3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\CloseWindow.png" />
+    <Resource Include="Resource\MinimizeWindow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

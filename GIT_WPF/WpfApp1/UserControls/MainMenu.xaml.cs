@@ -26,15 +26,14 @@ namespace WpfApp1.UserControls
             InitializeComponent();
         }
 
-        private void BanchMenuBtn_Click(object sender, RoutedEventArgs e)
+        private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            Application.Current.Shutdown();
         }
 
-        private void NewP_Click(object sender, RoutedEventArgs e)
+        private void MiniBtn_Click(object sender, RoutedEventArgs e)
         {
-            OpenWindow win = new OpenWindow();
-            win.Show();
+
         }
     }
 }

@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/commit_icon.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/closewindow.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/minimizewindow.png")]
 
 
