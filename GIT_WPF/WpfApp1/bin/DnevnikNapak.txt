@@ -1,0 +1,5 @@
+
+ResetHard
+10.8.2018 12:46:25
+System.Exception: Exception of type 'System.Exception' was thrown.
+   at WpfApp1.ViewModel.RepositoryViewModel.ResetHard(Object action) in C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\ViewModel\RepositoryViewModel.cs:line 279
