@@ -38,10 +38,10 @@
     <DockPanel>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="25px" />
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="25px" />
+                <RowDefinition Height="100px" />
             </Grid.RowDefinitions>
 
             <WrapPanel Grid.Row="0" Style="{StaticResource PanelHeaderStyle}">

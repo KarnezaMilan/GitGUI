@@ -75,21 +75,7 @@
                         <Button Content="Search" Width="100px"  Margin="10,0,0,4" Name="CloneRepoSerch" Click="CloneRepoSerch_Click" VerticalAlignment="Bottom"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right" >
-                        <Button Content="Clone" Width="100px" Height="30px" Name="CloneRepoClone" Click="CloneRepoClone_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
-                            <Button.Style>
-                                <Style TargetType="Button">
-                                    <Setter Property="IsEnabled" Value="True" />
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Text, ElementName=LocalTextbox}" Value="">
-                                            <Setter Property="IsEnabled" Value="False" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding Text, ElementName=UrlTextbox}" Value="">
-                                            <Setter Property="IsEnabled" Value="False" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
-                        </Button>
+                        <Button Content="Clone" Width="100px" Height="30px" Name="CloneRepoClone" Click="CloneRepoClone_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
                     </StackPanel>
                 </StackPanel>
             </Border>

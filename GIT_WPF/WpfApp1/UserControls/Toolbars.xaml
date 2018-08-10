@@ -9,7 +9,7 @@
 
 
     <StackPanel>
-        <WrapPanel Style="{StaticResource TopToolbarStyle}">
+        <WrapPanel>
             <WrapPanel Margin="4,0,0,0">
                 
                 <Button Name="OpenNewProjectBtn" Click="OpenNewProjectBtn_Click" >
