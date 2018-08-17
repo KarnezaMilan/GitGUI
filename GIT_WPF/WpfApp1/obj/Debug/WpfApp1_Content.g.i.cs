@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/closewindow.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/minimizewindow.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/remote_01.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/tag_01.png")]
 
 

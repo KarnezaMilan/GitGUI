@@ -24,22 +24,22 @@
                     </MenuItem>
                     <MenuItem Header="Checkout" Command="{Binding Path=CheckoutCommand}" >
                         <MenuItem.Icon>
-                            <Image Source="../Resource/checkout_icon.png" Stretch="None" />
+                            <Image Source="../Resource/chackout_01.png" Stretch="None" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator />
                     <MenuItem Header="Reset" >
                         <MenuItem.Icon>
-                            <Image Source="../Resource/reset_icon.png" Stretch="None" />
+                            <Image Source="../Resource/reset_01.png" Stretch="None" />
                         </MenuItem.Icon>
                         <MenuItem Header="Soft" Command="{Binding Path=ResetSoftCommand}" >
                             <MenuItem.Icon>
-                                <Image Source="../Resource/reset_soft_icon.png" Stretch="None" />
+                                <Image Source="../Resource/soft_'1.png" Stretch="None" />
                             </MenuItem.Icon>
                         </MenuItem>
                         <MenuItem Header="Hard" Command="{Binding Path=ResetHardCommand}" >
                             <MenuItem.Icon>
-                                <Image Source="../Resource/reset_hard_icon.png" Stretch="None" />
+                                <Image Source="../Resource/hard_01.png" Stretch="None" />
                             </MenuItem.Icon>
                         </MenuItem>
                     </MenuItem>
