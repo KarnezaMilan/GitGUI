@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.View.Dialogs"
         mc:Ignorable="d"
-        Height="300" Width="300" WindowStartupLocation="CenterScreen" >
+        Height="230" Width="300" WindowStartupLocation="CenterScreen" >
 
 
 
@@ -13,9 +13,7 @@
     <Grid Background="Black" >
         <StackPanel Style="{StaticResource BackGroundStyle}" Margin="2">
             <Label Content="Log in to: " HorizontalContentAlignment="Center" FontSize="20" FontWeight="Bold" />
-            <StackPanel Height="50px">
-                <Image Name="LogoImg"/>
-            </StackPanel>
+
             <StackPanel Margin="25,0,25,15">
                 <Label Content="User name: " Padding="0"/>
                 <TextBox Name="UserNameTextbox"/>
@@ -24,21 +22,7 @@
 
             </StackPanel>
             <StackPanel Margin="25,0">
-                <Button Content="Conform" Margin="0,5" Name="ConformBtn" Click="ConformBtn_Click">
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="IsEnabled" Value="True" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Text, ElementName=UserNameTextbox}" Value="">
-                                    <Setter Property="IsEnabled" Value="False" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Text, ElementName=PasswordTextbox}" Value="">
-                                    <Setter Property="IsEnabled" Value="False" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
+                <Button Content="Conform" Margin="0,5" Name="ConformBtn" Click="ConformBtn_Click" />
                 <Button Content="Cancel" Name="CancleBtn" Click="CancleBtn_Click"/>
             </StackPanel>
 

@@ -33,7 +33,9 @@
                              DockPanel.Dock="Top"
                              Height="51" 
                              Text="{Binding Path=CommitMessage}"
-                             Name="CommitMsg" />
+                             Name="CommitMsg" 
+                             ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                             ScrollViewer.VerticalScrollBarVisibility="Auto"/>
             </DockPanel>
             <DockPanel Grid.Row="2">
                 <local:DiffPanel DockPanel.Dock="Top" Margin="5"/>

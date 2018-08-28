@@ -5,17 +5,43 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp1.UserControls"
              xmlns:l="clr-namespace:WpfApp1.ViewModel"
+             xmlns:z="clr-namespace:WpfApp1.Converter"
              mc:Ignorable="d" 
              d:DesignHeight="480" d:DesignWidth="640">
+
+
+    <UserControl.Resources>
+        <z:StatusToCharacterConverter x:Key="statusToCharacterConverter" />
+        <z:StatusToColorConverter x:Key="statusToColorConverter" />
+
+        <ItemContainerTemplate x:Key="StatusGridStatusTemplate">
+            <WrapPanel HorizontalAlignment="Center">
+                <Border BorderThickness="0" CornerRadius="3" Width="30" Background="{Binding Path=Status, Converter={StaticResource statusToColorConverter}}">
+                    <TextBlock
+                        Width="16"
+                        VerticalAlignment="Stretch"
+                        HorizontalAlignment="Center"
+                        TextAlignment="Center"
+                        Foreground="White"
+                        FontFamily="Arial"
+                        FontSize="12"
+                        FontWeight="Bold"
+                        TextOptions.TextFormattingMode="Display"
+                        TextOptions.TextRenderingMode="ClearType"
+                        Text="{Binding Status, Converter={StaticResource statusToCharacterConverter}}" />
+                </Border>
+            </WrapPanel>
+        </ItemContainerTemplate>
+    </UserControl.Resources>
 
 
     <DockPanel>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="25px" />
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="25px" />
+                <RowDefinition Height="100px" />
             </Grid.RowDefinitions>
 
             <WrapPanel Grid.Row="0" Style="{StaticResource PanelHeaderStyle}">
@@ -31,10 +57,11 @@
                 <Grid>
                     <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" BorderThickness="2" Name="StageFilesDataGrid" ItemsSource="{Binding ListFileStage}" >
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding Path=Status, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Header="St" />
-                            <DataGridTextColumn Binding="{Binding Path=FileName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Header="Filename" Width="*"  />
-                            <DataGridTextColumn Binding="{Binding Path=Size, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Header="Size"/>
-                            <DataGridTextColumn Binding="{Binding Path=IsBinary, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Header="Binary" />
+                            <!--<DataGridTextColumn Binding="{Binding Path=Status, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="St" />-->
+                            <DataGridTemplateColumn CellTemplate="{StaticResource StatusGridStatusTemplate}" Width="*" Header="Status"/>
+                            <DataGridTextColumn Binding="{Binding Path=FileName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Header="Filename" Width="7*"  />
+                            <DataGridTextColumn Binding="{Binding Path=Size, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Header="Size" Width="*"/>
+                            <!--  <DataGridTextColumn Binding="{Binding Path=IsBinary, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Header="Binary" />-->
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -54,10 +81,11 @@
                 <Grid>
                     <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" BorderThickness="2" Name="UnStageFilesDataGrid" ItemsSource="{Binding ListFileUnstage}" SelectedItem="{Binding SelectedFileForDiff, Mode=TwoWay}">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding Path=Status}" Header="St" />
-                            <DataGridTextColumn Binding="{Binding Path=FileName}" Header="Filename" Width="*"  />
-                            <DataGridTextColumn Binding="{Binding Path=Size}" Header="Size"/>
-                            <DataGridTextColumn Binding="{Binding Path=IsBinary}" Header="Binary" />
+                           <!-- <DataGridTextColumn Binding="{Binding Path=Status}" Header="St" /> -->
+                            <DataGridTemplateColumn CellTemplate="{StaticResource StatusGridStatusTemplate}" Header="Status" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding Path=FileName}" Header="Filename" Width="7*"  />
+                            <DataGridTextColumn Binding="{Binding Path=Size}" Header="Size" Width="*"/>
+                            <!--  <DataGridTextColumn Binding="{Binding Path=IsBinary}" Header="Binary" />-->
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

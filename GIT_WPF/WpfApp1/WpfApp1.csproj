@@ -68,6 +68,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converter\StatusToCharacterConverter.cs" />
+    <Compile Include="Converter\StatusToColorConverter.cs" />
     <Compile Include="Model\BranchModel.cs" />
     <Compile Include="Model\FileModel.cs" />
     <Compile Include="Model\RemoteModel.cs" />
@@ -274,6 +276,34 @@
   <ItemGroup>
     <Resource Include="Resource\CloseWindow.png" />
     <Resource Include="Resource\MinimizeWindow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\add_01.png" />
+    <Resource Include="Resource\add_tag_01-fail.png" />
+    <Resource Include="Resource\branch_01.png" />
+    <Resource Include="Resource\chackout_01.png" />
+    <Resource Include="Resource\hard_01.png" />
+    <Resource Include="Resource\hard_02.png" />
+    <Resource Include="Resource\remove_01.png" />
+    <Resource Include="Resource\remove_02-danger.png" />
+    <Resource Include="Resource\remove_02.png" />
+    <Resource Include="Resource\reset_01.png" />
+    <Resource Include="Resource\soft_%271.png" />
+    <Resource Include="Resource\soft_02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\pull_01.png" />
+    <Resource Include="Resource\push_01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\rescan_01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\add_new_01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\remote_01.png" />
+    <Resource Include="Resource\tag_01.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

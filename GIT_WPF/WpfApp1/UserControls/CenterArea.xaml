@@ -7,6 +7,7 @@
              xmlns:controls="clr-namespace:WpfApp1.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="412" d:DesignWidth="859">
+    
     <Grid Margin="0,0,0,-111">
         <Grid.RowDefinitions>
             <RowDefinition Name="ChangesetHistoryRowDefinition" Height="264" />

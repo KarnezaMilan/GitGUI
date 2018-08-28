@@ -36,21 +36,22 @@ namespace WpfApp1.ViewModel
         private CommitModel _selectedCommit;
         private bool _stageFiles;
         private bool _unstageFiles;
-
-
-
-        #endregion
-
         private UserModel _user;
-
+        private RemoteModel _remote;
+        private ObservableCollection<RemoteModel> _listRemote;
+        #endregion
+    
+        #region Property
+        //**** Property ****
         public UserModel User
         {
             get { return _user; }
-            set { _user = value; }
+            set
+            {
+                _user = value;
+                NotifyPropertyChanged("User");
+            }
         }
-
-
-        private RemoteModel _remote;
 
         public RemoteModel Remote
         {
@@ -62,18 +63,11 @@ namespace WpfApp1.ViewModel
             }
         }
 
-        private ObservableCollection<RemoteModel> _listRemote;
-
         public ObservableCollection<RemoteModel> ListRemote
         {
             get { return _listRemote; }
             set { _listRemote = value; }
         }
-
-
-
-        #region Property
-        //**** Property ****
 
         public bool IsUnStageFiles
         {
@@ -110,31 +104,19 @@ namespace WpfApp1.ViewModel
         public ObservableCollection<BranchModel> ListBranches
         {
             get { return _listBranches; }
-            set
-            {
-                _listBranches = value;
-                NotifyPropertyChanged("ListBranches");
-            }
+            set { _listBranches = value; }
         }
 
         public ObservableCollection<FileModel> ListFileUnstage
         {
             get { return _listFileUnstage; }
-            set
-            {
-                _listFileUnstage = value;
-                NotifyPropertyChanged("ListFileUnstage");
-            }
+            set { _listFileUnstage = value; }
         }
 
         public ObservableCollection<FileModel> ListFileStage
         {
             get { return _listFileStage; }
-            set
-            {
-                _listFileStage = value;
-                NotifyPropertyChanged("ListFileStage");
-            }
+            set { _listFileStage = value; }
         }
 
         public string Pot
@@ -174,11 +156,7 @@ namespace WpfApp1.ViewModel
         public ObservableCollection<CommitModel> ListCommitHistory
         {
             get { return _listCommitHistory; }
-            set
-            {
-                _listCommitHistory = value;
-                NotifyPropertyChanged("ListCommitHistory");
-            }
+            set { _listCommitHistory = value; }
         }
 
         public string StatusItemDiff
@@ -226,31 +204,35 @@ namespace WpfApp1.ViewModel
         //Comand method
 
 
-
         private void Checkout(object action)
         {
             ListFileStage = new ObservableCollection<FileModel>();
             ListFileUnstage = new ObservableCollection<FileModel>();
 
-            var repo = new LibGit2Sharp.Repository(Pot);
-            foreach (Commit commit in repo.Commits)
+            try
             {
-                if (commit.Sha == SelectedCommit.Hash)
+                var repo = new LibGit2Sharp.Repository(Pot);
+                foreach (Commit commit in repo.Commits)
                 {
-                    foreach (var parent in commit.Parents)
+                    if (commit.Sha == SelectedCommit.Hash)
                     {
-                        //Console.WriteLine("{0} | {1}", commit.Sha, commit.MessageShort);
-                        foreach (TreeEntryChanges change in repo.Diff.Compare<TreeChanges>(parent.Tree, commit.Tree))
+                        foreach (var parent in commit.Parents)
                         {
-                            FileModel fm = new FileModel();
-                            fm.FileName = change.Path;
-                            fm.Status = change.Status.ToString();
-                            fm.Size = GetFormattedFileSize(change.Path);
-                            ListFileStage.Add(fm);
-                           // Console.WriteLine("{0} : {1}", change.Status, change.Path);
+                            foreach (TreeEntryChanges change in repo.Diff.Compare<TreeChanges>(parent.Tree, commit.Tree))
+                            {
+                                FileModel fm = new FileModel();
+                                fm.FileName = change.Path;
+                                fm.Status = change.Status.ToString();
+                                fm.Size = GetFormattedFileSize(change.Path);
+                                ListFileStage.Add(fm);
+                            }
                         }
                     }
                 }
+            }
+            catch (Exception e)
+            {
+                WritteErrorFile("Checkout", e);
             }
         }
 
@@ -258,26 +240,33 @@ namespace WpfApp1.ViewModel
         private void AddRemote(object action)
         {
             ListRemote = new ObservableCollection<RemoteModel>();
-            //RemoteModel rm = new RemoteModel();
-            if (Remote.Path != null)
+            try
             {
-                BranchDialog br = new BranchDialog(Remote.Path);
-                br.ShowDialog();
-                Remote.Path = br.ReturnName();
-            }
-            else
-            {
-                BranchDialog br = new BranchDialog();
-                br.ShowDialog();
-                Remote.Name = "Origin";
-                Remote.Path = br.ReturnName();
-            }
 
-            using (var repo = new Repository(Pot))
+                if (Remote.Path != null)
+                {
+                    BranchDialog br = new BranchDialog(Remote.Path);
+                    br.ShowDialog();
+                    Remote.Path = br.ReturnName();
+                }
+                else
+                {
+                    BranchDialog br = new BranchDialog();
+                    br.ShowDialog();
+                    Remote.Name = "Origin";
+                    Remote.Path = br.ReturnName();
+                }
+
+                using (var repo = new Repository(Pot))
+                {
+                    repo.Network.Remotes.Update(Remote.Name, r => { r.Url = Remote.Path; });
+                    ListRemote.Add(Remote);
+                    MessageBox.Show("ok");
+                }
+            }
+            catch (Exception e)
             {
-                repo.Network.Remotes.Update(Remote.Name, r => { r.Url = Remote.Path; });
-                ListRemote.Add(Remote);
-                MessageBox.Show("ok");
+                WritteErrorFile("AddRemote", e);
             }
         }
 
@@ -285,9 +274,16 @@ namespace WpfApp1.ViewModel
         {
             ListFileUnstage = new ObservableCollection<FileModel>();
             ListFileStage = new ObservableCollection<FileModel>();
-            using (var repo = new Repository(Pot))
+            try
             {
-                repo.Reset(ResetMode.Hard, SelectedCommit.Hash);
+                using (var repo = new Repository(Pot))
+                {
+                    repo.Reset(ResetMode.Hard, SelectedCommit.Hash);
+                }
+            }
+            catch (Exception e)
+            {
+                WritteErrorFile("ResetHard", e);
             }
             Load();
         }
@@ -297,75 +293,101 @@ namespace WpfApp1.ViewModel
         {
             ListFileUnstage = new ObservableCollection<FileModel>();
             ListFileStage = new ObservableCollection<FileModel>();
-            using (var repo = new Repository(Pot))
+            try
             {
-                repo.Reset(ResetMode.Soft, SelectedCommit.Hash);
+                using (var repo = new Repository(Pot))
+                {
+                    repo.Reset(ResetMode.Soft, SelectedCommit.Hash);
+                }
             }
-            
+            catch (Exception e)
+            {
+                WritteErrorFile("ResetSoft", e);
+            }
+
             Load();
         }
 
         private void AddTag(object action)
         {
-            BranchDialog dialog = new BranchDialog();
-            dialog.ShowDialog();
-            TagModel mod = new TagModel();
-            mod.Name = dialog.ReturnName();
-            mod.TargetCommit = SelectedCommit;
-            mod.Sha = SelectedCommit.Hash;
-
-            using (var repo = new Repository(Pot))
+            try
             {
-                Tag t = repo.ApplyTag(mod.Name, mod.Sha);
+                BranchDialog dialog = new BranchDialog();
+                dialog.ShowDialog();
+                TagModel mod = new TagModel();
+                mod.Name = dialog.ReturnName();
+                mod.TargetCommit = SelectedCommit;
+                mod.Sha = SelectedCommit.Hash;
+
+                using (var repo = new Repository(Pot))
+                {
+                    Tag t = repo.ApplyTag(mod.Name, mod.Sha);
+                }
+                ListTags.Add(mod);
+            }
+            catch (Exception e)
+            {
+                WritteErrorFile("AddTag", e);
             }
 
-            ListTags.Add(mod);
+            
         }
 
 
         private void AddBranch(object action)
         {
-            BranchDialog dialog = new BranchDialog();
-            dialog.ShowDialog();
-            BranchModel mod = new BranchModel();
-            mod.Name = dialog.ReturnName();
-
-
-            using (var repo = new Repository(Pot))
+            try
             {
-                repo.CreateBranch(mod.Name);   // Or repo.Branches.Add("develop", "HEAD");
+                BranchDialog dialog = new BranchDialog();
+                dialog.ShowDialog();
+                BranchModel mod = new BranchModel();
+                mod.Name = dialog.ReturnName();
 
-                var branch = repo.Branches[mod.Name];
 
-                mod.IsHead = false;
+                using (var repo = new Repository(Pot))
+                {
+                    repo.CreateBranch(mod.Name);
+
+                    var branch = repo.Branches[mod.Name];
+
+                    mod.IsHead = false;
+                }
+                ListBranches.Add(mod);
             }
-            ListBranches.Add(mod);
+            catch (Exception e)
+            {
+                WritteErrorFile("AddBranch", e);
+            }
 
         }
 
-
-
         private void Pull(object action)
         {
-            //UserContactView logInForm = new UserContactView();
-            UserContactDialog logInForm = new UserContactDialog();
-            logInForm.ShowDialog();
-            string userName = logInForm.returnUN();
-            string pass = logInForm.returnPass();
-
-            using (var repo = new Repository(Pot))
+            try
             {
-                LibGit2Sharp.PullOptions options = new LibGit2Sharp.PullOptions();
-                options.FetchOptions = new FetchOptions();
-                options.FetchOptions.CredentialsProvider = new CredentialsHandler(
-                    (url, usernameFromUrl, types) =>
-                        new UsernamePasswordCredentials()
-                        {
-                            Username = userName,
-                            Password = pass
-                        });
+                UserContactDialog logInForm = new UserContactDialog();
+                logInForm.ShowDialog();
+                string userName = logInForm.returnUN();
+                string pass = logInForm.returnPass();
 
-                Commands.Pull(repo, new Signature(userName, "@jugglingnutcase", new DateTimeOffset(DateTime.Now)), options);
+                using (var repo = new Repository(Pot))
+                {
+                    LibGit2Sharp.PullOptions options = new LibGit2Sharp.PullOptions();
+                    options.FetchOptions = new FetchOptions();
+                    options.FetchOptions.CredentialsProvider = new CredentialsHandler(
+                        (url, usernameFromUrl, types) =>
+                            new UsernamePasswordCredentials()
+                            {
+                                Username = userName,
+                                Password = pass
+                            });
+
+                    Commands.Pull(repo, new Signature(userName, "@jugglingnutcase", new DateTimeOffset(DateTime.Now)), options);
+                }
+            }
+            catch (Exception e)
+            {
+                WritteErrorFile("Pull", e);
             }
         }
 
@@ -373,7 +395,6 @@ namespace WpfApp1.ViewModel
         {
             try
             {
-
                 using (var repo = new Repository(this.Pot))
                 {
                     UserContactDialog logInForm = new UserContactDialog();
@@ -396,81 +417,83 @@ namespace WpfApp1.ViewModel
 
                 }
             }
-            
-            catch(Exception e)
+            catch (Exception e)
             {
-                MessageBox.Show("Ups, something went wrong! ");
+                WritteErrorFile("Push", e);
             }
 
-           // MessageBox.Show("YEA-PUSH");
         }
 
         private void Commit(object action)
-        {/*
-            if (IsStageFiles==true)
-            {*/
-            using (var repo = new Repository(Pot))
+        {
+            try
             {
-                CommitDialog cd;
-                if(User.Name!=null && User.Email!=null)
+                using (var repo = new Repository(Pot))
                 {
-                    cd = new CommitDialog(User);
-                }else
-                {
-                    cd = new CommitDialog();
+                    CommitDialog cd;
+                    if (User.Name != null && User.Email != null)
+                    {
+                        cd = new CommitDialog(User);
+                    }
+                    else
+                    {
+                        cd = new CommitDialog();
+                    }
+                    cd.ShowDialog();
+                    User = cd.returnData();
+
+
+                    Signature author = new Signature(User.Name, User.Email, DateTime.Now);
+                    Signature committer = author;
+
+                    Commit commit = repo.Commit(CommitMessage, author, committer);
+
                 }
-                cd.ShowDialog();
-                User = cd.returnData();
-
-
-                Signature author = new Signature(User.Name, User.Email, DateTime.Now);
-                Signature committer = author;
-
-                // Commit to the repository
-                Commit commit = repo.Commit(CommitMessage, author, committer);
-
+            }
+            catch (Exception e)
+            {
+                WritteErrorFile("Commit", e);
             }
             // Vizual efekt
             CommitMessage = "";
             StageOrUnstageFileToList();
             CommitHistory();
-           /* }
-            else
-                MessageBox.Show("Ther is no stage files");*/
         }
 
         private void AddToStage(object action)
-        {/*
-            if (IsUnStageFiles == true)
-            {*/
+        {
+            try
+            {
                 using (var repo = new Repository(this.Pot))
                 {
                     Commands.Stage(repo, "*");
                 }
-                StageOrUnstageFileToList();
-                /*if(ListFileUnstage.Count==0)
-                {*/
-                StatusItemDiff = "";
-                //}
-           /* }
-            else
-                MessageBox.Show("There isn't files to stage!");*/
+            }
+            catch (Exception e)
+            {
+                WritteErrorFile("AddToStage", e);
+            }
+
+            StageOrUnstageFileToList();
+            StatusItemDiff = "";
+
         }
 
         private void ResetStage(object action)
-        {/*
-            if (IsStageFiles == true)
-            {*/
+        {
+            try
+            {
                 using (var repo = new Repository(this.Pot))
                 {
                     Commit currentCommit = repo.Head.Tip;
                     repo.Reset(ResetMode.Mixed, currentCommit);
                 }
-                StageOrUnstageFileToList();
-           /* }
-            else
-                MessageBox.Show("There isn't stage files! ");*/
-            
+            }
+            catch (Exception e)
+            {
+                WritteErrorFile("ResetStage", e);
+            }
+            StageOrUnstageFileToList();
         }
 
         private void Rescan(object action)
@@ -485,6 +508,7 @@ namespace WpfApp1.ViewModel
 
         public RepositoryViewModel(string pot, bool needToInit)
         {
+            DeleteErrorFile();
             this.Pot = pot;
             if(needToInit==true)
             {
@@ -528,6 +552,7 @@ namespace WpfApp1.ViewModel
 
         public RepositoryViewModel(string pot)
         {
+            DeleteErrorFile();
             this.Pot = pot;
             ListFileStage = new ObservableCollection<FileModel>();
             ListFileUnstage = new ObservableCollection<FileModel>();
@@ -564,6 +589,7 @@ namespace WpfApp1.ViewModel
         public RepositoryViewModel()
         {
             //FileSystemWatcher();
+            DeleteErrorFile();
         }
         #endregion
 
@@ -574,7 +600,6 @@ namespace WpfApp1.ViewModel
         private void Load()
         {
             
-
             StageOrUnstageFileToList();
             IsStageFiles = IsFileStage();
             IsUnStageFiles = IsFileUnstage();
@@ -584,37 +609,67 @@ namespace WpfApp1.ViewModel
             GetrRemote();
 
         }
+        private void DeleteErrorFile()
+        {
+            if (File.Exists(@"C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\bin\DnevnikNapak.txt"))
+            {
+                File.Delete(@"C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\bin\DnevnikNapak.txt");
+            }
+        }
 
+        private void WritteErrorFile(string method, Exception exception)
+        {
+            TextWriter tsw = new StreamWriter(@"C:\Users\Mili\Desktop\Diploma\MojProject\GIT_WPF\WpfApp1\bin\DnevnikNapak.txt", true);
+            tsw.WriteLine();
+            tsw.WriteLine(method);
+            tsw.WriteLine(DateTime.Now);
+            tsw.WriteLine(exception);
+            tsw.Close();
+            MessageBox.Show("Ups, something went wrong! Please try again.");
+        }
 
         private void GetrRemote()
         {
-            using (var repo = new Repository(Pot))
+            try
             {
-                foreach (Remote a in repo.Network.Remotes)
+                using (var repo = new Repository(Pot))
                 {
-                    RemoteModel rm = new RemoteModel();
-                    rm.Name = a.Name;
-                    rm.Path = a.Url;
-                    Remote = new RemoteModel();
-                    Remote = rm;
-                    ListRemote.Add(rm);
+                    foreach (Remote a in repo.Network.Remotes)
+                    {
+                        RemoteModel rm = new RemoteModel();
+                        rm.Name = a.Name;
+                        rm.Path = a.Url;
+                        Remote = new RemoteModel();
+                        Remote = rm;
+                        ListRemote.Add(rm);
+                    }
                 }
-
+            }
+            catch (Exception e)
+            {
+                WritteErrorFile("GetRemote", e);
             }
         }
 
         private void GetTags()
         {
             ListTags = new ObservableCollection<TagModel>();
-            using (var repo = new Repository(Pot))
+            try
             {
-                TagModel tag;
-                foreach (Tag t in repo.Tags)
+                using (var repo = new Repository(Pot))
                 {
-                    tag = new TagModel();
-                    tag.Name = t.FriendlyName;
-                    ListTags.Add(tag);
+                    TagModel tag;
+                    foreach (Tag t in repo.Tags)
+                    {
+                        tag = new TagModel();
+                        tag.Name = t.FriendlyName;
+                        ListTags.Add(tag);
+                    }
                 }
+            }
+            catch (Exception e)
+            {
+                WritteErrorFile("GetTags", e);
             }
         }
 
@@ -636,7 +691,14 @@ namespace WpfApp1.ViewModel
 
         private void InitRepo()
         {
-            Repository.Init(this.Pot);
+            try
+            {
+                Repository.Init(this.Pot);
+            }
+            catch (Exception e)
+            {
+                WritteErrorFile("Init", e);
+            }
         }
 
         private void StageOrUnstageFileToList()
@@ -644,28 +706,34 @@ namespace WpfApp1.ViewModel
 
             ListFileStage = new ObservableCollection<FileModel>();
             ListFileUnstage = new ObservableCollection<FileModel>();
-
-            using (var repo = new Repository(Pot))
+            try
             {
-                foreach (var item in repo.RetrieveStatus(new LibGit2Sharp.StatusOptions()))
+                using (var repo = new Repository(Pot))
                 {
-                    
-                    FileModel fm = new FileModel();
-                    fm.FileName = item.FilePath;
-                    fm.Status = item.State.ToString();
-                    fm.Size = GetFormattedFileSize(Pot + "/" + fm.FileName);
-                    if (item.State != FileStatus.Ignored)
+                    foreach (var item in repo.RetrieveStatus(new LibGit2Sharp.StatusOptions()))
                     {
-                        if(fm.Status.Contains("Workdir")== true)
+
+                        FileModel fm = new FileModel();
+                        fm.FileName = item.FilePath;
+                        fm.Status = item.State.ToString();
+                        fm.Size = GetFormattedFileSize(Pot + "/" + fm.FileName);
+                        if (item.State != FileStatus.Ignored)
                         {
-                            ListFileUnstage.Add(fm);
-                        }
-                        else
-                        {
-                            ListFileStage.Add(fm);
+                            if (fm.Status.Contains("Workdir") == true)
+                            {
+                                ListFileUnstage.Add(fm);
+                            }
+                            else
+                            {
+                                ListFileStage.Add(fm);
+                            }
                         }
                     }
                 }
+            }
+            catch (Exception e)
+            {
+                WritteErrorFile("StageOrUnstageFileToList", e);
             }
 
         }
@@ -694,46 +762,67 @@ namespace WpfApp1.ViewModel
         {
             ListCommitHistory = new ObservableCollection<CommitModel>();
 
-            Repository repo = new Repository(Pot);
-
-            foreach (LibGit2Sharp.Commit commit in repo.Commits)
+            try
             {
 
+                Repository repo = new Repository(Pot);
 
-                CommitModel c = new CommitModel();
-                c.AuthorEmail = commit.Author.Email;
-                c.AuthorName = commit.Author.Name;
-                c.Date = commit.Author.When.ToString("d.M.yyyy H:m:s");
-                c.Description = commit.MessageShort;
-                c.Hash = commit.Sha;
+                foreach (LibGit2Sharp.Commit commit in repo.Commits)
+                {
 
-                ListCommitHistory.Add(c);
-            };
+
+                    CommitModel c = new CommitModel();
+                    c.AuthorEmail = commit.Author.Email;
+                    c.AuthorName = commit.Author.Name;
+                    c.Date = commit.Author.When.ToString("d.M.yyyy H:m:s");
+                    c.Description = commit.MessageShort;
+                    c.Hash = commit.Sha;
+
+                    ListCommitHistory.Add(c);
+                };
+            }
+            catch (Exception e)
+            {
+                WritteErrorFile("CommitHistory", e);
+            }
 
         }
 
         private void FileDiff()
         {
+            try
+            {
+                var repo = new Repository(this.Pot);
+                var patch = repo.Diff.Compare<Patch>(new List<string>() { SelectedFileForDiff.FileName });
 
-            var repo = new Repository(this.Pot);
-            var patch = repo.Diff.Compare<Patch>(new List<string>() { SelectedFileForDiff.FileName });
+                this.StatusItemDiff = patch;
+            }
+            catch (Exception e)
+            {
+                WritteErrorFile("FileDiff", e);
+            }
 
-
-            this.StatusItemDiff =patch;
         }
 
         private void GetBranch()
         {
             ListBranches = new ObservableCollection<BranchModel>();
-            using (var repo = new Repository(this.Pot))
+            try
             {
-                foreach (Branch b in repo.Branches.Where(b => !b.IsRemote))
+                using (var repo = new Repository(this.Pot))
                 {
-                    BranchModel cnd = new BranchModel();
-                    cnd.Name = b.FriendlyName;
-                    cnd.IsHead = b.IsCurrentRepositoryHead;
-                    ListBranches.Add(cnd);
+                    foreach (Branch b in repo.Branches.Where(b => !b.IsRemote))
+                    {
+                        BranchModel cnd = new BranchModel();
+                        cnd.Name = b.FriendlyName;
+                        cnd.IsHead = b.IsCurrentRepositoryHead;
+                        ListBranches.Add(cnd);
+                    }
                 }
+            }
+            catch (Exception e)
+            {
+                WritteErrorFile("GetBranch", e);
             }
         }
 
@@ -750,28 +839,44 @@ namespace WpfApp1.ViewModel
                 Repository.Clone(remote, path, co);
                 return true;
             }
-            catch
+            catch (Exception e)
             {
+                WritteErrorFile("CloneRepo", e);
                 return false;
             }
         }
 
         public void CheckoutBranch(BranchModel br)
         {
-            using (var repo = new Repository(Pot))
+            try
             {
-                var branch = repo.Branches[br.Name];
+                using (var repo = new Repository(Pot))
+                {
+                    var branch = repo.Branches[br.Name];
 
-                Branch currentBranch = Commands.Checkout(repo, branch);
+                    Branch currentBranch = Commands.Checkout(repo, branch);
+                }
+            }
+            catch (Exception e)
+            {
+                WritteErrorFile("CheckoutBranch", e);
             }
         }
 
+
         public void DeleteBranch(BranchModel br)
         {
-            using (var repo = new Repository(Pot))
+            try
             {
-                repo.Branches.Remove(br.Name);
-                ListBranches.Remove(br);
+                using (var repo = new Repository(Pot))
+                {
+                    repo.Branches.Remove(br.Name);
+                    ListBranches.Remove(br);
+                }
+            }
+            catch (Exception e)
+            {
+                WritteErrorFile("DeleteBranch", e);
             }
         }
 

@@ -29,7 +29,7 @@
             <TreeViewItem ItemsSource="{Binding ListBranches}">
                 <TreeViewItem.Header>
                     <WrapPanel>
-                        <Image Source="../Resource/branch.png" Width="24" Height="24" />
+                        <Image Source="../Resource/branch_01.png" Width="24" Height="24" />
                         <TextBlock Style="{StaticResource SidebarTitleStyle}" Margin="5">BRANCHES</TextBlock>
                         </WrapPanel>
                     </TreeViewItem.Header>
@@ -70,7 +70,7 @@
             <TreeViewItem ItemsSource="{Binding ListTags}">
                 <TreeViewItem.Header>
                     <WrapPanel>
-                        <Image Source="../Resource/tag_icon.png" Stretch="None" />
+                        <Image Source="../Resource/tag_01.png" Width="24" Height="24" />
                         <TextBlock Style="{StaticResource SidebarTitleStyle}" Margin="5">TAGS</TextBlock>
                     </WrapPanel>
                 </TreeViewItem.Header>
@@ -87,7 +87,7 @@
             <TreeViewItem ItemsSource="{Binding ListRemote}">
                 <TreeViewItem.Header>
                     <WrapPanel>
-                        <Image Source="../Resource/remote_icon.png" Stretch="None" />
+                        <Image Source="../Resource/remote_01.png" Width="24" Height="24" />
                         <TextBlock Style="{StaticResource SidebarTitleStyle}" Margin="5">REMOTE</TextBlock>
                     </WrapPanel>
                 </TreeViewItem.Header>
