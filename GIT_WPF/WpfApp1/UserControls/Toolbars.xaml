@@ -14,8 +14,8 @@
                 
                 <Button Name="OpenNewProjectBtn" Click="OpenNewProjectBtn_Click" >
                     <StackPanel>
-                        <Image Source="/Resource/add_side_icon.png" Stretch="None" />
-                        <TextBlock>New Project</TextBlock>
+                        <Image Source="/Resource/add_new.png"  Width="40" Height="40" />
+                        <TextBlock HorizontalAlignment="Center">New Project</TextBlock>
                     </StackPanel>
                 </Button>
 
@@ -24,8 +24,8 @@
 
                 <Button Name="RescanBtn" Command="{Binding Path=RescanCommand}">
                     <StackPanel>
-                        <Image Source="/Resource/rescan_icon.png" Stretch="None" />
-                        <TextBlock>Rescan</TextBlock>
+                        <Image Source="/Resource/rescan_01.png" Width="40" Height="40" />
+                        <TextBlock HorizontalAlignment="Center">Rescan</TextBlock>
                     </StackPanel>
                 </Button>
                 
@@ -34,38 +34,41 @@
 
                 <Button Name="AddBtn" Command="{Binding Path=AddToStageCommand}" Margin="2,0">
                     <StackPanel>
-                        <Image Source="/Resource/add1.png"  Width="24" Height="24"/>
-                        <TextBlock>Add</TextBlock>
+                        <Image Source="/Resource/add_01.png"  Width="40" Height="40"/>
+                        <TextBlock HorizontalAlignment="Center">Add</TextBlock>
                     </StackPanel>
                     
                 </Button>
                 <Button Name="ResetBtn" Command="{Binding Path=ResetStageCommand}" Margin="2,0" IsEnabled="{Binding Path=UnStageFiles}">
                     <StackPanel>
-                        <Image Source="/Resource/add2.png"  Width="24" Height="24" />
-                        <TextBlock>Reset</TextBlock>
+                        <Image Source="/Resource/remove_01.png"  Width="40" Height="40" />
+                        <TextBlock HorizontalAlignment="Center">Reset</TextBlock>
                     </StackPanel>
                 </Button>
                 
                 <Separator Width="30" Height="1"  Style="{StaticResource VerticalSeparatorStyle}"  />
-
+<!--
                 <Button Name="CommBtn" Command="{Binding Path=CommitCommand}" Margin="2,0">
                     <StackPanel>
                         <Image Source="/Resource/Commit_icon.png" Stretch="None" />
                         <TextBlock>Commit</TextBlock>
                     </StackPanel>
                 </Button>
+                
+                -->
                 <Button Name="PushBtn" Command="{Binding Path=PushCommand}" Margin="2,0">
 
                     <StackPanel>
-                        <Image Source="/Resource/push_icon.png" Stretch="None" />
-                        <TextBlock>Push</TextBlock>
+                        <Image Source="/Resource/push_01.png" Width="40" Height="40"/>
+                        <TextBlock HorizontalAlignment="Center">Push</TextBlock>
                     </StackPanel>
 
                 </Button>
+                
                 <Button Name="PullBtn" Command="{Binding Path=PullCommand}" Margin="2,0">
                     <StackPanel>
-                        <Image Source="/Resource/pull_icon.png" Stretch="None" />
-                        <TextBlock>Pull</TextBlock>
+                        <Image Source="/Resource/pull_01.png" Width="40" Height="40" />
+                        <TextBlock HorizontalAlignment="Center">Pull</TextBlock>
                     </StackPanel>
                 </Button>
 

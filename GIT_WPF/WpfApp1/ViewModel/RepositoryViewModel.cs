@@ -347,25 +347,34 @@ namespace WpfApp1.ViewModel
 
         private void Pull(object action)
         {
-            //UserContactView logInForm = new UserContactView();
-            UserContactDialog logInForm = new UserContactDialog();
-            logInForm.ShowDialog();
-            string userName = logInForm.returnUN();
-            string pass = logInForm.returnPass();
-
-            using (var repo = new Repository(Pot))
+            try
             {
-                LibGit2Sharp.PullOptions options = new LibGit2Sharp.PullOptions();
-                options.FetchOptions = new FetchOptions();
-                options.FetchOptions.CredentialsProvider = new CredentialsHandler(
-                    (url, usernameFromUrl, types) =>
-                        new UsernamePasswordCredentials()
-                        {
-                            Username = userName,
-                            Password = pass
-                        });
 
-                Commands.Pull(repo, new Signature(userName, "@jugglingnutcase", new DateTimeOffset(DateTime.Now)), options);
+
+                //UserContactView logInForm = new UserContactView();
+                UserContactDialog logInForm = new UserContactDialog();
+                logInForm.ShowDialog();
+                string userName = logInForm.returnUN();
+                string pass = logInForm.returnPass();
+
+                using (var repo = new Repository(Pot))
+                {
+                    LibGit2Sharp.PullOptions options = new LibGit2Sharp.PullOptions();
+                    options.FetchOptions = new FetchOptions();
+                    options.FetchOptions.CredentialsProvider = new CredentialsHandler(
+                        (url, usernameFromUrl, types) =>
+                            new UsernamePasswordCredentials()
+                            {
+                                Username = userName,
+                                Password = pass
+                            });
+
+                    Commands.Pull(repo, new Signature(userName, "@jugglingnutcase", new DateTimeOffset(DateTime.Now)), options);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Ups, something went wrong! ");
             }
         }
 
@@ -581,7 +590,7 @@ namespace WpfApp1.ViewModel
             GetBranch();
             GetTags();
             CommitHistory();
-            GetrRemote();
+            //GetrRemote();
 
         }
 

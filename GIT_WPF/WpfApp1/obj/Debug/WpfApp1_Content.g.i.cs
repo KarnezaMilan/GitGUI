@@ -8,7 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/closewindow.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/minimizewindow.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/lupa.png")]
 
 

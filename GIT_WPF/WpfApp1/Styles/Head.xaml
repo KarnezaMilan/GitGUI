@@ -9,7 +9,7 @@
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                     <GradientStop Color="#b3e5fc" Offset="0"/>
                     <GradientStop Color="#8cc8e3" Offset="0.1"/>
-                    <GradientStop Color="#83bad2" Offset="0.45"/>
+                    <GradientStop Color="#6d5ba3" Offset="0.45"/>
                     <GradientStop Color="#609fbb" Offset="0.9"/>
                     <GradientStop Color="#9fd3eb" Offset="1"/>
                 </LinearGradientBrush>

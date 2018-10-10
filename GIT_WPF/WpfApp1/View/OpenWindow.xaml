@@ -13,7 +13,7 @@
     
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="../Resource/open_background.jpg" Stretch="UniformToFill"/>
+            <ImageBrush ImageSource="../Resource/background.jpg" Stretch="UniformToFill"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
