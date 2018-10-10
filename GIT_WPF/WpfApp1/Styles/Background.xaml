@@ -14,17 +14,4 @@
     </Setter>
     </Style>
 
-    <Style x:Key="BackGroundDarkStyle" TargetType="{x:Type Panel}">
-        <Setter Property="Background">
-            <Setter.Value>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Color="#fff" Offset="0" />
-                    <GradientStop Color="#737373" Offset="0.05" />
-                    <GradientStop Color="#4d4d4d" Offset="0.95" />
-                    <GradientStop Color="#f0f0f0" Offset="1" />
-                </LinearGradientBrush>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
 </ResourceDictionary>

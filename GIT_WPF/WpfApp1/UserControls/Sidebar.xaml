@@ -37,7 +37,7 @@
                     <ContextMenu>
                         <MenuItem Header ="Add" Name="AddNewBranch" Command="{Binding Path=AddNewBranchCommand}">
                             <MenuItem.Icon>
-                                <Image Source="../Resource/add_side_icon.png" Stretch="None" />
+                                <Image Source="../Resource/add_new.png" Stretch="None" />
                             </MenuItem.Icon>
                         </MenuItem>
                     </ContextMenu>
@@ -50,12 +50,12 @@
                                 <ContextMenu>
                                     <MenuItem Header ="Checkout" Name="CheckoutBranch" Click="CheckoutBranch_Click">
                                         <MenuItem.Icon>
-                                            <Image Source="../Resource/checkout_icon.png" Stretch="None" />
+                                            <Image Source="../Resource/chackout_01.png" Width="16" Height="16" />
                                         </MenuItem.Icon>
                                     </MenuItem>
                                     <MenuItem Header ="Delete" Name="DeleteBranch" Click="DeleteBranch_Click">
                                         <MenuItem.Icon>
-                                            <Image Source="../Resource/delete_icon.png" Stretch="None" />
+                                            <Image Source="../Resource/delete_icon.png" Width="16" Height="16"/>
                                         </MenuItem.Icon>
                                     </MenuItem>
                                 </ContextMenu>
@@ -95,7 +95,7 @@
                     <ContextMenu>
                         <MenuItem Header ="Add / Upadate" Command="{Binding Path=AddRemoteCommand}">
                             <MenuItem.Icon>
-                                <Image Source="../Resource/add_side_icon.png" Stretch="None" />
+                                <Image Source="../Resource/add_new.png" Stretch="None" />
                             </MenuItem.Icon>
                         </MenuItem>
                     </ContextMenu>
